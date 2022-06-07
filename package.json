@@ -1,0 +1,20 @@
+{
+  "name": "ursa",
+  "version": "1.0.0",
+  "description": "Ursa Components Monorepo",
+  "main": "index.js",
+  "author": "Jayanta Samaddar <jayanta@zenius.one>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
+    "@types/react-router-dom": "^5.3.3",
+    "react-dom": "^18.1.0",
+    "typescript": "^4.7.3"
+  }
+}

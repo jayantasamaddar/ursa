@@ -1,0 +1,16 @@
+{
+  "name": "@ursa/core",
+  "version": "1.0.0",
+  "description": "Ursa core components library: inputs, buttons, overlays etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ui",
+    "react",
+    "components"
+  ],
+  "author": "Jayanta Samaddar",
+  "license": "MIT"
+}
