@@ -1,0 +1,29 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "src/ursa-*/src",
+    "src/ursa-*/demos",
+    "./types",
+    "./docs/src",
+    "./scripts",
+    "./configuration",
+    "./configuration/types",
+    "./tests"
+  ],
+  "exclude": [
+    "public",
+    ".cache",
+    "configuration/jest",
+    "configuration/storybook/main.js",
+    "node_modules",
+    "src/ursa-*/esm/**/*",
+    "src/ursa-*/lib/**/*",
+    "src/ursa-*/cjs/**/*"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@ursa/*": ["src/ursa-*/src"],
+      "@demos/*": ["src/ursa-*/src/demos"]
+    }
+  }
+}
