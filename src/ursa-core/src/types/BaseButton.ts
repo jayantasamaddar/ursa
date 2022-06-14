@@ -6,7 +6,7 @@ export interface BaseButton {
   /** Button name attribute */
   className?: string;
   /** Button className attribute */
-  upper?: boolean;
+  uppercase?: boolean;
   /** Button text-decoration set to Uppercase */
   url?: string;
   /** Forces url to open in a new tab */
@@ -34,7 +34,7 @@ export interface BaseButton {
   /** Indicates the current checked state of the button when acting as a toggle or switch */
   ariaChecked?: "false" | "true";
   /** Callback when clicked */
-  onClick?(): void;
+  onClick?: () => void;
   /** Callback when button becomes focussed */
   onFocus?(): void;
   /** Callback when focus leaves button */
