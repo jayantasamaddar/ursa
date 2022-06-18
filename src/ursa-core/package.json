@@ -1,5 +1,5 @@
 {
-  "name": "@ursa/core",
+  "name": "@zenius/ursa",
   "version": "1.0.0",
   "description": "Ursa core components library: inputs, buttons, overlays etc.",
   "main": "index.js",
@@ -24,6 +24,10 @@
   ],
   "author": "Jayanta Samaddar",
   "license": "MIT",
+  "dependencies": {
+    "@types/react": "*",
+    "@types/react-dom": "*"
+  },
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"

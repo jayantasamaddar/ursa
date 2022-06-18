@@ -39,6 +39,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           }
           :root {
             color-scheme: ${theme["--ursa-color-scheme"]};
+            font-size: 15px;
           }
           h1,
           h2,

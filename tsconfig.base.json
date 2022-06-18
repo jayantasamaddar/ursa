@@ -5,7 +5,7 @@
     "esm",
     "cjs",
     "jest-config.js",
-    "configuration/storybook/main.js",
+    "config/.storybook/main.js",
     "lib/**/*",
     "esm/**/*",
     "cjs/**/*"

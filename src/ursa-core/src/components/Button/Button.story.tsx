@@ -1,11 +1,20 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ThemeProvider } from "../ThemeProvider";
+import { darkTheme, lightTheme } from "../../styles";
 
 import { Button } from "./Button";
 
 export default {
   title: "Components/Button",
   component: Button,
+  decorators: [
+    (Story) => (
+      <ThemeProvider theme={darkTheme}>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = ({ children, ...args }) => (

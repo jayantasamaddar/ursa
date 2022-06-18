@@ -22,6 +22,7 @@ const UrsaModalHeader: FC<ModalHeaderProps> = ({
 
 export const ModalHeader = styled(UrsaModalHeader)(
   ({ theme: { color } }) => `
+      position: relative;
       display: flex;
       align-items: flex-start;
       flex-shrink: 0;

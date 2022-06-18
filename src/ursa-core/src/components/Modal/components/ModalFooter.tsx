@@ -11,9 +11,11 @@ const UrsaModalFooter: FC<ModalFooterProps> = ({
 }): ReactElement | null => {
   return (
     <div className={`Ursa-Modal-Buttons ${className || ""}`}>
-      <Button outline onClick={secondaryButton?.onClick}>
-        {secondaryButton?.name || "Cancel"}
-      </Button>
+      {secondaryButton?.onClick && (
+        <Button outline onClick={secondaryButton?.onClick}>
+          {secondaryButton?.name || "Cancel"}
+        </Button>
+      )}
       <Button onClick={() => primaryButton?.onClick}>
         {primaryButton?.name || "Submit"}
       </Button>

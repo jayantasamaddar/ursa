@@ -108,7 +108,7 @@ const UrsaButton: FC<ButtonProps> = ({
 };
 
 export const Button = styled(UrsaButton)(
-  ({ theme, fullWidth, uppercase, outline, alert, disabled }) => `
+  ({ theme: { color }, fullWidth, uppercase, outline, alert, disabled }) => `
   width: ${fullWidth ? "100%" : "auto"};
   min-width: 85px;
   padding-top: 0.875em;
@@ -121,7 +121,11 @@ export const Button = styled(UrsaButton)(
   border-style: solid;
   border-radius: 4px;
   border-color: ${
-    disabled ? "rgb(203 213 225)" : alert ? "rgb(239 68 68)" : "rgb(20 184 166)"
+    disabled
+      ? color["--ursa-btn-disabled"]
+      : alert
+      ? color["--ursa-btn-alert"]
+      : color["--ursa-btn-primary"]
   };
   background-color: ${
     disabled
@@ -129,16 +133,16 @@ export const Button = styled(UrsaButton)(
       : outline
       ? "transparent"
       : alert
-      ? "rgb(239 68 68)"
-      : "rgb(20 184 166)"
+      ? color["--ursa-btn-alert"]
+      : color["--ursa-btn-primary"]
   };
   color: ${
     disabled
-      ? "rgb(203 213 225)"
+      ? color["--ursa-btn-disabled"]
       : alert && outline
-      ? "rgb(239 68 68)"
+      ? color["--ursa-btn-alert"]
       : outline
-      ? "rgb(20 184 166)"
+      ? color["--ursa-btn-primary"]
       : "white"
   };
   &:hover {
@@ -147,15 +151,15 @@ export const Button = styled(UrsaButton)(
       disabled || outline
         ? "transparent"
         : alert
-        ? "rgb(220 38 38)"
-        : "rgb(13 148 136)"
+        ? color["--ursa-btn-alert-hovered"]
+        : color["--ursa-btn-primary-hovered"]
     };
     border-color: ${
       disabled
-        ? "rgb(203 213 225)"
+        ? color["--ursa-btn-disabled"]
         : alert
-        ? "rgb(220 38 38)"
-        : "rgb(13 148 136)"
+        ? color["--ursa-btn-alert-hovered"]
+        : color["--ursa-btn-primary-hovered"]
     };
     cursor: ${disabled ? "auto" : "pointer"};
     box-shadow: ${

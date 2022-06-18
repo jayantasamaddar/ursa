@@ -1,0 +1,42 @@
+{
+  "name": "@zenius/ursa-icons",
+  "version": "1.0.0",
+  "description": "Ursa Icons Library",
+  "author": "Jayanta Samaddar",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.svg"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayantasamaddar/ursa.git",
+    "directory": "src/ursa-icons"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./dist/svg/*.svg": "./dist/svg/*.svg"
+  },
+  "scripts": {
+    "svgr": "svgr icons --out-dir src",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "clean": "rm -rf .turbo node_modules dist"
+  },
+  "devDependencies": {
+    "@svgr/cli": "^6.2.1",
+    "@svgr/core": "^6.2.1",
+    "glob": "^8.0.3",
+    "svgo": "^2.8.0"
+  }
+}

@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { ModalProps } from "../../types";
 
 import { Portal } from "../Portal";
-import { Button } from "../Button";
 import { Spinner } from "../Spinner";
 import { Backdrop } from "../Backdrop";
 import { ModalHeader, ModalFooter } from "./components";
@@ -15,7 +14,7 @@ const UrsaModal: FC<ModalProps> = ({
   className,
   children,
   primaryButton,
-  secondaryButton,
+  secondaryButton = {},
   loading,
   isOpen,
   onClose,
@@ -67,7 +66,11 @@ const UrsaModal: FC<ModalProps> = ({
         <div className="Ursa-Modal">
           <ModalHeader title={title} onClose={onClose} />
 
-          <div className="Ursa-Modal-Content">{children}</div>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <div className="Ursa-ModalContent">{children}</div>
+          )}
 
           <ModalFooter
             primaryButton={primaryButton}
@@ -109,26 +112,7 @@ const Modal = styled(UrsaModal)(
     overscroll-behavior-y: contain;
     z-index: 9999;
   }
-  .Ursa-Modal-close {
-    position: fixed;
-    right: 0;
-    display: flex;
-    justify-content: flex-end;
-    background-color: ${color["--ursa-bg-primary"]};
-
-    .close-button {
-      cursor: pointer;
-      padding: 20px;
-      & > i {
-        font-size: 2.5rem;
-        cursor: pointer;
-        &:hover {
-          color: rgb(239 68 68);
-        }
-      }
-    }
-  }
-  .Ursa-Modal-Content {
+  .Ursa-ModalContent {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
