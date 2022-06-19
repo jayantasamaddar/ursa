@@ -26,7 +26,8 @@
   "license": "MIT",
   "dependencies": {
     "@types/react": "*",
-    "@types/react-dom": "*"
+    "@types/react-dom": "*",
+    "@zenius/ursa-icons": "../ursa-icons/zenius-ursa-icons-v1.0.0.tgz"
   },
   "peerDependencies": {
     "react": "^18.1.0",

@@ -1,9 +1,10 @@
+import styled from "@emotion/styled";
 import React, { FC, ReactElement, ReactNode } from "react";
 
 interface BadgeProps {
   children?: ReactNode;
   className?: string;
-  badgeContent?: ReactNode;
+  badgeContent?: number;
   color?: string;
   invisible?: boolean;
   showZero?: boolean;
@@ -15,8 +16,67 @@ interface BadgeProps {
   };
 }
 
-const Badge: FC<BadgeProps> = (): ReactElement => {
-  return <div className="Ursa-Badge">Badge</div>;
+const UrsaBadge: FC<BadgeProps> = (props): ReactElement => {
+  const {
+    children,
+    className,
+    badgeContent,
+    color,
+    invisible,
+    showZero,
+    max,
+    variant,
+    anchorOrigin,
+  } = props;
+
+  const content =
+    badgeContent && max && badgeContent > max ? `${max}+` : badgeContent;
+
+  return (
+    <div className={`Ursa-BadgeContainer ${className || ""}`}>
+      {children && <div className="Ursa-BadgeComponent">{children}</div>}
+      {!invisible && (
+        <div className="Ursa-Badge">
+          {variant === "dot" ? null : (
+            <div className="Ursa-BadgeContent">{content}</div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default Badge;
+export const Badge = styled(UrsaBadge)(
+  ({
+    theme: { color, fontSize, border },
+    color: badgeColor,
+    children,
+    variant,
+  }) => `
+  cursor: pointer;
+  display: inline-flex;
+  position: relative;
+
+    .Ursa-Badge {
+      display: flex;
+      position: ${!children ? "static" : "absolute"};;
+      bottom: ${!children ? 0 : "0.2em"};
+      left: ${!children ? 0 : "0.3em"};
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      min-width: ${variant === "dot" ? "10px" : "22px"};
+      min-height: ${variant === "dot" ? "10px" : "22px"};
+      z-index: 1;
+      border-radius: ${border["--ursa-border-radius-full"]};
+      background-color: ${badgeColor ? badgeColor : color["--ursa-btn-alert"]};
+      transform: scale(0.9);
+
+      & > .Ursa-BadgeContent {
+        font-size: ${fontSize["--ursa-font-size-1"]};
+        font-weight: bold;
+        color: ${color["--ursa-white"]};
+      }
+    }
+  `
+);

@@ -10,6 +10,9 @@ export const commonStyles = {
     "--ursa-tag-text": "rgba(30, 41, 59, 1)",
     "--ursa-tab-selected": "rgba(234, 88, 12, 1)",
     "--ursa-card-img-bg": "rgba(21, 128, 61, 1)",
+    "--ursa-badge-img-bg": "rgba(21, 128, 61, 1)",
+    "--ursa-white": "rgba(255, 255, 255, 1)",
+    "--ursa-black": "rgba(0, 0, 0, 1)",
   },
   font: {
     "--ursa-font-primary": "Roboto, Helvetica, Arial, sans-serif",

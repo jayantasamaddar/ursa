@@ -22,8 +22,6 @@ const fieldsObj = {
 
 const fieldsData = Object.entries(fieldsObj);
 
-console.log(fieldsData);
-
 const Template = ({ fields, ...args }) => (
   <Card {...args} fields={fieldsData} />
 );

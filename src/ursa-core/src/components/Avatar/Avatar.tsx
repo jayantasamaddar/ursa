@@ -1,4 +1,4 @@
-import { FC, ReactElement, ReactNode } from "react";
+import React, { FC, ReactElement, ReactNode } from "react";
 import styled from "@emotion/styled";
 
 interface AvatarProps {

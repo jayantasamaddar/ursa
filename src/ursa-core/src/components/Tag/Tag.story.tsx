@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Tag } from "./Tag";
 import { ThemeProvider } from "../ThemeProvider";
