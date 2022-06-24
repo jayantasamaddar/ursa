@@ -8,14 +8,14 @@ Ursa components library.
 
 ```
 # With yarn
-yarn add @ursa/core
+yarn add @zenius-one/ursa
 
 # With npm
-npm install @ursa/core
+npm install @zenius-one/ursa
 ```
 
 ---
 
 ## License
 
-MIT
+See LICENSE.md

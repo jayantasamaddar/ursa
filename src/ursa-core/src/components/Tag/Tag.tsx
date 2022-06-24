@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, MouseEvent } from "react";
 import styled from "@emotion/styled";
 import { TagProps } from "../../types";
-import { MobileCancelMajor } from "@zenius/ursa-icons";
+import { MobileCancelMajor } from "@zenius.one/ursa-icons";
 import { Icon } from "../Icon";
 
 const UrsaTag: FC<TagProps> = ({

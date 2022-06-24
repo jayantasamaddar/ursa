@@ -4,6 +4,8 @@ import React, {
   MouseEvent,
   useState,
   useCallback,
+  forwardRef,
+  ForwardedRef,
 } from "react";
 
 import styled from "@emotion/styled";
@@ -27,85 +29,89 @@ export interface ButtonProps extends BaseButton {
   iconOnly?: boolean;
 }
 
-const DEFAULT_SIZE = "medium";
+const UrsaButton: FC<ButtonProps> = forwardRef(
+  (
+    {
+      children,
+      id,
+      name,
+      className,
+      url,
+      disabled,
+      external,
+      download,
+      submit,
+      loading,
+      pressed,
+      accessibilityLabel,
+      role,
+      ariaControls,
+      ariaExpanded,
+      ariaDescribedBy,
+      ariaChecked,
+      onClick,
+      onFocus,
+      onBlur,
+      onKeyDown,
+      onKeyPress,
+      onKeyUp,
+      onMouseEnter,
+      onTouchStart,
+      onPointerDown,
+      icon,
+      iconOnly,
+      primary,
+      outline,
+      alert,
+      plain,
+      monochrome,
+      removeUnderline,
+      size = "medium",
+      textAlign,
+      fullWidth,
+    },
+    ref: ForwardedRef<HTMLButtonElement>
+  ): ReactElement => {
+    const classes = `Button ${className ?? ""}`;
 
-const UrsaButton: FC<ButtonProps> = ({
-  children,
-  id,
-  name,
-  className,
-  url,
-  disabled,
-  external,
-  download,
-  submit,
-  loading,
-  pressed,
-  accessibilityLabel,
-  role,
-  ariaControls,
-  ariaExpanded,
-  ariaDescribedBy,
-  ariaChecked,
-  onClick,
-  onFocus,
-  onBlur,
-  onKeyDown,
-  onKeyPress,
-  onKeyUp,
-  onMouseEnter,
-  onTouchStart,
-  onPointerDown,
-  icon,
-  iconOnly,
-  primary,
-  outline,
-  alert,
-  plain,
-  monochrome,
-  removeUnderline,
-  size = DEFAULT_SIZE,
-  textAlign,
-  fullWidth,
-}): ReactElement => {
-  const classes = `Button ${className ?? ""}`;
+    const [dropdownActive, setDropdownActive] = useState(false);
 
-  const [dropdownActive, setDropdownActive] = useState(false);
+    const toggleDropdownActive = useCallback(
+      () => setDropdownActive((prev) => !prev),
+      []
+    );
 
-  const toggleDropdownActive = useCallback(
-    () => setDropdownActive((prev) => !prev),
-    []
-  );
-
-  return (
-    <div className="UrsaButton">
-      <button
-        name={name}
-        type={`${submit ? "submit" : "button"}`}
-        className={classes}
-        disabled={disabled}
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onKeyDown={onKeyDown}
-        onKeyPress={onKeyPress}
-        onKeyUp={onKeyUp}
-        onMouseEnter={onMouseEnter}
-        onTouchStart={onTouchStart}
-        onPointerDown={onPointerDown}
-        role={role ?? "button"}
-      >
-        {loading ? (
-          <Spinner color="white" size="small" />
-        ) : icon ? (
-          icon
-        ) : (
-          children
-        )}
-      </button>
-    </div>
-  );
-};
+    return (
+      <div className="UrsaButton">
+        <button
+          name={name}
+          type={`${submit ? "submit" : "button"}`}
+          ref={ref}
+          className={classes}
+          disabled={disabled}
+          onClick={onClick}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onKeyDown={onKeyDown}
+          onKeyPress={onKeyPress}
+          onKeyUp={onKeyUp}
+          onMouseEnter={onMouseEnter}
+          onTouchStart={onTouchStart}
+          onPointerDown={onPointerDown}
+          role={role ?? "button"}
+        >
+          {loading ? (
+            <Spinner color="white" size="small" />
+          ) : icon ? (
+            icon
+          ) : (
+            children
+          )}
+        </button>
+      </div>
+    );
+  }
+);
 
 export const Button = styled(UrsaButton)(
   ({ theme: { color }, fullWidth, uppercase, outline, alert, disabled }) => `

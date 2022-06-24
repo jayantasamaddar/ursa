@@ -4,13 +4,17 @@ import React, {
   MouseEvent,
   ChangeEvent,
   FocusEvent,
+  useState,
+  useEffect,
+  useCallback,
   useImperativeHandle,
   useRef,
   forwardRef,
-  Ref,
+  ForwardedRef,
 } from "react";
 
-import { MinusMInor } from "@zenius/ursa-icons";
+import { MinusMinor, TickMinor } from "@zenius.one/ursa-icons";
+import { Icon } from "../Icon";
 import styled from "@emotion/styled";
 
 interface CheckboxProps {
@@ -25,11 +29,11 @@ interface CheckboxProps {
   /* Classes to apply to the tag */
   className?: string;
   /** Checkbox is selected. */
-  checked?: boolean;
-  /** If `indeterminate` shows a horizontal line in the checkbox */
-  indeterminate?: boolean;
+  checked?: boolean | "indeterminate";
   /** Disable input */
   disabled?: boolean;
+  /** Callback when checkbox is toggled */
+  // onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   /** Callback when checkbox is focussed */
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
@@ -42,7 +46,7 @@ interface CheckboxProps {
 }
 
 const UrsaCheckbox: FC<CheckboxProps> = forwardRef(
-  (CheckboxProps, ref: Ref<HTMLInputElement>): ReactElement => {
+  (props, ref: ForwardedRef<HTMLInputElement>): ReactElement => {
     const {
       name,
       label,
@@ -53,59 +57,71 @@ const UrsaCheckbox: FC<CheckboxProps> = forwardRef(
       onChange,
       onFocus,
       onBlur,
-    } = CheckboxProps;
+    } = props;
 
     const id = `${name}-${Math.random()}`;
+    const [isChecked, setIsChecked] = useState(checked == true || false);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    useImperativeHandle(ref, () => inputRef.current);
+    useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
 
     /********************************************************************/
     // Handle Indeterminate
     /********************************************************************/
-    // const isIndeterminate = checked === "indeterminate";
-    // const isChecked = !isIndeterminate && Boolean(checked);
+    const isIndeterminate = checked === "indeterminate";
 
-    // const indeterminateAttributes = isIndeterminate
-    //   ? { indeterminate: "true", "aria-checked": "mixed" as const }
-    //   : { "aria-checked": isChecked };
+    const indeterminateAttributes = isIndeterminate
+      ? { indeterminate: "true", "aria-checked": "mixed" as const }
+      : { "aria-checked": isChecked };
 
-    // const iconSource = isIndeterminate ? MinusMInor : undefined;
+    const iconSource = isIndeterminate ? MinusMinor : TickMinor;
+
+    useEffect(() => {
+      if (inputRef.current) {
+        if (checked === "indeterminate") {
+          inputRef.current.indeterminate = true;
+        } else {
+          inputRef.current.indeterminate = false;
+          setIsChecked(Boolean(checked));
+        }
+      }
+    }, [checked]);
 
     /********************************************************************/
     // Event Handlers
     /********************************************************************/
-    // const handleClick = (event: MouseEvent<HTMLInputElement>) => {
-    //   if (inputRef.current === null || disabled) {
-    //     return;
-    //   }
-    //   inputRef.current.checked = !inputRef.current.checked;
-    //   inputRef.current.focus();
-    // };
+    const handleClick = useCallback((event: MouseEvent<HTMLInputElement>) => {
+      setIsChecked((prevState) => !prevState);
+    }, []);
 
     /********************************************************************/
     // Render Checkbox JSX
     /********************************************************************/
 
     return (
-      <div className={`${className || ""}`}>
-        <label className="Ursa-Label" htmlFor={name}>
+      <div className={`Ursa-CheckboxContainer ${className || ""}`}>
+        <label className="Ursa-Label" htmlFor={id}>
+          <input
+            id={id}
+            className="Ursa-Checkbox"
+            ref={inputRef}
+            name={name}
+            value={value}
+            type="checkbox"
+            checked={isChecked}
+            disabled={disabled}
+            onClick={handleClick}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            {...indeterminateAttributes}
+          />
+          <span className="Ursa-CheckboxIcon">
+            <Icon source={iconSource} color={"--ursa-white"} />
+          </span>
+
           {label}
         </label>
-        <input
-          id={name}
-          className="Ursa-Checkbox"
-          ref={inputRef}
-          name={name}
-          value={value}
-          type="checkbox"
-          checked={checked}
-          disabled={disabled}
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          //   {...indeterminateAttributes}
-        />
       </div>
     );
   }
@@ -116,12 +132,14 @@ const UrsaCheckbox: FC<CheckboxProps> = forwardRef(
 /********************************************************************/
 
 export const Checkbox = styled(UrsaCheckbox)(
-  ({ theme: { color }, labelHidden }) => `
+  ({ theme: { color }, labelHidden, checked }) => `
     display: inline-flex;
-    flex-direction: row-reverse;
     align-items: center;
     color: ${color["--ursa-text-primary"]};
+    padding-bottom: 3px;
     label {
+        display: flex;
+        align-items: center;
         padding-left: 10px;
         invisibility: ${labelHidden ? "hidden" : "visible"};
     }
@@ -129,6 +147,31 @@ export const Checkbox = styled(UrsaCheckbox)(
         width: 1.2em;
         height: 1.2em;
         border: 2px solid ${color["--ursa-text-primary"]};
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+    .Ursa-CheckboxIcon {
+      display: inline-flex;
+      cursor: pointer;
+      height: 1.2em;
+      width: 1.2em;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 2px;
+      margin-right: 10px;
+      background-color: ${
+        checked ? color["--ursa-accent-color"] : color["--ursa-white"]
+      };
+      border-color: ${
+        checked
+          ? color["--ursa-accent-color"]
+          : color["--ursa-border-secondary"]
+      };
     }
     `
 );

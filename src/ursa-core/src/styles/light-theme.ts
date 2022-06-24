@@ -9,5 +9,8 @@ export const lightTheme = {
     "--ursa-text-primary": "rgba(0, 0, 0, 1)",
     "--ursa-backdrop": "rgba(0, 0, 0, 0.5)",
     "--ursa-border-primary": "rgba(203, 213, 225, 1)",
+    "--ursa-nav-bg-primary": "rgba(255, 255, 255, 1)",
+    "--ursa-nav-item-bg-active": "rgba(204, 251, 241, 1)",
+    "--ursa-nav-item-bg-hovered": "rgba(240, 253, 250, 1)",
   },
 };

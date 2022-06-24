@@ -1,6 +1,6 @@
 import React, { FC, ReactElement } from "react";
 import styled from "@emotion/styled";
-import { MobileCancelMajor } from "@zenius/ursa-icons";
+import { MobileCancelMajor } from "@zenius.one/ursa-icons";
 import { Icon } from "../../Icon";
 
 interface CloseButtonProps {

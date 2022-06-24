@@ -1,7 +1,7 @@
-import React, { FC, ReactElement } from "react";
-import styled from "@emotion/styled";
+import React, { FC, ReactElement } from 'react';
+import styled from '@emotion/styled';
 
-type Size = "small" | "large";
+type Size = 'small' | 'large';
 
 export interface SpinnerProps {
   /**
@@ -18,9 +18,9 @@ export interface SpinnerProps {
 }
 
 const UrsaStyledLoader = styled.svg`
-  fill: ${(props: SpinnerProps) => props.color ?? "#000"};
-  width: ${({ size }) => (size === "small" ? "16" : "32")}px;
-  height: ${({ size }) => (size === "small" ? "16" : "32")}px;
+  fill: ${(props: SpinnerProps) => props.color ?? '#000'};
+  width: ${({ size }) => (size === 'small' ? '16' : '32')}px;
+  height: ${({ size }) => (size === 'small' ? '16' : '32')}px;
   animation: spin 1s linear infinite;
   @keyframes spin {
     from {
@@ -32,7 +32,7 @@ const UrsaStyledLoader = styled.svg`
   }
 `;
 
-const Spinner: FC<SpinnerProps> = ({ size = "large", color }): ReactElement => {
+const Spinner: FC<SpinnerProps> = ({ size = 'large', color }): ReactElement => {
   const spinnerSVGMarkup = (
     <UrsaStyledLoader color={color} size={size}>
       <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@ const Spinner: FC<SpinnerProps> = ({ size = "large", color }): ReactElement => {
 
   return (
     <>
-      <span className={""}>{spinnerSVGMarkup}</span>
+      <span className={''}>{spinnerSVGMarkup}</span>
     </>
   );
 };

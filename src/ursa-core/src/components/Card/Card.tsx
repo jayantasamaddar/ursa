@@ -1,8 +1,8 @@
-import React, { FC, ReactElement } from "react";
-import styled from "@emotion/styled";
+import React, { FC, ReactElement } from 'react';
+import styled from '@emotion/styled';
 
-import { CardMedia } from "./components";
-import { Avatar } from "../Avatar";
+import { CardMedia } from './components';
+import { Avatar } from '../Avatar';
 
 interface CardProps {
   image?: string;
@@ -20,10 +20,10 @@ const UrsaCard: FC<CardProps> = ({
   fields,
   className,
   noBorder,
-  noShadow,
+  noShadow
 }): ReactElement => {
   return (
-    <div className={`Ursa-Card ${className || ""}`}>
+    <div className={`Ursa-Card ${className || ''}`}>
       <div className="Ursa-CardImageContent">
         <div className="Ursa-CardSnapshot">
           <div className="Ursa-CardImageContainer">
@@ -55,13 +55,13 @@ const UrsaCard: FC<CardProps> = ({
 };
 
 export const Card = styled(UrsaCard)(
-  ({ theme: { color, border }, noShadow }) => `
+  ({ theme: { color, border, fontSize }, noShadow }) => `
     display: flex;
     cursor: pointer;
-    border: 1px solid ${color["--ursa-border-primary"]};
+    border: 1px solid ${color['--ursa-border-primary']};
     border-radius: 4px;
-    background-color: ${color["--ursa-bg-primary"]};
-    box-shadow: ${noShadow ? "none" : "0px 0px 4px rgba(0, 0, 0, 0.25)"};
+    background-color: ${color['--ursa-bg-primary']};
+    box-shadow: ${noShadow ? 'none' : '0px 0px 4px rgba(0, 0, 0, 0.25)'};
 
     .Ursa-CardImageContent {
       display: flex;
@@ -79,12 +79,12 @@ export const Card = styled(UrsaCard)(
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: ${border["--ursa-border-radius-full"]};
-            color: ${color["--ursa-text-primary"]};
-            background-color: ${color["--ursa-card-img-bg"]};
+            border-radius: ${border['--ursa-border-radius-full']};
+            color: ${color['--ursa-text-primary']};
+            background-color: ${color['--ursa-card-img-bg']};
             width: 56px;
             height: 56px;
-            font-size: ${color["--ursa-font-size-lg"]};
+            font-size: ${fontSize['--ursa-font-size-5']};
             font-weight: bold;
           }
         }
@@ -95,7 +95,7 @@ export const Card = styled(UrsaCard)(
       flex-direction: column;
       flex-basis: 80%;
       padding: 10px;
-      color: ${color["--ursa-text-primary"]};
+      color: ${color['--ursa-text-primary']};
 
       & > .Ursa-CardTitle {
         display: flex;

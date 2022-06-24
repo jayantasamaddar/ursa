@@ -1,26 +1,26 @@
 {
-  "exclude": [
-    "node_modules",
-    "lib",
-    "esm",
-    "cjs",
-    "jest-config.js",
-    "config/.storybook/main.js",
-    "lib/**/*",
-    "esm/**/*",
-    "cjs/**/*"
-  ],
-  "compilerOptions": {
-    "target": "ES2015",
-    "lib": ["DOM", "ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "jsx": "react",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "noEmitOnError": true,
-    "allowJs": true,
-    "baseUrl": "."
-  }
+	"exclude": [
+		"node_modules",
+		"lib",
+		"esm",
+		"cjs",
+		"jest-config.js",
+		"config/.storybook/main.js",
+		"lib/**/*",
+		"esm/**/*",
+		"cjs/**/*"
+	],
+	"compilerOptions": {
+		"target": "ES2015",
+		"lib": ["DOM", "ES2015", "ESNext"],
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"jsx": "react",
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"noEmitOnError": true,
+		"allowJs": true,
+		"baseUrl": "."
+	}
 }

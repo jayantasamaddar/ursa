@@ -1,18 +1,19 @@
-import React, { FC, ReactElement } from "react";
-import { IconSource } from "../../types";
-import styled from "@emotion/styled";
+import React, { FC, ReactElement } from 'react';
+import { IconSource } from '../../types';
+import styled from '@emotion/styled';
 
-type Color = "primary" | "alert" | "disabled" | "success" | "info" | "warning";
+type Color = 'primary' | 'alert' | 'disabled' | 'success' | 'info' | 'warning';
 
-const COLORS_WITH_BACKDROPS = ["success", "info", "warning", "alert"];
+const COLORS_WITH_BACKDROPS = ['success', 'info', 'warning', 'alert'];
 
 export interface IconProps {
   /** The SVG contents to display in the icon (icons should fit in a 20 × 20 pixel viewBox) */
   source: IconSource;
   /** Set the color for the SVG fill */
-  color?: Color;
+  color?: string;
+  bgColor?: string;
   /** Set the size for the SVG */
-  size?: "small" | "medium" | "large";
+  size?: 'small' | 'medium' | 'large';
   /** Show a backdrop behind the icon */
   backdrop?: boolean;
   /** Descriptive text to be read to screenreaders */
@@ -28,20 +29,20 @@ const UrsaIcon: FC<IconProps> = ({
   backdrop,
   accessibilityLabel,
   className,
-  onClick,
+  onClick
 }): ReactElement => {
   /*****************************************************************/
   // Find the typeof source as sourceType
   /*****************************************************************/
 
-  let sourceType: "function" | "placeholder" | "external";
+  let sourceType: 'function' | 'placeholder' | 'external';
 
-  if (typeof IconSVGComponent === "function") {
-    sourceType = "function";
-  } else if (IconSVGComponent === "placeholder") {
-    sourceType = "placeholder";
+  if (typeof IconSVGComponent === 'function') {
+    sourceType = 'function';
+  } else if (IconSVGComponent === 'placeholder') {
+    sourceType = 'placeholder';
   } else {
-    sourceType = "external";
+    sourceType = 'external';
   }
 
   /*********************************************************************************/
@@ -51,11 +52,11 @@ const UrsaIcon: FC<IconProps> = ({
 
   if (
     color &&
-    sourceType === "external" &&
-    process.env.NODE_ENV === "development"
+    sourceType === 'external' &&
+    process.env.NODE_ENV === 'development'
   ) {
     console.warn(
-      "Recoloring external SVGs is not supported. Set the intended color on your SVG instead."
+      'Recoloring external SVGs is not supported. Set the intended color on your SVG instead.'
     );
   }
 
@@ -67,7 +68,7 @@ const UrsaIcon: FC<IconProps> = ({
     backdrop &&
     color &&
     !COLORS_WITH_BACKDROPS.includes(color) &&
-    process.env.NODE_ENV === "development"
+    process.env.NODE_ENV === 'development'
   ) {
     // eslint-disable-next-line no-console
     console.warn(
@@ -95,7 +96,7 @@ const UrsaIcon: FC<IconProps> = ({
         alt=""
         aria-hidden="true"
       />
-    ),
+    )
   };
 
   /*****************************************************************/
@@ -103,26 +104,31 @@ const UrsaIcon: FC<IconProps> = ({
   /*****************************************************************/
 
   return (
-    <span className={`UrsaIcon ${className || ""}`} onClick={onClick}>
+    <span className={`UrsaIcon ${className || ''}`} onClick={onClick}>
       {iconMarkup[sourceType]}
     </span>
   );
 };
 
 export const Icon = styled(UrsaIcon)(
-  ({ theme: { color, fontSize }, color: IconColor, size }) => `
+  ({ theme: { color, fontSize }, color: IconColor, bgColor, size }) => `
       display: block;
-      height: ${fontSize["--ursa-font-size-1"]};
-      width: ${fontSize["--ursa-font-size-1"]};
+      height: ${fontSize['--ursa-font-size-4']};
+      width: ${fontSize['--ursa-font-size-4']};
       max-height: 100%;
       max-width: 100%;
       margin: auto;
 
       svg {
-          fill: ${IconColor || color["--ursa-text-primary"]};
+          fill: ${color['--ursa-text-primary']};
           transform: scale(${
-            size === "small" ? 1 : size === "large" ? 2 : 1.25
+            size === 'small' ? 0.5 : size === 'large' ? 2 : 1
           });
-        }
+          background-color: ${'none'};
+      }
+      &:hover {
+        color: auto;
+        background-color: auto;
+      }
     `
 );

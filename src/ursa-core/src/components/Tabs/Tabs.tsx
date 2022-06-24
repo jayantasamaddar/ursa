@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { FC, ReactElement, useState, useCallback, useMemo } from "react";
+import React, { FC, ReactElement, useState, useCallback, useMemo } from 'react';
+import styled from '@emotion/styled';
 
-type Layout = "vertical" | "horizontal";
+type Layout = 'vertical' | 'horizontal';
 
 interface TabsProps {
   className?: string;
@@ -16,7 +16,7 @@ interface TabsProps {
 const UrsaTabs: FC<TabsProps> = ({
   className,
   items,
-  layout,
+  layout
 }): ReactElement => {
   /************************************************************************/
   // Initialize State and Memoize activeTab
@@ -29,7 +29,7 @@ const UrsaTabs: FC<TabsProps> = ({
   const [data, setData] = useState(
     items.map((item, index) => ({
       ...item,
-      active: index === activeTab ? true : false,
+      active: index === activeTab ? true : false
     })) ?? []
   );
 
@@ -44,7 +44,7 @@ const UrsaTabs: FC<TabsProps> = ({
       setData((prev) => [
         ...prev.slice(0, indx).map((item) => ({ ...item, active: false })),
         { ...prev[indx], active: !prev[indx].active },
-        ...prev.slice(indx + 1).map((item) => ({ ...item, active: false })),
+        ...prev.slice(indx + 1).map((item) => ({ ...item, active: false }))
       ]),
     []
   );
@@ -54,8 +54,8 @@ const UrsaTabs: FC<TabsProps> = ({
   /************************************************************************/
 
   return (
-    <div className={`Ursa-Tabs ${className || ""}`}>
-      <div className={`Ursa-TabsHead ${layout !== "vertical" ? "flex" : ""}`}>
+    <div className={`Ursa-Tabs ${className || ''}`}>
+      <div className={`Ursa-TabsHead ${layout !== 'vertical' ? 'flex' : ''}`}>
         {data?.map(({ label, active }, indx) => (
           <div
             className={`Ursa-TabHeadItem-${indx}`}
@@ -76,13 +76,13 @@ const UrsaTabs: FC<TabsProps> = ({
 export const Tabs = styled(UrsaTabs)(
   ({ theme: { color }, layout, items }) => `
     display: flex;
-    flex-direction: ${layout === "vertical" ? "row" : "column"};
+    flex-direction: ${layout === 'vertical' ? 'row' : 'column'};
     align-items: flex-start;
     justify-items: flex-start;
     gap: 4px;
 
     .Ursa-TabsHead {
-      display: ${layout === "vertical" ? "block" : "flex"};
+      display: ${layout === 'vertical' ? 'block' : 'flex'};
       ${items.map(
         (item, indx) =>
           `
@@ -91,11 +91,11 @@ export const Tabs = styled(UrsaTabs)(
           cursor: pointer;
           padding: 0.75rem;
           border-bottom: ${
-            item.active ? `1px solid ${color["--ursa-border-primary"]}` : "none"
+            item.active ? `1px solid ${color['--ursa-border-primary']}` : 'none'
           };
           
           & > h4 {
-            color: ${item.active ? color["--ursa-tab-selected"] : "inherit"};
+            color: ${item.active ? color['--ursa-tab-selected'] : 'inherit'};
           }
         }
         `

@@ -1,26 +1,34 @@
+// {
+//   "extends": "../../tsconfig.base.json",
+//   "include": ["./src/types", "../../config/types", "../../tests"],
+//   "exclude": ["./lib", "./esm", "./cjs"],
+//   "compilerOptions": {
+//     "rootDir": "src",
+//     "baseUrl": ".",
+//     "outDir": "dist",
+//     "declaration": true,
+//     "declarationDir": "lib",
+//     // "importsNotUsedAsValues": "error",
+//     "composite": true,
+//     "paths": {
+//       "@ursa/styles": ["../ursa-styles/src"]
+//     }
+//   }
+// }
+
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["./src/types", "../../config/types", "../../tests"],
-  "exclude": ["./lib", "./esm", "./cjs"],
+  "include": ["./src", "../../config/types"],
+  "exclude": ["**/*.story.tsx", "**/*.test.tsx", "**/*.test.ts"],
   "compilerOptions": {
-    "rootDir": "src",
-    "baseUrl": ".",
-    "outDir": "lib",
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "lib",
-    "composite": true,
-    "paths": {
-      "@ursa/hooks": ["../ursa-hooks/src"],
-      "@ursa/styles": ["../ursa-styles/src"],
-      "@ursa/tests": ["../ursa-tests/src"],
-      "@ursa/storybook": ["../ursa-storybook/src"]
-    }
+    "allowSyntheticDefaultImports": true,
+    // "declaration": true,
+    // "rootDir": "src",
+    // "outDir": "dist",
+    // "declarationDir": "dist/types",
+    "strict": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   }
-  // "references": [
-  //   { "path": "../ursa-hooks" },
-  //   { "path": "../ursa-styles" },
-  //   { "path": "../ursa-tests" },
-  //   { "path": "../ursa-storybook" }
-  // ]
 }

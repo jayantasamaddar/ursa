@@ -232,21 +232,4 @@ export default [
       summary({ showMinifiedSize: true, showGzippedSize: true }),
     ],
   },
-  // {
-  //   input: 'src/metadata.ts',
-  //   output: [
-  //     {
-  //       dir: 'dist',
-  //       format: 'cjs',
-  //       entryFileNames: '[name].js',
-  //       exports: 'default',
-  //     },
-  //   ],
-  //   plugins: [
-  //     virtual({
-  //       'src/metadata.ts': metadataContent,
-  //     }),
-  //     customTypes({fileName: `metadata.d.ts`, source: metadataTypes}),
-  //   ],
-  // },
 ];

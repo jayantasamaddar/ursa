@@ -1,15 +1,24 @@
 {
-  "name": "@zenius/ursa",
+  "name": "@zenius-one/ursa",
   "version": "1.0.0",
   "description": "Ursa core components library: inputs, buttons, overlays etc.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "Jayanta Samaddar",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "esnext": "dist/esnext/index.esnext",
+  "types": "dist/ts/latest/src/index.d.ts",
+  "files": [
+    "dist/",
+    "!dist/ts/**/*.tsbuildinfo"
+  ],
   "repository": {
     "url": "https://github.com/jayantasamaddar/ursa.git",
     "type": "git",
     "directory": "src/ursa-core"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "ui",
@@ -18,16 +27,25 @@
     "next",
     "nextjs",
     "components",
+    "component library",
     "library",
     "frontend",
     "design"
   ],
-  "author": "Jayanta Samaddar",
-  "license": "MIT",
+  "scripts": {
+    "build": "clean && build:esm && build:cjs",
+    "build-docs": "copyfiles './src/**/*.md' './dist/docs'",
+    "build:js": "tsc --outDir dist/lib --declarationDir dist/types --declaration true && rollup -c",
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "build:esm": "tsc",
+    "build:types": "tsc -b",
+    "prettify": "prettier --write src",
+    "clean": "rm -rf dist"
+  },
   "dependencies": {
     "@types/react": "*",
     "@types/react-dom": "*",
-    "@zenius/ursa-icons": "../ursa-icons/zenius-ursa-icons-v1.0.0.tgz"
+    "@zenius.one/ursa-icons": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^18.1.0",
