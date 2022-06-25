@@ -4,11 +4,11 @@ import path from 'path';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import externals from 'rollup-plugin-node-externals';
 import typescript from '@rollup/plugin-typescript';
 import summary from 'rollup-plugin-summary';
 
-const input = './src/index.ts';
+const input = 'src/index.ts';
 // Read package.json
 const pkg = JSON.parse(
   readFileSync(new URL('./package.json', import.meta.url).pathname)
@@ -36,12 +36,12 @@ export default [
     external: [
       /@babel\/runtime/,
       'react',
-      'react-dom',
       /@emotion\/styled/,
-      /@emotion\/react/
+      /@emotion\/react/,
+      /@zenius-one\/ursa-icons/
     ],
     plugins: [
-      peerDepsExternal(),
+      externals(),
       typescript(),
       nodeResolve({ extensions }),
       commonjs(),
@@ -56,28 +56,3 @@ export default [
     ]
   }
 ];
-
-/**
- * dist
- * ├── index.js
- * ├── index.esm.js
- * ├── index.d.ts
- * ├── index.js.map
- * ├── index.esm.js.map
- * ├── index.d.ts.map
- * ├── index.metadata.json
- * ├── cjs
- * │   ├── MinusMajor.js
- * │   ├── Minus.js
- * │   ├── PlusMajor.js
- * │   ├── MinusMinor.js
- * │   ├── PlusMinor.js
- * ├── esm
- * │   ├── MinusMajor.js
- * │   ├── Minus.js
- * │   ├── PlusMajor.js
- * │   ├── MinusMinor.js
- * │   ├── PlusMinor.js
- * ├── README.md
- * └── package.json
- */

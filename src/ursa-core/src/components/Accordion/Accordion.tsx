@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useState } from 'react';
 import styled from '@emotion/styled';
-import { ChevronUpMinor, ChevronDownMinor } from '@zenius.one/ursa-icons';
+import { ChevronUpMinor, ChevronDownMinor } from '@zenius-one/ursa-icons';
 import { Icon } from '../Icon';
 
 export interface AccordionProps {

@@ -1,4 +1,5 @@
 export interface Color {
+  '--ursa-color-scheme': string;
   '--ursa-bg-primary': string;
   '--ursa-backdrop': string;
   '--ursa-text-primary': string;

@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Tag } from "./Tag";
-import { ThemeProvider } from "../ThemeProvider";
-import { darkTheme, lightTheme } from "../../styles";
+import React, { useState } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { Tag } from './Tag';
+import { ThemeProvider } from '../ThemeProvider';
+import { darkTheme } from '../../styles';
 
 interface TagProps {
   [name: string]: string;
 }
 
 const MultiTags: TagProps[] = [
-  { name: "Cancelled" },
-  { name: "Returned" },
-  { name: "Restocked" },
-  { name: "Exchanged" },
+  { name: 'Cancelled' },
+  { name: 'Returned' },
+  { name: 'Restocked' },
+  { name: 'Exchanged' }
 ];
 
 export default {
-  title: "Components/Tag",
+  title: 'Components/Tag',
   component: Tag,
   decorators: [
     (Story) => (
       <ThemeProvider theme={darkTheme}>
         <Story />
       </ThemeProvider>
-    ),
-  ],
+    )
+  ]
 } as ComponentMeta<typeof Tag>;
 
 const Template: ComponentStory<typeof Tag> = (args) => <Tag {...args} />;
@@ -37,7 +37,7 @@ const MultiTagTemplate: ComponentStory<typeof Tag> = (args) => {
   };
 
   return (
-    <div className="Ursa-MultiTags" style={{ display: "flex", gap: "10px" }}>
+    <div className="Ursa-MultiTags" style={{ display: 'flex', gap: '10px' }}>
       {tags.map((tag) => (
         <Tag
           key={tag.name}
@@ -51,15 +51,15 @@ const MultiTagTemplate: ComponentStory<typeof Tag> = (args) => {
 
 export const BasicTag = Template.bind({});
 BasicTag.args = {
-  name: "Paid",
-  onRemove: undefined,
+  name: 'Paid',
+  onRemove: undefined
 };
 
 export const ClickableTag = Template.bind({});
 ClickableTag.args = {
-  name: "Fulfilled",
-  onClick: () => alert("Clicked"),
-  onRemove: undefined,
+  name: 'Fulfilled',
+  onClick: () => alert('Clicked'),
+  onRemove: undefined
 };
 
 export const RemovableTag = MultiTagTemplate.bind({});

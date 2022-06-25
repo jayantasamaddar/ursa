@@ -6,14 +6,16 @@ import {
   ThemeProvider as EmotionThemeProvider
 } from '@emotion/react';
 
+import { lightTheme } from '../../styles';
+
 export interface ThemeProviderProps {
-  theme: Theme;
+  theme?: Theme;
   children: ReactNode;
 }
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
-  theme
+  theme = lightTheme
 }): ReactElement => {
   return (
     <EmotionThemeProvider theme={theme}>

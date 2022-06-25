@@ -6,8 +6,7 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "esnext": "dist/esnext/index.esnext",
-  "types": "dist/ts/latest/src/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist/",
     "!dist/ts/**/*.tsbuildinfo"
@@ -33,22 +32,22 @@
     "design"
   ],
   "scripts": {
-    "build": "clean && build:esm && build:cjs",
+    "build": "yarn clean && yarn build:types && yarn build:js",
     "build-docs": "copyfiles './src/**/*.md' './dist/docs'",
-    "build:js": "tsc --outDir dist/lib --declarationDir dist/types --declaration true && rollup -c",
-    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
-    "build:esm": "tsc",
-    "build:types": "tsc -b",
-    "prettify": "prettier --write src",
-    "clean": "rm -rf dist"
+    "build:js": "rollup -c",
+    "build:types": "tsc --declarationDir dist/types --declaration --emitDeclarationOnly",
+    "format": "prettier --write src",
+    "clean": "rm -rf dist .rollup.cache"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@types/react": "*",
     "@types/react-dom": "*",
-    "@zenius.one/ursa-icons": "^1.0.0"
+    "@zenius-one/ursa-icons": "*"
   },
   "peerDependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": ">= 18.0.0",
+    "react-dom": ">= 18.0.0"
   }
 }

@@ -1,14 +1,14 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import React, {
   FC,
   ReactElement,
   ReactNode,
   forwardRef,
-  ForwardedRef,
-} from "react";
+  ForwardedRef
+} from 'react';
 
-import { Icon } from "../Icon";
-import { ExternalSmallMinor } from "@zenius.one/ursa-icons";
+import { Icon } from '../Icon';
+import { ExternalSmallMinor } from '@zenius-one/ursa-icons';
 
 export interface LinkProps {
   url: string;
@@ -22,15 +22,15 @@ export interface LinkProps {
 const UnstyledAnchorTag = styled.a(
   ({ theme: { color } }) => `
     text-decoration: none;
-    color: ${color["--ursa-text-primary"]};
+    color: ${color['--ursa-text-primary']};
   `
 );
 
 export const UnstyledLink: FC<LinkProps> = forwardRef(
   (props, ref: ForwardedRef<HTMLAnchorElement>): ReactElement => {
     const { external, url, children, ...rest } = props;
-    const target = external ? "_blank" : undefined;
-    const rel = external ? "noopener noreferrer" : undefined;
+    const target = external ? '_blank' : undefined;
+    const rel = external ? 'noopener noreferrer' : undefined;
     return (
       <span className="Ursa-LinkElement">
         <UnstyledAnchorTag
@@ -47,7 +47,7 @@ export const UnstyledLink: FC<LinkProps> = forwardRef(
               <Icon
                 source={ExternalSmallMinor}
                 size="large"
-                color={"--ursa-link-primary"}
+                color={'--ursa-link-primary'}
               />
             </span>
           )}
@@ -65,16 +65,16 @@ export const Link = styled(UnstyledLink)(
         
         color: ${
           monochrome
-            ? color["--ursa-text-primary"]
-            : color["--ursa-link-primary"]
+            ? color['--ursa-text-primary']
+            : color['--ursa-link-primary']
         };
         text-decoration: underline;
 
         &:hover {
             color: ${
               monochrome
-                ? color["--ursa-text-primary"]
-                : color["--ursa-link-primary-hovered"]
+                ? color['--ursa-text-primary']
+                : color['--ursa-link-primary-hovered']
             };
             text-decoration: none;
         }        

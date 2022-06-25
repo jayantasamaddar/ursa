@@ -1,36 +1,43 @@
-// export { ThemeProvider } from './components/ThemeProvider';
-// export type { BaseButton, IconSource, ModalProps, TagProps } from "./types";
+export { ThemeProvider } from './components/ThemeProvider';
+export type { ThemeProviderProps } from './components/ThemeProvider';
 
-// export { Accordion } from './components/Accordion';
-// export type { AccordionProps } from "./components/Accordion";
+export type { BaseButton, IconSource, ModalProps, TagProps } from './types';
 
-// export { Avatar } from "./components/Avatar";
+export { Accordion } from './components/Accordion';
+export type { AccordionProps } from './components/Accordion';
 
-// export { Button } from './components/Button';
+export { Avatar } from './components/Avatar';
 
-// export type { ButtonProps } from "./components/Button";
+export { Button } from './components/Button';
+export type { ButtonProps } from './components/Button';
 
-// export { Badge } from "./components/Badge";
+export { Badge } from './components/Badge';
 
-// export { Card } from "./components/Card";
+export { Card } from './components/Card';
 
-// export { Checkbox } from "./components/Checkbox";
+export { Checkbox } from './components/Checkbox';
 
 export { Collapsible } from './components/Collapsible';
-// export type { CollapsibleProps } from "./components/Collapsible";
+export type { CollapsibleProps } from './components/Collapsible';
 
-// export { Error } from "./components/Error";
+export { Error } from './components/Error';
 
-// export { Icon } from './components/Icon';
-// export type { IconProps } from "./components/Icon";
+export { Icon } from './components/Icon';
+export type { IconProps } from './components/Icon';
 
-// export * from "./components/Link";
+export { Link } from './components/Link';
+export type { LinkProps } from './components/Link';
+
 // export * from "./components/Modal";
 // export * from "./components/Navigation";
-// export * from "./components/Portal";
+export { Portal } from './components/Portal';
+export type { PortalProps } from './components/Portal';
+
 // export * from "./components/Radio";
 // export * from "./components/Select";
 // export { Spinner } from './components/Spinner';
 // export * from "./components/Tabs";
-// export * from "./components/Tag";
+
+export { Tag } from './components/Tag';
+
 // export * from "./components/Textfield";

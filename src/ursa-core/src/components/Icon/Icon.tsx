@@ -1,6 +1,9 @@
 import React, { FC, ReactElement } from 'react';
 import { IconSource } from '../../types';
 import styled from '@emotion/styled';
+import type { Color as themeColor } from '../../types/theme';
+
+type colorKeys = keyof themeColor;
 
 type Color = 'primary' | 'alert' | 'disabled' | 'success' | 'info' | 'warning';
 
@@ -10,8 +13,8 @@ export interface IconProps {
   /** The SVG contents to display in the icon (icons should fit in a 20 × 20 pixel viewBox) */
   source: IconSource;
   /** Set the color for the SVG fill */
-  color?: string;
-  bgColor?: string;
+  color?: colorKeys;
+  bgColor?: colorKeys;
   /** Set the size for the SVG */
   size?: 'small' | 'medium' | 'large';
   /** Show a backdrop behind the icon */
@@ -120,11 +123,11 @@ export const Icon = styled(UrsaIcon)(
       margin: auto;
 
       svg {
-          fill: ${color['--ursa-text-primary']};
+          fill: ${IconColor ? color[IconColor] : color['--ursa-text-primary']};
           transform: scale(${
             size === 'small' ? 0.5 : size === 'large' ? 2 : 1
           });
-          background-color: ${'none'};
+          background-color: ${bgColor ? color[bgColor] : 'none'};
       }
       &:hover {
         color: auto;

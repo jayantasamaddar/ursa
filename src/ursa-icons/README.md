@@ -1,14 +1,17 @@
-# @zenius/ursa-icons
+# @zenius-one/ursa-icons
 
-[![npm version](https://img.shields.io/npm/v/@zenius.one/ursa-icons.svg?style=flat)](https://www.npmjs.com/package/@zenius.one/ursa-icons)
+[![npm version](https://img.shields.io/npm/v/@zenius-one/ursa-icons.svg?style=flat)](https://www.npmjs.com/package/@zenius-one/ursa-icons)
 
-This package exports a set of icons for use in Zenius application built with the Ursa UI Library that can be imported directly into the application.
+This package exports a set of icons for use in Zenius application built with the
+Ursa UI Library that can be imported directly into the application.
 
 ---
 
 # Setup
 
-Although this package can be installed standalone, we recommend installing the [Ursa](https://www.npmjs.com/package/@zenius.one/ursa) Library and use the `Icon` Component to consume the imported icons.
+Although this package can be installed standalone, we recommend installing the
+[Ursa](https://www.npmjs.com/package/@zenius-one/ursa) Library and use the
+`Icon` Component to consume the imported icons.
 
 ---
 
@@ -19,8 +22,8 @@ Although this package can be installed standalone, we recommend installing the [
 In `Component.jsx`
 
 ```
-import { MinusMinor } from '@zenius.one/ursa-icons';
-import { Icon } from '@zenius.one/ursa';
+import { MinusMinor } from '@zenius-one/ursa-icons';
+import { Icon } from '@zenius-one/ursa';
 
 const Component = () => {
     return (
@@ -34,13 +37,13 @@ const Component = () => {
 Using **`npm`**
 
 ```
-npm i @zenius/ursa-icons
+npm i @zenius-one/ursa-icons
 ```
 
 Using **`yarn`**
 
 ```
-yarn add @zenius/ursa-icons
+yarn add @zenius-one/ursa-icons
 ```
 
 ---
