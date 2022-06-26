@@ -31,10 +31,11 @@
   },
   "scripts": {
     "svgr": "svgr icons --out-dir src",
-    "build": "rollup -c",
+    "build": "yarn clean && rollup -c",
     "dev": "rollup -c -w",
     "test": "jest",
-    "clean": "rm -rf .turbo node_modules dist"
+    "clean": "rm -rf dist",
+    "clean:all": "rm -rf dist node_modules .rollup.cache"
   },
   "publishConfig": {
     "access": "public"

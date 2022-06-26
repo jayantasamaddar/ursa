@@ -9,9 +9,6 @@
 # node
 node_modules/
 
-# dist
-dist
-
 # Logs
 logs
 *.log
@@ -27,19 +24,26 @@ lerna-debug.log*
 .env
 
 # build
-lib/
-cjs/
-esm/
-docs/.docgen/
+dist
+build
+
+# rollup
+.rollup.cache
+
+# turbo
+.turbo
 
 # typescript
 *.tsbuildinfo
+
+# next.js
+.next/
+out/
 
 # project
 docs/.cache
 docs/public
 storybook-static
-.next
 docs/src/components/Test.tsx
 ____*.internal.ts
 ____*.internal.tsx

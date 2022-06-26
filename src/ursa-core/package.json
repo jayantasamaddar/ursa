@@ -37,7 +37,8 @@
     "build:js": "rollup -c",
     "build:types": "tsc --declarationDir dist/types --declaration --emitDeclarationOnly",
     "format": "prettier --write src",
-    "clean": "rm -rf dist .rollup.cache"
+    "clean": "rm -rf dist .rollup.cache",
+    "clean:all": "rm -rf dist node_modules .rollup.cache"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",

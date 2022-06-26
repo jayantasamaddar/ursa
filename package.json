@@ -69,8 +69,9 @@
     "dev": "turbo run dev --parallel",
     "syncpack": "syncpack list-mismatches",
     "storybook": "start-storybook -p 6006 -c config/.storybook",
-    "build-storybook": "build-storybook",
-    "prettier:test": "prettier --check \"**/*.{ts,tsx}\"",
-    "format": "prettier --write \"**/*.{ts,tsx}\""
+    "format:test": "prettier --check \"**/*.{ts,tsx}\"",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "clean": "turbo run clean",
+    "clean:all": "turbo run clean:all"
   }
 }
