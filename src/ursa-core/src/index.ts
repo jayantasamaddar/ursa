@@ -3,6 +3,11 @@ export type { ThemeProviderProps } from './components/ThemeProvider';
 
 export type {
   BaseButton,
+  DataGridFilter,
+  DataGridView,
+  DataGridColumn,
+  DataGridRow,
+  DataGridProps,
   IconSource,
   ModalProps,
   TabPanelProps,
@@ -34,6 +39,8 @@ export type { CheckboxProps } from './components/Checkbox';
 export { Collapsible } from './components/Collapsible';
 export type { CollapsibleProps } from './components/Collapsible';
 
+export { DataGrid } from './components/DataGrid';
+
 export { DropZone } from './components/DropZone';
 export type { DropZoneProps } from './components/DropZone';
 
@@ -52,6 +59,9 @@ export type { LinkProps } from './components/Link';
 export { Modal } from './components/Modal';
 
 export { Navigation } from './components/Navigation';
+
+export { Page } from './components/Page';
+export type { PageProps } from './components/Page';
 
 export { Portal } from './components/Portal';
 export type { PortalProps } from './components/Portal';

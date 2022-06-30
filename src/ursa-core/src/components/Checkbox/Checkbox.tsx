@@ -50,6 +50,7 @@ const UrsaCheckbox: FC<CheckboxProps> = forwardRef(
     const {
       name,
       label,
+      labelHidden,
       value,
       className,
       checked,
@@ -120,7 +121,7 @@ const UrsaCheckbox: FC<CheckboxProps> = forwardRef(
             <Icon source={iconSource} color={'--ursa-white'} />
           </span>
 
-          {label}
+          {!labelHidden && label}
         </label>
       </div>
     );

@@ -16,7 +16,7 @@ import { BaseButton, UploadButtonProps } from '../../types';
 import { Spinner } from '../Spinner';
 
 export interface ButtonProps extends BaseButton {
-  children?: string;
+  children?: string | ReactElement;
   textAlign?: 'left' | 'center' | 'right';
   size?: 'slim' | 'medium' | 'large';
   fullWidth?: boolean;

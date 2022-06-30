@@ -1,6 +1,7 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactElement, ReactNode } from 'react';
+import { Button } from '../Button';
 
-type Spacing = "extraTight" | "tight" | "loose";
+type Spacing = 'extraTight' | 'tight' | 'loose';
 
 export interface ButtonGroupProps {
   /** Determines the space between button group items */
@@ -12,7 +13,7 @@ export interface ButtonGroupProps {
   /** Remove top left and right border radius */
   connectedTop?: boolean;
   /** Button components */
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const ButtonGroup: FC<ButtonGroupProps> = (): ReactElement => {

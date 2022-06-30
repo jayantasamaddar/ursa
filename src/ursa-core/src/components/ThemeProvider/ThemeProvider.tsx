@@ -55,6 +55,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           li {
             margin: 0;
             padding: 0;
+            list-style: none;
           }
           h1,
           h2,
@@ -62,6 +63,9 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           h4,
           h5 {
             font-weight: bold;
+          }
+          .hidden {
+            display: none;
           }
         `}
       />
