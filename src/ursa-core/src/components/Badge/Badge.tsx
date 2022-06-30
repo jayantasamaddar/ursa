@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import React, { FC, ReactElement, ReactNode } from "react";
+import styled from '@emotion/styled';
+import React, { FC, ReactElement, ReactNode } from 'react';
 
-interface BadgeProps {
+export interface BadgeProps {
   children?: ReactNode;
   className?: string;
   badgeContent?: number;
@@ -9,10 +9,10 @@ interface BadgeProps {
   invisible?: boolean;
   showZero?: boolean;
   max?: number;
-  variant?: "dot" | "text" | "outline";
+  variant?: 'dot' | 'text' | 'outline';
   anchorOrigin?: {
-    horizontal: "top" | "right" | "bottom" | "left";
-    vertical: "top" | "right" | "bottom" | "left";
+    horizontal: 'top' | 'right' | 'bottom' | 'left';
+    vertical: 'top' | 'right' | 'bottom' | 'left';
   };
 }
 
@@ -26,18 +26,18 @@ const UrsaBadge: FC<BadgeProps> = (props): ReactElement => {
     showZero,
     max,
     variant,
-    anchorOrigin,
+    anchorOrigin
   } = props;
 
   const content =
     badgeContent && max && badgeContent > max ? `${max}+` : badgeContent;
 
   return (
-    <div className={`Ursa-BadgeContainer ${className || ""}`}>
+    <div className={`Ursa-BadgeContainer ${className || ''}`}>
       {children && <div className="Ursa-BadgeComponent">{children}</div>}
       {!invisible && (
         <div className="Ursa-Badge">
-          {variant === "dot" ? null : (
+          {variant === 'dot' ? null : (
             <div className="Ursa-BadgeContent">{content}</div>
           )}
         </div>
@@ -51,7 +51,7 @@ export const Badge = styled(UrsaBadge)(
     theme: { color, fontSize, border },
     color: badgeColor,
     children,
-    variant,
+    variant
   }) => `
   cursor: pointer;
   display: inline-flex;
@@ -59,23 +59,23 @@ export const Badge = styled(UrsaBadge)(
 
     .Ursa-Badge {
       display: flex;
-      position: ${!children ? "static" : "absolute"};;
-      bottom: ${!children ? 0 : "0.2em"};
-      left: ${!children ? 0 : "0.3em"};
+      position: ${!children ? 'static' : 'absolute'};;
+      bottom: ${!children ? 0 : '0.2em'};
+      left: ${!children ? 0 : '0.3em'};
       align-items: center;
       justify-content: center;
       padding: 5px;
-      min-width: ${variant === "dot" ? "10px" : "22px"};
-      min-height: ${variant === "dot" ? "10px" : "22px"};
+      min-width: ${variant === 'dot' ? '10px' : '22px'};
+      min-height: ${variant === 'dot' ? '10px' : '22px'};
       z-index: 1;
-      border-radius: ${border["--ursa-border-radius-full"]};
-      background-color: ${badgeColor ? badgeColor : color["--ursa-btn-alert"]};
+      border-radius: ${border['--ursa-border-radius-full']};
+      background-color: ${badgeColor ? badgeColor : color['--ursa-btn-alert']};
       transform: scale(0.9);
 
       & > .Ursa-BadgeContent {
-        font-size: ${fontSize["--ursa-font-size-1"]};
+        font-size: ${fontSize['--ursa-font-size-1']};
         font-weight: bold;
-        color: ${color["--ursa-white"]};
+        color: ${color['--ursa-white']};
       }
     }
   `

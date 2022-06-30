@@ -1,11 +1,11 @@
-import React, { FC, ReactElement, MouseEvent, useEffect } from "react";
-import styled from "@emotion/styled";
-import { ModalProps } from "../../types";
+import React, { FC, ReactElement, MouseEvent, useEffect } from 'react';
+import styled from '@emotion/styled';
+import { ModalProps } from '../../types';
 
-import { Portal } from "../Portal";
-import { Spinner } from "../Spinner";
-import { Backdrop } from "../Backdrop";
-import { ModalHeader, ModalFooter } from "./components";
+import { Portal } from '../Portal';
+import { Spinner } from '../Spinner';
+import { Backdrop } from '../Backdrop';
+import { ModalHeader, ModalFooter } from './components';
 
 const UrsaModal: FC<ModalProps> = ({
   yPosition,
@@ -17,7 +17,7 @@ const UrsaModal: FC<ModalProps> = ({
   secondaryButton = {},
   loading,
   isOpen,
-  onClose,
+  onClose
 }): ReactElement | null => {
   /*********************************************************************************/
   // useEffect - Close on Submission of Modal that has its own Submit Button
@@ -27,14 +27,14 @@ const UrsaModal: FC<ModalProps> = ({
       const handler = (event: MouseEvent<HTMLElement>) => {
         if (
           (event.target as HTMLElement) ===
-            document.querySelector(".UrsaButton") &&
+            document.querySelector('.UrsaButton') &&
           !event.defaultPrevented
         )
           onClose && onClose();
         else return;
       };
-      document.addEventListener("click", (e: Event) => handler);
-      return () => document.removeEventListener("click", (e: Event) => handler);
+      document.addEventListener('click', (e: Event) => handler);
+      return () => document.removeEventListener('click', (e: Event) => handler);
     } else return;
   }, [primaryButton, onClose]);
 
@@ -45,12 +45,12 @@ const UrsaModal: FC<ModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       window.scrollTo(0, 0);
-      document.body.style.overflow = "hidden";
-      document.body.scroll = () => "no";
+      document.body.style.overflow = 'hidden';
+      document.body.scroll = () => 'no';
     }
     if (!isOpen) {
-      document.body.style.overflow = "auto";
-      document.body.scroll = () => "yes";
+      document.body.style.overflow = 'auto';
+      document.body.scroll = () => 'yes';
     }
   }, [isOpen]);
 
@@ -62,7 +62,7 @@ const UrsaModal: FC<ModalProps> = ({
   return (
     <Portal idPrefix="portal">
       <Backdrop />
-      <div className={`Ursa-ModalContainer ${className || ""}`}>
+      <div className={`Ursa-ModalContainer ${className || ''}`}>
         <div className="Ursa-Modal">
           <ModalHeader title={title} onClose={onClose} />
 
@@ -85,7 +85,7 @@ const UrsaModal: FC<ModalProps> = ({
 /*********************************************************************************/
 // Render Styled Modal
 /********************************************************************************/
-const Modal = styled(UrsaModal)(
+export const Modal = styled(UrsaModal)(
   ({ theme: { color }, height, yPosition }) => `
   position: fixed;
   display: flex;
@@ -96,15 +96,15 @@ const Modal = styled(UrsaModal)(
   height: 100%;
   width: 100%;
   z-index: 9999;
-  color: ${color["--ursa-text-primary"]};
+  color: ${color['--ursa-text-primary']};
     
   .Ursa-Modal {
     display: flex;
     flex-direction: column;
-    background-color: ${color["--ursa-bg-primary"]};
+    background-color: ${color['--ursa-bg-primary']};
     border-radius: 3px;
     width: 80%;
-    height: ${height || "80%"};
+    height: ${height || '80%'};
     padding: 20px;
     box-shadow: 0 20px 25px -5px rgb(30 41 59 / 0.4), 0 8px 10px -6px rgb(30 41 59 / 0.4);
     border-radius: 10px;
@@ -116,11 +116,9 @@ const Modal = styled(UrsaModal)(
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    justify-content: ${yPosition || "flex-start"};
+    justify-content: ${yPosition || 'flex-start'};
     padding: 20px;
-    background-color: ${color["--ursa-bg-primary"]};
+    background-color: ${color['--ursa-bg-primary']};
   }
   `
 );
-
-export default Modal;

@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { ThemeProvider } from "../ThemeProvider";
-import { darkTheme, lightTheme } from "../../styles";
+import React, { useState } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ThemeProvider } from '../ThemeProvider';
+import { darkTheme, lightTheme } from '../../styles';
 
-import Modal from "./Modal";
-import { Button } from "../Button";
+import { Modal } from './Modal';
+import { Button } from '../Button';
 
 export default {
-  title: "Components/Modal",
+  title: 'Components/Modal',
   component: Modal,
   decorators: [
     (Story) => (
       <ThemeProvider theme={darkTheme}>
         <Story />
       </ThemeProvider>
-    ),
-  ],
+    )
+  ]
 } as ComponentMeta<typeof Modal>;
 
 const Template: ComponentStory<typeof Modal> = ({ children, ...args }) => {
@@ -27,7 +27,7 @@ const Template: ComponentStory<typeof Modal> = ({ children, ...args }) => {
       <Modal
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
-        primaryButton={{ name: "Submit" }}
+        primaryButton={{ name: 'Submit' }}
         {...args}
       >
         <div>
@@ -44,5 +44,5 @@ const Template: ComponentStory<typeof Modal> = ({ children, ...args }) => {
 export const BasicModal = Template.bind({});
 
 BasicModal.args = {
-  title: "Reach more shoppers with Instagram product tags",
+  title: 'Reach more shoppers with Instagram product tags'
 };

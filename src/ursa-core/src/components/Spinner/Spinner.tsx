@@ -32,7 +32,10 @@ const UrsaStyledLoader = styled.svg`
   }
 `;
 
-const Spinner: FC<SpinnerProps> = ({ size = 'large', color }): ReactElement => {
+export const Spinner: FC<SpinnerProps> = ({
+  size = 'large',
+  color
+}): ReactElement => {
   const spinnerSVGMarkup = (
     <UrsaStyledLoader color={color} size={size}>
       <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -47,5 +50,3 @@ const Spinner: FC<SpinnerProps> = ({ size = 'large', color }): ReactElement => {
     </>
   );
 };
-
-export default Spinner;

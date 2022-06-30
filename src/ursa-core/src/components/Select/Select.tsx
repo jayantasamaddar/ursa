@@ -1,19 +1,19 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import React, {
   FC,
   ReactElement,
   ChangeEvent,
   FocusEvent,
   forwardRef,
-  ForwardedRef,
-} from "react";
+  ForwardedRef
+} from 'react';
 
 interface Option {
   label: string;
   value: string;
 }
 
-interface SelectProps {
+export interface SelectProps {
   name: string;
   label: string;
   options: Option[];
@@ -46,11 +46,11 @@ const UrsaSelect: FC<SelectProps> = forwardRef(
       onChange,
       onFocus,
       onBlur,
-      requiredIndicator,
+      requiredIndicator
     } = props;
 
     return (
-      <div className={`${type}-group ${className || ""}`}>
+      <div className={`${type}-group ${className || ''}`}>
         <label htmlFor={name} className="Ursa-Label">
           {label}
         </label>
@@ -85,14 +85,14 @@ export const Select = styled(UrsaSelect)(
         gap: 10px;
         padding-top: 4px;
         padding-bottom: 4px;
-        font-family: ${font["--ursa-font-primary"]};
+        font-family: ${font['--ursa-font-primary']};
 
         label {
             padding-bottom: 2px;
         }
         select {
             padding: 0.5em;
-            font-size: ${fontSize["--ursa-font-size-3"]};
+            font-size: ${fontSize['--ursa-font-size-3']};
         }
     `
 );

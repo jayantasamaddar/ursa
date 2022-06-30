@@ -1,5 +1,5 @@
 export interface BaseButton {
-  /** A unique identifier for the button */
+  /** An unique identifier for the button */
   id?: string;
   /** A destination to link to, rendered in the href attribute of a link */
   name?: string;
@@ -32,7 +32,7 @@ export interface BaseButton {
   /** Indicates the ID of the element that describes the button */
   ariaDescribedBy?: string;
   /** Indicates the current checked state of the button when acting as a toggle or switch */
-  ariaChecked?: "false" | "true";
+  ariaChecked?: 'false' | 'true';
   /** Callback when clicked */
   onClick?: () => void;
   /** Callback when button becomes focussed */

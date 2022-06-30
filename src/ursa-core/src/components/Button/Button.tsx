@@ -1,22 +1,24 @@
 import React, {
   FC,
   ReactElement,
-  MouseEvent,
   useState,
   useCallback,
+  useRef,
   forwardRef,
   ForwardedRef,
-} from "react";
+  useImperativeHandle,
+  ChangeEvent
+} from 'react';
 
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import { BaseButton } from "../../types";
-import { Spinner } from "../Spinner";
+import { BaseButton, UploadButtonProps } from '../../types';
+import { Spinner } from '../Spinner';
 
 export interface ButtonProps extends BaseButton {
   children?: string;
-  textAlign?: "left" | "center" | "right";
-  size?: "slim" | "medium" | "large";
+  textAlign?: 'left' | 'center' | 'right';
+  size?: 'slim' | 'medium' | 'large';
   fullWidth?: boolean;
   primary?: boolean;
   outline?: boolean;
@@ -27,6 +29,8 @@ export interface ButtonProps extends BaseButton {
   alert?: boolean;
   icon?: React.ReactElement;
   iconOnly?: boolean;
+  upload?: boolean;
+  uploadOptions?: UploadButtonProps;
 }
 
 const UrsaButton: FC<ButtonProps> = forwardRef(
@@ -60,36 +64,58 @@ const UrsaButton: FC<ButtonProps> = forwardRef(
       onPointerDown,
       icon,
       iconOnly,
+      upload,
+      uploadOptions = {
+        allowMultiple: true,
+        accept: undefined
+      },
       primary,
       outline,
       alert,
       plain,
       monochrome,
       removeUnderline,
-      size = "medium",
+      size = 'medium',
       textAlign,
-      fullWidth,
+      fullWidth
     },
-    ref: ForwardedRef<HTMLButtonElement>
+    ref: ForwardedRef<HTMLButtonElement | HTMLInputElement>
   ): ReactElement => {
-    const classes = `Button ${className ?? ""}`;
+    const classes = `Button ${className ?? ''}`;
 
     const [dropdownActive, setDropdownActive] = useState(false);
+
+    const { allowMultiple, accept, onChange } =
+      uploadOptions as UploadButtonProps;
+
+    const inputRef = useRef<HTMLInputElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
+    useImperativeHandle(ref, () =>
+      upload
+        ? (inputRef.current as HTMLInputElement)
+        : (buttonRef.current as HTMLButtonElement)
+    );
 
     const toggleDropdownActive = useCallback(
       () => setDropdownActive((prev) => !prev),
       []
     );
 
+    const handleUploadButton = (event: ChangeEvent<HTMLInputElement>) => {
+      event.preventDefault();
+      onChange && onChange(event);
+    };
+
     return (
       <div className="UrsaButton">
         <button
           name={name}
-          type={`${submit ? "submit" : "button"}`}
-          ref={ref}
+          type={`${upload ? 'button' : submit ? 'submit' : 'button'}`}
+          ref={buttonRef}
           className={classes}
           disabled={disabled}
-          onClick={onClick}
+          onClick={upload ? () => inputRef.current?.click() : onClick}
           onFocus={onFocus}
           onBlur={onBlur}
           onKeyDown={onKeyDown}
@@ -98,7 +124,7 @@ const UrsaButton: FC<ButtonProps> = forwardRef(
           onMouseEnter={onMouseEnter}
           onTouchStart={onTouchStart}
           onPointerDown={onPointerDown}
-          role={role ?? "button"}
+          role={role ?? 'button'}
         >
           {loading ? (
             <Spinner color="white" size="small" />
@@ -108,69 +134,88 @@ const UrsaButton: FC<ButtonProps> = forwardRef(
             children
           )}
         </button>
+        {upload && (
+          <input
+            type="file"
+            hidden
+            ref={inputRef}
+            className={classes}
+            name={name}
+            onChange={handleUploadButton}
+            multiple={allowMultiple}
+            accept={accept}
+          />
+        )}
       </div>
     );
   }
 );
 
 export const Button = styled(UrsaButton)(
-  ({ theme: { color }, fullWidth, uppercase, outline, alert, disabled }) => `
-  width: ${fullWidth ? "100%" : "auto"};
+  ({
+    theme: { color },
+    fullWidth,
+    uppercase = false,
+    outline,
+    alert,
+    disabled
+  }) => `
+  width: ${fullWidth ? '100%' : 'auto'};
   min-width: 85px;
   padding-top: 0.875em;
   padding-bottom: 0.875em;
   padding-left: 1.5em;
   padding-right: 1.5em;
   font-weight: bold;
-  text-transform: ${uppercase ? "uppercase" : "none"};
+  text-transform: ${uppercase ? 'uppercase' : 'none'};
   border-width: 1px;
   border-style: solid;
   border-radius: 4px;
   border-color: ${
     disabled
-      ? color["--ursa-btn-disabled"]
+      ? color['--ursa-btn-disabled']
       : alert
-      ? color["--ursa-btn-alert"]
-      : color["--ursa-btn-primary"]
+      ? color['--ursa-btn-alert']
+      : color['--ursa-btn-primary']
   };
   background-color: ${
     disabled
-      ? "transparent"
+      ? 'transparent'
       : outline
-      ? "transparent"
+      ? 'transparent'
       : alert
-      ? color["--ursa-btn-alert"]
-      : color["--ursa-btn-primary"]
+      ? color['--ursa-btn-alert']
+      : color['--ursa-btn-primary']
   };
   color: ${
     disabled
-      ? color["--ursa-btn-disabled"]
+      ? color['--ursa-btn-disabled']
       : alert && outline
-      ? color["--ursa-btn-alert"]
+      ? color['--ursa-btn-alert']
       : outline
-      ? color["--ursa-btn-primary"]
-      : "white"
+      ? color['--ursa-btn-primary']
+      : 'white'
   };
   &:hover {
     color: "auto";
     background-color: ${
       disabled || outline
-        ? "transparent"
+        ? 'transparent'
         : alert
-        ? color["--ursa-btn-alert-hovered"]
-        : color["--ursa-btn-primary-hovered"]
+        ? color['--ursa-btn-alert-hovered']
+        : color['--ursa-btn-primary-hovered']
     };
     border-color: ${
       disabled
-        ? color["--ursa-btn-disabled"]
+        ? color['--ursa-btn-disabled']
         : alert
-        ? color["--ursa-btn-alert-hovered"]
-        : color["--ursa-btn-primary-hovered"]
+        ? color['--ursa-btn-alert-hovered']
+        : color['--ursa-btn-primary-hovered']
     };
-    cursor: ${disabled ? "auto" : "pointer"};
+    cursor: ${disabled ? 'auto' : 'pointer'};
     box-shadow: ${
       disabled || outline
-        ? "none"
+        ? 'none'
         : `0px 3px 1px -2px rgb(0 0 0 / 20%),
     0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)`
     };

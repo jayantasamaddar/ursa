@@ -4,7 +4,7 @@ import { ThemeProvider } from "../ThemeProvider";
 import { lightTheme, darkTheme } from "../../styles";
 
 import { Icon } from "../Icon";
-import { NotificationMajor, CartMajor } from "@zenius.one/ursa-icons";
+import { NotificationMajor, CartMajor } from "@zenius-one/ursa-icons";
 import { Badge } from "./Badge";
 
 export default {

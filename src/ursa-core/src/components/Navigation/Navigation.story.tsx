@@ -1,21 +1,21 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme, lightTheme } from '../../styles';
+import { darkTheme } from '../../styles';
 
 import { Navigation } from '.';
 import {
   DataVisualizationMajor,
   OrdersMajor,
   ProductsMajor
-} from '@zenius.one/ursa-icons';
+} from '@zenius-one/ursa-icons';
 
 export default {
   title: 'Components/Navigation',
   component: Navigation,
   decorators: [
     (Story) => (
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider>
         <Story />
       </ThemeProvider>
     )

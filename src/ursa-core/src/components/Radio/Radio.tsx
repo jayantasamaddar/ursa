@@ -7,7 +7,7 @@ import React, {
   ForwardedRef
 } from 'react';
 
-interface Props {
+export interface RadioProps {
   name: string;
   label: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -16,7 +16,7 @@ interface Props {
   className?: string;
 }
 
-const UrsaRadio: FC<Props> = forwardRef(
+const UrsaRadio: FC<RadioProps> = forwardRef(
   (
     { className, label, name, value, checked, onChange },
     ref: ForwardedRef<HTMLInputElement>

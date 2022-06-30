@@ -1,17 +1,7 @@
 import React, { FC, ReactElement, useState, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
-
-type Layout = 'vertical' | 'horizontal';
-
-interface TabsProps {
-  className?: string;
-  layout?: Layout;
-  items: {
-    label: string;
-    content?: ReactElement;
-    active?: boolean;
-  }[];
-}
+import { Tab, TabPanel } from './components';
+import { TabsProps } from '../../types';
 
 const UrsaTabs: FC<TabsProps> = ({
   className,
@@ -19,21 +9,21 @@ const UrsaTabs: FC<TabsProps> = ({
   layout
 }): ReactElement => {
   /************************************************************************/
-  // Initialize State and Memoize activeTab
+  // Initialize State and Memoize selectedTab
   /************************************************************************/
-  const activeTab = useMemo(() => {
-    const indx = items.findIndex((item) => item.active ?? false);
+  const selectedTab = useMemo(() => {
+    const indx = items.findIndex((item) => item.selected);
     return indx >= 0 ? indx : 0;
   }, [items]);
 
   const [data, setData] = useState(
     items.map((item, index) => ({
       ...item,
-      active: index === activeTab ? true : false
+      selected: index === selectedTab ? true : false
     })) ?? []
   );
 
-  console.log(data);
+  const selected = data[data?.findIndex((item) => item.selected)];
 
   /************************************************************************/
   // Handle Tabs Click
@@ -42,9 +32,9 @@ const UrsaTabs: FC<TabsProps> = ({
   const toggleActive = useCallback(
     (indx: number) =>
       setData((prev) => [
-        ...prev.slice(0, indx).map((item) => ({ ...item, active: false })),
-        { ...prev[indx], active: !prev[indx].active },
-        ...prev.slice(indx + 1).map((item) => ({ ...item, active: false }))
+        ...prev.slice(0, indx).map((item) => ({ ...item, selected: false })),
+        { ...prev[indx], selected: !prev[indx].selected },
+        ...prev.slice(indx + 1).map((item) => ({ ...item, selected: false }))
       ]),
     []
   );
@@ -55,26 +45,31 @@ const UrsaTabs: FC<TabsProps> = ({
 
   return (
     <div className={`Ursa-Tabs ${className || ''}`}>
-      <div className={`Ursa-TabsHead ${layout !== 'vertical' ? 'flex' : ''}`}>
-        {data?.map(({ label, active }, indx) => (
-          <div
-            className={`Ursa-TabHeadItem-${indx}`}
-            onClick={() => (!active ? toggleActive(indx) : null)}
+      <ul className="Ursa-TabsHead" role="tablist">
+        {data?.map(({ id, label, selected }, indx) => (
+          <Tab
+            id={id}
+            label={label}
+            selected={selected}
+            layout={layout}
             key={indx}
-          >
-            <h4 className="Ursa-TabLabel">{label}</h4>
-          </div>
+            index={indx}
+            onClick={() => (!selected ? toggleActive(indx) : null)}
+          />
         ))}
-      </div>
-      <div className="Ursa-TabsContent">
-        {data[data?.findIndex((item) => item.active)]?.content}
-      </div>
+      </ul>
+
+      <TabPanel
+        id={`${selected.id}-panel`}
+        ariaLabelledBy={selected.id}
+        content={selected.content}
+      />
     </div>
   );
 };
 
 export const Tabs = styled(UrsaTabs)(
-  ({ theme: { color }, layout, items }) => `
+  ({ layout }) => `
     display: flex;
     flex-direction: ${layout === 'vertical' ? 'row' : 'column'};
     align-items: flex-start;
@@ -82,29 +77,8 @@ export const Tabs = styled(UrsaTabs)(
     gap: 4px;
 
     .Ursa-TabsHead {
-      display: ${layout === 'vertical' ? 'block' : 'flex'};
-      ${items.map(
-        (item, indx) =>
-          `
-        .Ursa-TabHeadItem-${indx} {
-          display: flex;
-          cursor: pointer;
-          padding: 0.75rem;
-          border-bottom: ${
-            item.active ? `1px solid ${color['--ursa-border-primary']}` : 'none'
-          };
-          
-          & > h4 {
-            color: ${item.active ? color['--ursa-tab-selected'] : 'inherit'};
-          }
-        }
-        `
-      )}
-    }
-
-    .Ursa-TabsContent {
       display: flex;
-      padding: 0.75rem;
-    } 
+      flex-direction: ${layout === 'vertical' ? 'column' : 'row'};
+    }
   `
 );

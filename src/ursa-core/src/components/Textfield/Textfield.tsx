@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import styled from '@emotion/styled';
 
-interface TextfieldProps {
+export interface TextfieldProps {
   name: string;
   label?: string;
   showLabel?: boolean;

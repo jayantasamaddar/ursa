@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { CardMedia } from './components';
 import { Avatar } from '../Avatar';
 
-interface CardProps {
+export interface CardProps {
   image?: string;
   name?: string;
   fields?: [string, string][];

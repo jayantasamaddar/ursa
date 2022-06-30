@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Icon } from '../Icon';
 import { AlertMinor } from '@zenius-one/ursa-icons';
 
-interface ErrorProps {
+export interface ErrorProps {
   className?: string;
   children: string;
 }

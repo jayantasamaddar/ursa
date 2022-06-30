@@ -41,8 +41,8 @@
     "clean:all": "rm -rf dist node_modules .rollup.cache"
   },
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
+    "@emotion/react": ">= 11.9.0",
+    "@emotion/styled": ">= 11.8.1",
     "@types/react": "*",
     "@types/react-dom": "*",
     "@zenius-one/ursa-icons": "*"

@@ -39,11 +39,15 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           :root {
             color-scheme: ${theme.color['--ursa-color-scheme']};
             font-size: 15px;
+            color: ${theme.color['--ursa-text-primary']};
             font-family: 'Roboto', 'Helvetica', sans-serif;
           }
           div,
           section,
           article,
+          blockquote,
+          pre,
+          hr,
           p,
           span,
           a,

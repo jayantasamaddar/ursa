@@ -17,7 +17,7 @@ import { MinusMinor, TickMinor } from '@zenius-one/ursa-icons';
 import { Icon } from '../Icon';
 import styled from '@emotion/styled';
 
-interface CheckboxProps {
+export interface CheckboxProps {
   /** Name for form input */
   name: string;
   /** Label for the checkbox */
