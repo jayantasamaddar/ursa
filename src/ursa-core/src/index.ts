@@ -27,6 +27,9 @@ export type { AvatarProps } from './components/Avatar';
 export { Button } from './components/Button';
 export type { ButtonProps } from './components/Button';
 
+export { ButtonGroup } from './components/ButtonGroup';
+export type { ButtonGroupProps } from './components/ButtonGroup';
+
 export { Badge } from './components/Badge';
 export type { BadgeProps } from './components/Badge';
 
@@ -75,9 +78,15 @@ export type { SelectProps } from './components/Select';
 export { Spinner } from './components/Spinner';
 export type { SpinnerProps } from './components/Spinner';
 
+export { Stack } from './components/Stack';
+export type { StackProps } from './components/Stack';
+
 export { Tabs } from './components/Tabs';
 
 export { Tag } from './components/Tag';
 
 export { Textfield } from './components/Textfield';
 export type { TextfieldProps } from './components/Textfield';
+
+export { Toast } from './components/Toast';
+export type { ToastProps } from './components/Toast';

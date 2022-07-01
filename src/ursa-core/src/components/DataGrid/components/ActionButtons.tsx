@@ -11,6 +11,7 @@ import React, {
 import styled from '@emotion/styled';
 import { ActionButtons as ActionButtonsProps } from '../../../types';
 import { Icon } from '../../Icon';
+import { ButtonGroup } from '../../ButtonGroup';
 import { Button } from '../../Button';
 import { CaretDownMinor } from '@zenius-one/ursa-icons';
 

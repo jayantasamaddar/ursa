@@ -10,7 +10,7 @@ export default {
   component: Button,
   decorators: [
     (Story) => (
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider>
         <Story />
       </ThemeProvider>
     )
@@ -47,9 +47,17 @@ const UploadTemplate: ComponentStory<typeof Button> = ({
   );
 };
 
+export const Basic = Template.bind({});
+Basic.args = {
+  children: 'Button',
+  uppercase: false,
+  onClick: () => alert('Button clicked')
+};
+
 export const Primary = Template.bind({});
 Primary.args = {
   children: 'Button',
+  primary: true,
   uppercase: false,
   onClick: () => alert('Button clicked')
 };
@@ -87,6 +95,7 @@ Loading.args = {
 export const FullWidth = Template.bind({});
 FullWidth.args = {
   children: 'Button',
+  primary: true,
   uppercase: false,
   fullWidth: true
 };
@@ -96,6 +105,7 @@ Upload_button_for_single_PDF_upload.args = {
   children: 'Import PDF',
   uppercase: false,
   upload: true,
+  primary: true,
   uploadOptions: {
     allowMultiple: true,
     accept: '.pdf'
@@ -107,6 +117,7 @@ Upload_Button_for_multiple_files.args = {
   children: 'Import Orders',
   uppercase: false,
   upload: true,
+  primary: true,
   uploadOptions: {
     allowMultiple: true
   }

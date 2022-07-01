@@ -81,7 +81,7 @@ const UrsaButton: FC<ButtonProps> = forwardRef(
     },
     ref: ForwardedRef<HTMLButtonElement | HTMLInputElement>
   ): ReactElement => {
-    const classes = `Button ${className ?? ''}`;
+    const classes = `Ursa-Button ${className ?? ''}`;
 
     const [dropdownActive, setDropdownActive] = useState(false);
 
@@ -108,7 +108,7 @@ const UrsaButton: FC<ButtonProps> = forwardRef(
     };
 
     return (
-      <div className="UrsaButton">
+      <div className="Ursa-ButtonContainer">
         <button
           name={name}
           type={`${upload ? 'button' : submit ? 'submit' : 'button'}`}
@@ -157,6 +157,8 @@ export const Button = styled(UrsaButton)(
     fullWidth,
     uppercase = false,
     outline,
+    primary,
+    loading,
     alert,
     disabled
   }) => `
@@ -176,7 +178,9 @@ export const Button = styled(UrsaButton)(
       ? color['--ursa-btn-disabled']
       : alert
       ? color['--ursa-btn-alert']
-      : color['--ursa-btn-primary']
+      : primary || outline
+      ? color['--ursa-btn-primary']
+      : color['--ursa-border-primary']
   };
   background-color: ${
     disabled
@@ -185,16 +189,20 @@ export const Button = styled(UrsaButton)(
       ? 'transparent'
       : alert
       ? color['--ursa-btn-alert']
-      : color['--ursa-btn-primary']
+      : primary || loading
+      ? color['--ursa-btn-primary']
+      : 'white'
   };
   color: ${
     disabled
       ? color['--ursa-btn-disabled']
+      : primary || alert
+      ? 'white'
       : alert && outline
       ? color['--ursa-btn-alert']
       : outline
       ? color['--ursa-btn-primary']
-      : 'white'
+      : color['--ursa-text-secondary']
   };
   &:hover {
     color: "auto";
@@ -203,21 +211,25 @@ export const Button = styled(UrsaButton)(
         ? 'transparent'
         : alert
         ? color['--ursa-btn-alert-hovered']
-        : color['--ursa-btn-primary-hovered']
+        : primary || loading
+        ? color['--ursa-btn-primary-hovered']
+        : '#F8F8F8'
     };
     border-color: ${
       disabled
         ? color['--ursa-btn-disabled']
         : alert
         ? color['--ursa-btn-alert-hovered']
-        : color['--ursa-btn-primary-hovered']
+        : primary || outline || loading
+        ? color['--ursa-btn-primary-hovered']
+        : 'auto'
     };
     cursor: ${disabled ? 'auto' : 'pointer'};
     box-shadow: ${
-      disabled || outline
-        ? 'none'
-        : `0px 3px 1px -2px rgb(0 0 0 / 20%),
+      primary || alert || loading
+        ? `0px 3px 1px -2px rgb(0 0 0 / 20%),
     0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)`
+        : 'none'
     };
   }
 `

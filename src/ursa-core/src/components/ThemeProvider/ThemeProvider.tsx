@@ -41,6 +41,8 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
             font-size: 15px;
             color: ${theme.color['--ursa-text-primary']};
             font-family: 'Roboto', 'Helvetica', sans-serif;
+            width: 100%;
+            height: 100%;
           }
           div,
           section,
