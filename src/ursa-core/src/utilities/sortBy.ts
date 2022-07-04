@@ -14,11 +14,20 @@ export const sortDataBy = (
 
     for (let j = 0; j < arr.length; j++) {
       const compare = (a: DataGridRow, b: DataGridRow) => {
-        if (order === 'desc')
-          return a[name] < b[name] ? 1 : a[name] > b[name] ? -1 : 0;
-        return a[name] < b[name] ? -1 : a[name] > b[name] ? 1 : 0;
+        const aName = a[name];
+        const bName = b[name];
+        if (aName !== undefined && bName !== undefined) {
+          if (order === 'desc') {
+            return aName < bName ? 1 : aName > bName ? -1 : 0;
+          }
+
+          return aName < bName ? -1 : aName > bName ? 1 : 0;
+        }
+        return;
       };
-      arr.push(...arr.splice(0, arr.length).sort((a, b) => compare(a, b)));
+      arr.push(
+        ...arr.splice(0, arr.length).sort((a, b) => compare(a, b) as number)
+      );
     }
   }
   return arr;
