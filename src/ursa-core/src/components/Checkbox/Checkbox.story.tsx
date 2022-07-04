@@ -1,27 +1,26 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { ThemeProvider } from "../ThemeProvider";
-import { darkTheme, lightTheme } from "../../styles";
+import React, { useEffect, useState, useCallback } from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ThemeProvider } from '../ThemeProvider';
+import { darkTheme, lightTheme } from '../../styles';
 
-import { Checkbox } from "./Checkbox";
-import AccordionStory from "../Accordion/Accordion.story";
+import { Checkbox } from './Checkbox';
 
 interface IndeterminateTemplateProps {
   [key: string]: boolean;
 }
 
-type checkedProps = boolean | "indeterminate";
+type checkedProps = boolean | 'indeterminate';
 
 export default {
-  title: "Components/Checkbox",
+  title: 'Components/Checkbox',
   component: Checkbox,
   decorators: [
     (Story) => (
       <ThemeProvider theme={lightTheme}>
         <Story />
       </ThemeProvider>
-    ),
-  ],
+    )
+  ]
 } as ComponentMeta<typeof Checkbox>;
 
 /** Template 1 */
@@ -45,7 +44,7 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
   const [checkboxes, setCheckboxes] = useState<IndeterminateTemplateProps>({
     item1: false,
     item2: false,
-    item3: false,
+    item3: false
   });
 
   const [controller, setController] = useState<checkedProps>(false);
@@ -54,7 +53,7 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, checked } = event.target;
 
-      if (name !== "control") setCheckboxes({ ...checkboxes, [name]: checked });
+      if (name !== 'control') setCheckboxes({ ...checkboxes, [name]: checked });
       else {
         const updatedCheckboxes = Object.keys(checkboxes).reduce(
           (acc, key) => ({ ...acc, [key]: checked }),
@@ -62,7 +61,7 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
         );
         setCheckboxes((prevCheckboxes) => ({
           ...prevCheckboxes,
-          ...updatedCheckboxes,
+          ...updatedCheckboxes
         }));
       }
     },
@@ -74,24 +73,24 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
     if (checkboxValues.every((checkbox) => checkbox === true)) {
       setController(true);
     } else if (checkboxValues.findIndex((checkbox) => checkbox === true) >= 0) {
-      setController("indeterminate");
+      setController('indeterminate');
     } else {
       setController(false);
     }
   }, [checkboxes]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <Checkbox
         {...args}
         name="control"
         label={`${
           controller === false
-            ? "None"
-            : controller === "indeterminate"
+            ? 'None'
+            : controller === 'indeterminate'
             ? Object.values(checkboxes).filter((checkbox) => checkbox === true)
                 .length
-            : "All"
+            : 'All'
         } selected`}
         onChange={handleChange}
         checked={controller}
@@ -123,17 +122,17 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
 
 export const Checkbox_with_Label = Template.bind({});
 Checkbox_with_Label.args = {
-  name: "agree",
-  label: "Agree to the terms and conditions",
-  checked: false,
+  name: 'agree',
+  label: 'Agree to the terms and conditions',
+  checked: false
 };
 
 export const Checkbox_Indeterminate_with_Label_hidden = Template.bind({});
 Checkbox_Indeterminate_with_Label_hidden.args = {
-  name: "partially-agree",
-  label: "Partially agree to the terms and conditions",
+  name: 'partially-agree',
+  label: 'Partially agree to the terms and conditions',
   labelHidden: true,
-  checked: "indeterminate",
+  checked: 'indeterminate'
 };
 
 export const Checkbox_Indeterminate_List = IndeterminateTemplate.bind({});

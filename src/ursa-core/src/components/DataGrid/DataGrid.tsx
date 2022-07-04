@@ -7,7 +7,9 @@ import React, {
   ReactElement,
   Fragment,
   MouseEvent,
-  ChangeEvent
+  ChangeEvent,
+  useCallback,
+  useMemo
 } from 'react';
 
 import {
@@ -32,10 +34,20 @@ import {
   NavMenu,
   NavItem
 } from './components';
+
+import {
+  Columns2Major,
+  FilterMajor,
+  HorizontalDotsMinor,
+  SortMinor
+} from '@zenius-one/ursa-icons';
+
+import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Link } from '../Link';
 import { Tag } from '../Tag';
+import { generateUniqueID } from '../../utilities';
 
 const UrsaDataGrid: FC<DataGridProps> = ({
   views = DATAGRID_DEFAULTS.views,
@@ -58,13 +70,19 @@ const UrsaDataGrid: FC<DataGridProps> = ({
   const [currentPageNumber, setCurrentPageNumber] = useState(1); // the current page number
   const [currentPage, setCurrentPage] = useState<typeof rows>([]); //contains all rows in current page
   const [selectedRows, setSelectedRows] = useState<typeof rows>([]); // the selected rows of the current page
-  const [checked, setChecked] = useState(false); //All rows, .Ursa-DataGridCheckbox checkbox on or off
-  const [checkedIndeterminate, setCheckedIndeterminate] = useState(false); // All rows, .Ursa-DataGridRowController indeterminate property on or off
+  const [checked, setChecked] = useState<boolean | 'indeterminate'>(false); //All rows, .Ursa-DataGridCheckbox checkbox on or off
+  const [checkboxes, setCheckboxes] = useState<{ [key: string]: boolean }>({});
 
-  const checkboxes = document.querySelectorAll('.Ursa-DataGridCheckbox');
+  const tbodyRef = useRef<HTMLTableSectionElement>(null);
+  const checkboxesRef = useRef<HTMLInputElement[]>([]);
+  const theadersRef = useRef<HTMLTableCellElement[]>([]);
+
   const theaders = document.querySelectorAll(
     "th:not(.data-selector):not([data-sort=''])"
   );
+
+  // console.log({ theaders, theadersRef: theadersRef.current });
+  // console.log({ currentView });
 
   /**************************************************************************************************/
   //    RESETS
@@ -73,14 +91,12 @@ const UrsaDataGrid: FC<DataGridProps> = ({
   /* Reset Selection */
   const resetSelection = () => {
     setChecked(false);
-    checkboxes.forEach(
-      (checkbox) => ((checkbox as HTMLInputElement).checked = false)
-    );
-    setSelectedRows([]);
+    setCheckboxes({});
   };
 
   /* Reset Sort */
   const resetSort = () =>
+    // theadersRef?.current?.forEach((th) => (th.dataset.sort = ''));
     theaders.forEach((th) => {
       (th as HTMLTableCellElement).dataset.sort = '';
     });
@@ -101,6 +117,10 @@ const UrsaDataGrid: FC<DataGridProps> = ({
 
   const toggleCheck = () => setChecked((prevState) => !prevState);
 
+  const generateUniqueRowID = (row: DataGridRow, prefix: string) => {
+    return row.id || (row._id as string) || generateUniqueID(prefix);
+  };
+
   const prevPage = () => {
     setCurrentPageNumber((curr) => {
       if (curr === 1) return 1;
@@ -111,7 +131,9 @@ const UrsaDataGrid: FC<DataGridProps> = ({
 
   const nextPage = () => {
     setCurrentPageNumber((curr) => {
-      if (curr === Math.ceil(View?.length || 0 / rowsPerPage)) return curr;
+      if (View?.length && curr === Math.ceil(View.length / rowsPerPage)) {
+        return curr;
+      }
       resetSelection();
       return curr + 1;
     });
@@ -146,77 +168,50 @@ const UrsaDataGrid: FC<DataGridProps> = ({
     }
   };
 
-  const selectAll = (event: ChangeEvent<HTMLInputElement>) => {
-    const el = event.target as HTMLInputElement;
-    const tbody = el.closest(
-      'tbody.Ursa-DataGridBody'
-    ) as HTMLTableSectionElement;
-    for (const item of Array.from(tbody.childNodes)) {
-      (item.childNodes[0].childNodes[0] as HTMLInputElement).checked =
-        el.checked ? true : false;
-    }
-    el.checked ? setSelectedRows(currentPage) : resetSelection();
-  };
+  const selectAll = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const el = event.target as HTMLInputElement;
 
-  const selectRow = (event: ChangeEvent<HTMLInputElement>) => {
-    const el = event.target as HTMLInputElement;
-    const rowID = el.parentElement?.parentElement?.dataset?.id;
+      if (el.checked && currentPage?.length) {
+        const rows = currentPage.map((row) => ({ [row.id]: true }));
+        setCheckboxes(Object.assign({}, ...rows));
+      } else {
+        resetSelection();
+      }
+    },
+    [checkboxes, currentPage]
+  );
 
-    if (el.checked) {
-      const targetRow = currentPage?.find(
-        (row) => rowID === (row.id || row._id)?.toString()
-      ) as DataGridRow;
-      setSelectedRows((prevRows) => prevRows && [...prevRows, targetRow]);
-    } else {
-      setSelectedRows((prevRows) =>
-        prevRows?.filter((row) => rowID !== (row.id || row._id)?.toString())
-      );
-    }
-  };
+  const selectRow = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const el = event.target as HTMLInputElement;
+      setCheckboxes((prev) => ({ ...prev, [el.id]: el.checked }));
+    },
+    [checkboxes]
+  );
 
   /**************************************************************************************************/
   //    useEffect Hooks and Side Effects Management
   /*************************************************************************************************/
 
-  /* useEffect:- Control the "checked" state of the selectAll checkbox */
+  /** Set selectedRows accordingly when checkboxes are modified */
   useEffect(() => {
-    const controller = document.querySelector(
-      '.Ursa-DataGridRowController'
-    ) as HTMLInputElement;
+    const selectedKeys = Object.keys(checkboxes).filter((k) => checkboxes[k]);
+    setSelectedRows(
+      currentPage?.filter((row) => selectedKeys.includes(row.id)) || []
+    );
+  }, [checkboxes]);
 
-    if (
-      selectedRows &&
-      currentPage &&
-      selectedRows?.length === currentPage?.length
-    ) {
-      setChecked(true);
-      setCheckedIndeterminate(false);
-      if (selectedRows.length > 1 && controller)
-        controller.indeterminate = checkedIndeterminate;
-    }
+  /** Control the "checked" state of the selectAll checkbox */
+  useEffect(() => {
+    if (selectedRows?.length && currentPage?.length) {
+      if (selectedRows.length === currentPage.length) setChecked(true);
+      else if (selectedRows.length < currentPage.length)
+        setChecked('indeterminate');
+    } else setChecked(false);
+  }, [selectedRows, currentPage]);
 
-    if (
-      selectedRows?.length === 0 ||
-      (selectedRows && currentPage && selectedRows.length < currentPage.length)
-    ) {
-      setChecked(false);
-      setCheckedIndeterminate(false);
-    }
-
-    if (
-      selectedRows &&
-      currentPage &&
-      selectedRows.length > 0 &&
-      selectedRows.length < currentPage.length
-    ) {
-      setCheckedIndeterminate(true);
-      if (controller) controller.indeterminate = checkedIndeterminate;
-    }
-  }, [selectedRows, currentPage, checkedIndeterminate]);
-
-  console.log(selectedRows);
-
-  // useEffect:- On selection of a View
+  /** Set the rows and reset Current Page Number on selection of a View */
   useEffect(() => {
     const { filters } = currentView as DataGridView;
     if (currentView && filters && filters.length > 0) {
@@ -226,7 +221,7 @@ const UrsaDataGrid: FC<DataGridProps> = ({
     setCurrentPageNumber(1); // Set default Page Number when a view is selected
   }, [currentView, All]);
 
-  /* useEffect:- setCurrentPage data based on PageNumber and Selected View */
+  /* setCurrentPage data based on PageNumber and Selected View */
   useEffect(() => {
     setCurrentPage(
       currentPageNumber === 1
@@ -246,7 +241,7 @@ const UrsaDataGrid: FC<DataGridProps> = ({
 
   useEffect(() => {
     if (onSelectChange) {
-      onSelectChange(selectedRows as DataGridRow[]);
+      onSelectChange(selectedRows || []);
     }
     return;
   }, [onSelectChange, selectedRows]);
@@ -256,7 +251,7 @@ const UrsaDataGrid: FC<DataGridProps> = ({
   /*****************************************************************************************/
 
   return (
-    <div className={`Ursa-DataGrid ${className || ''}`}>
+    <div className={`Ursa-DataGridComponent ${className || ''}`}>
       <div className="Ursa-DataGridToolbar">
         <NavMenu
           NavItems={
@@ -286,22 +281,18 @@ const UrsaDataGrid: FC<DataGridProps> = ({
             <>
               <NavItem
                 name="Filter"
-                icon={<i className="fas fa-filter"></i>}
+                icon={<Icon source={FilterMajor} />}
                 unlink
               />
-              <NavItem
-                name="Sort"
-                icon={<i className="fas fa-sort"></i>}
-                unlink
-              />
+              <NavItem name="Sort" icon={<Icon source={SortMinor} />} unlink />
               <NavItem
                 name="Columns"
-                icon={<i className="fas fa-columns"></i>}
+                icon={<Icon source={Columns2Major} />}
                 unlink
               />
               <NavItem
                 name="Menu"
-                icon={<i className="fas fa-bars"></i>}
+                icon={<Icon source={HorizontalDotsMinor} />}
                 unlink
               />
             </>
@@ -312,20 +303,27 @@ const UrsaDataGrid: FC<DataGridProps> = ({
       {selectedRows?.length !== 0 && (
         <div className="Ursa-DataGridActionBar">
           <div className="Ursa-DataGridRowControllerContainer hover:bg-sky-600">
-            <button className="p-10">
+            {/* <button className="Ursa-DataGridControllerButton p-10">
               <div className="pr-10 inline-block">
-                <input
-                  type="checkbox"
+                <Checkbox
                   className="Ursa-DataGridRowController"
-                  onClick={toggleCheck}
+                  name="ursa-controller"
+                  label={`${selectedRows?.length} selected`}
                   checked={checked}
                   onChange={selectAll}
                 />
-              </div>
-              <div className="inline-block">
-                <span className="counter pl-3 pr-6">{`${selectedRows?.length} selected`}</span>
-              </div>
-            </button>
+              </div> 
+              
+            </button>*/}
+            <Button className="Ursa-DataGridControllerButton p-10">
+              <Checkbox
+                className="Ursa-DataGridRowController"
+                name="ursa-controller"
+                label={`${selectedRows?.length} selected`}
+                checked={checked}
+                onChange={selectAll}
+              />
+            </Button>
           </div>
 
           {isValidActions(actionButtons as ActionButtonProps) && (
@@ -334,19 +332,20 @@ const UrsaDataGrid: FC<DataGridProps> = ({
         </div>
       )}
 
-      <div className="Ursa-DataGridContainer overflow-x-auto overscroll-x-contain">
-        <table className="data-table border-collapse min-w-max w-full">
+      <div className="Ursa-DataGridContainer">
+        <table className="Ursa-DataGrid">
           <thead
             className={`Ursa-DataGridHeader ${
               selectedRows?.length ? 'hidden' : ''
             }`}
           >
             <tr className={`Ursa-DataGridRow`}>
-              <th className="Ursa-DataGridColumn data-selector p-10" key={0}>
-                <input
-                  type="checkbox"
+              <th className="Ursa-DataGridColumn data-selector p-10">
+                <Checkbox
                   className="Ursa-AllRowsCheckbox"
-                  onClick={toggleCheck}
+                  name="ursa-allrows-checkbox"
+                  label={`${selectedRows?.length} selected`}
+                  labelHidden={true}
                   checked={checked}
                   onChange={selectAll}
                 />
@@ -359,6 +358,9 @@ const UrsaDataGrid: FC<DataGridProps> = ({
                         column={column}
                         index={index}
                         onClick={sortRows}
+                        ref={(el: HTMLTableCellElement) =>
+                          (theadersRef.current[index] = el)
+                        }
                       />
                     </Fragment>
                   );
@@ -366,19 +368,26 @@ const UrsaDataGrid: FC<DataGridProps> = ({
             </tr>
           </thead>
 
-          <tbody className="Ursa-DataGridBody">
+          <tbody className="Ursa-DataGridBody" ref={tbodyRef}>
             {currentPage?.map((row, index) => {
               return (
                 <tr
                   className="Ursa-DataGridRow"
                   data-id={row.id || (row._id as string)}
-                  key={row.id || (row._id as string)}
+                  key={row.id || (row._id as string) || index}
                 >
                   <td className="Ursa-DataGridCell text-center">
-                    <input
-                      type="checkbox"
-                      className="Ursa-DataGridCheckbox"
+                    <Checkbox
+                      id={generateUniqueRowID(row, 'Ursa-DataGridRowCheckbox')}
+                      className="Ursa-DataGridRowCheckbox"
+                      name="Ursa-DataGridRowCheckbox"
+                      label={`${row.id || (row._id as string)}`}
+                      labelHidden={true}
+                      checked={checkboxes[row.id]}
                       onChange={selectRow}
+                      ref={(el: HTMLInputElement) =>
+                        (checkboxesRef.current[index] = el)
+                      }
                     />
                   </td>
                   {columns &&
@@ -462,12 +471,14 @@ const UrsaDataGrid: FC<DataGridProps> = ({
 export const DataGrid = styled(UrsaDataGrid)(
   ({ theme: { color, fontSize } }) => `
         background-color: ${color['--ursa-bg-primary']};
-        color: ${color['--ursa-text-secondary']};
+        color: ${color['--ursa-text-primary']};
         padding-top: 2.15rem;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
+        min-width: 100%;
+        min-height: 100%;
 
-        & > .Ursa-DataGridToolbar {
+        .Ursa-DataGridToolbar {
           display: flex;
           justify-content: space-between;
           margin-top: 1.5rem;
@@ -482,10 +493,40 @@ export const DataGrid = styled(UrsaDataGrid)(
           .Ursa-DataGridRowControllerContainer {
             border: 1px solid ${color['--ursa-border-secondary']};
             border-top-left-radius: 4px;
+            position: relative;
+
+            & > .Ursa-DataGridControllerButton {
+              display: inline-flex;
+              align-items: center;
+              justify-content: stretch;
+              flex-grow: 1;
+              padding: 0;
+              margin: 0;
+              width: 100%;
+              height: 100%;
+            }
+
+            & > .Ursa-ButtonContainer > button {
+              padding: 10px 6px 10px 6px;
+              width: 100%;
+              font-size: ${fontSize['--ursa-font-size-4']};
+              justify-content: stretch;
+            }
             
             &:hover {
               
             }
+          }
+        }
+
+        .Ursa-DataGridContainer {
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+
+          .Ursa-DataGrid {
+            border-collapse: collapse;
+            min-width: max-content;
+            width: 100%;
           }
         }
 

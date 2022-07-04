@@ -31,7 +31,7 @@ const UrsaButtonGroup: FC<ButtonGroupProps> = ({
     <ButtonItem button={child as ReactElement} key={index} />
   ));
 
-  return <div className={`${className || ''}`}>{content}</div>;
+  return <div className={`Ursa-ButtonGroup ${className || ''}`}>{content}</div>;
 };
 
 export const ButtonGroup = styled(UrsaButtonGroup)(

@@ -65,19 +65,12 @@ const UrsaActionButtons: FC<ActionButtonsProps> = ({
       })}
 
       {actions?.length > (truncateAfter ?? 10) && (
-        <div className="Ursa-MoreActions" ref={actionsRef}>
+        <div className="Ursa-MoreActionsContainer" ref={actionsRef}>
           <button className="Ursa-ActionButton" onClick={toggleMore}>
             <span className="Ursa-ActionButtonLabel">{truncateLabel}</span>
-            {/* <span className="arrow">
-              <i className="fas fa-caret-down"></i>
-            </span> */}
             <Icon source={CaretDownMinor} />
           </button>
-          <ul
-            className={`data-table-actions absolute w-max h-full${
-              !toggle && ' hidden'
-            }`}
-          >
+          <ul className={`Ursa-MoreActions ${!toggle && ' hidden'}`}>
             {actions
               .slice(truncateAfter)
               .map(({ label, name, onClick }, index) => {
@@ -115,11 +108,11 @@ export const ActionButtons = styled(UrsaActionButtons)(
       padding: 10px;
     }
 
-    .Ursa-MoreActions {
+    .Ursa-MoreActionsContainer {
       position: relative;
       flex-direction: column;
 
-      & > .Ursa-ActionButton {
+      .Ursa-ActionButton {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -127,6 +120,16 @@ export const ActionButtons = styled(UrsaActionButtons)(
         border-top-right-radius: 4px;
         width: 100%;
         height: 100%;
+      }
+
+      & > ul.Ursa-MoreActions {
+        position: absolute;
+        width: max-content;
+        height: full;
+
+        & > li {
+          vertical-align: middle;
+        }
       }
     }
 

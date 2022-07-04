@@ -10,7 +10,7 @@ export default {
   component: Avatar,
   decorators: [
     (Story) => (
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider>
         <Story />
       </ThemeProvider>
     )

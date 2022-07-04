@@ -4,6 +4,9 @@ import { darkTheme } from '../../styles';
 
 import { Stack } from '.';
 import { Tag } from '../Tag';
+import { Heading } from '../Heading';
+import { Button } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
 
 export default {
   title: 'Components/Stack',
@@ -23,6 +26,20 @@ const Template: ComponentStory<typeof Stack> = (args) => (
     <Tag name={'Unfulfilled'} />
     <Tag name={'Cancelled'} />
     <Tag name={'Returned'} />
+  </Stack>
+);
+
+const StackItemTemplate: ComponentStory<typeof Stack> = (args) => (
+  <Stack {...args}>
+    <Stack.Item fill={true}>
+      <Heading>Shipments</Heading>
+    </Stack.Item>
+    <Stack.Item justify="end">
+      <ButtonGroup>
+        <Button>View Orders</Button>
+        <Button primary>Create Shipment</Button>
+      </ButtonGroup>
+    </Stack.Item>
   </Stack>
 );
 
@@ -49,6 +66,15 @@ VerticalStack.args = {
   vertical: true,
   align: 'start',
   justify: 'start',
+  spacing: 'normal',
+  wrap: true
+};
+
+export const Stack_with_an_Item_filling_space = StackItemTemplate.bind({});
+Stack_with_an_Item_filling_space.args = {
+  vertical: false,
+  align: 'center',
+  justify: 'stretch',
   spacing: 'normal',
   wrap: true
 };

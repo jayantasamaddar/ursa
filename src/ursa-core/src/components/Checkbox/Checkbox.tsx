@@ -1,5 +1,4 @@
 import React, {
-  FC,
   ReactElement,
   MouseEvent,
   ChangeEvent,
@@ -9,16 +8,18 @@ import React, {
   useCallback,
   useImperativeHandle,
   useRef,
-  forwardRef,
-  ForwardedRef
+  forwardRef
 } from 'react';
 
 import { MinusMinor, TickMinor } from '@zenius-one/ursa-icons';
 import { Icon } from '../Icon';
 import styled from '@emotion/styled';
+import { generateUniqueID } from '../../utilities';
 
 export interface CheckboxProps {
-  /** Name for form input */
+  /** Unique identifier for checkbox input */
+  id?: string;
+  /** Name for checkbox input */
   name: string;
   /** Label for the checkbox */
   label: string;
@@ -45,9 +46,10 @@ export interface CheckboxProps {
   ariaDescribedBy?: string;
 }
 
-const UrsaCheckbox: FC<CheckboxProps> = forwardRef(
-  (props, ref: ForwardedRef<HTMLInputElement>): ReactElement => {
+const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  (props, ref): ReactElement => {
     const {
+      id,
       name,
       label,
       labelHidden,
@@ -60,7 +62,7 @@ const UrsaCheckbox: FC<CheckboxProps> = forwardRef(
       onBlur
     } = props;
 
-    const id = `${name}-${Math.random()}`;
+    const _id = id || generateUniqueID(name);
     const [isChecked, setIsChecked] = useState(checked == true || false);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -101,9 +103,9 @@ const UrsaCheckbox: FC<CheckboxProps> = forwardRef(
 
     return (
       <div className={`Ursa-CheckboxContainer ${className || ''}`}>
-        <label className="Ursa-Label" htmlFor={id}>
+        <label className="Ursa-CheckboxLabel" htmlFor={id}>
           <input
-            id={id}
+            id={_id}
             className="Ursa-Checkbox"
             ref={inputRef}
             name={name}
@@ -137,14 +139,13 @@ export const Checkbox = styled(UrsaCheckbox)(
     display: inline-flex;
     align-items: center;
     color: ${color['--ursa-text-primary']};
-    padding-bottom: 3px;
-    label {
-        display: flex;
+    label.Ursa-CheckboxLabel {
+        display: inline-flex;
         align-items: center;
-        padding-left: 10px;
+        padding-left: ${labelHidden ? '0' : '4px'};
         invisibility: ${labelHidden ? 'hidden' : 'visible'};
     }
-    input[type="checkbox"] {
+    input[type="checkbox"].Ursa-Checkbox {
         width: 1.2em;
         height: 1.2em;
         border: 2px solid ${color['--ursa-text-primary']};
@@ -164,7 +165,7 @@ export const Checkbox = styled(UrsaCheckbox)(
       border-width: 2px;
       border-style: solid;
       border-radius: 2px;
-      margin-right: 10px;
+      margin-right: ${labelHidden ? '0' : '10px'};
       background-color: ${
         checked ? color['--ursa-accent-color'] : color['--ursa-white']
       };

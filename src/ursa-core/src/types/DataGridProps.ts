@@ -33,7 +33,10 @@ export interface DataGridColumn {
 export interface DataGridRow {
   /** Unique id of the row */
   id: string;
-  [key: string]: string | number | string[];
+  /** Whether row is selected or not */
+  selected?: boolean;
+  /** Any key-value parameter */
+  [key: string]: boolean | string | number | string[] | undefined;
 }
 
 interface DataGridAction {

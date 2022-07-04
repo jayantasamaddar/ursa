@@ -1,32 +1,31 @@
-import React, { FC, ReactElement, memo, NamedExoticComponent } from 'react';
+import React, { FC, ReactElement, ReactNode } from 'react';
 import styled from '@emotion/styled';
+import { StackProps } from '../../../types';
 
-import { Item } from './components';
-import { StackProps } from '../../types';
-
-export interface StackCompoundProps {
-  Item: typeof Item;
+export interface StackItemProps extends StackProps {
+  fill?: boolean;
 }
 
-const UnstyledStack: FC<StackProps> = ({
+const UrsaStackItem: FC<StackItemProps> = ({
   className,
   children
 }): ReactElement => {
-  return <div className={`Ursa-Stack ${className || ''}`}>{children}</div>;
+  return <div className={`Ursa-StackItem ${className || ''}`}>{children}</div>;
 };
 
-const StyledStack = styled(UnstyledStack)(
+export const Item = styled(UrsaStackItem)(
   ({
     vertical = false,
     wrap = true,
     justify = 'start',
     align = 'center',
-    spacing = 'normal'
+    spacing = 'normal',
+    fill = false
   }) => `
         display: flex;
         flex-direction: ${vertical ? 'column' : 'row'};
         flex-wrap: ${wrap ? 'wrap' : 'nowrap'};
-        flex: ${justify === 'evenly' ? '1 1 auto' : '0 1 auto'};
+        flex-grow: ${fill ? 1 : 0};
         justify-content: ${
           justify === 'evenly'
             ? 'space-evenly'
@@ -60,17 +59,5 @@ const StyledStack = styled(UnstyledStack)(
             ? '20px'
             : '10px'
         };
-        width: 100%;
-        height: 100%;
     `
 );
-
-const Stack: FC<StackProps> & StackCompoundProps = memo(
-  (props): ReactElement => {
-    return <StyledStack {...props} />;
-  }
-) as NamedExoticComponent<StackProps> & StackCompoundProps;
-
-Stack.Item = Item;
-
-export { Stack };

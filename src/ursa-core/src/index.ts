@@ -10,6 +10,7 @@ export type {
   DataGridProps,
   IconSource,
   ModalProps,
+  StackProps,
   TabPanelProps,
   TabsProps,
   TabProps,
@@ -50,6 +51,9 @@ export type { DropZoneProps } from './components/DropZone';
 export { Error } from './components/Error';
 export type { ErrorProps } from './components/Error';
 
+export { Heading } from './components/Heading';
+export type { HeadingProps } from './components/Heading';
+
 export { Icon } from './components/Icon';
 export type { IconProps } from './components/Icon';
 
@@ -79,7 +83,6 @@ export { Spinner } from './components/Spinner';
 export type { SpinnerProps } from './components/Spinner';
 
 export { Stack } from './components/Stack';
-export type { StackProps } from './components/Stack';
 
 export { Tabs } from './components/Tabs';
 

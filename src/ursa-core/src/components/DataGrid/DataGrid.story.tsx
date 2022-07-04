@@ -4,8 +4,7 @@ import { ThemeProvider } from '../ThemeProvider';
 import { darkTheme } from '../../styles';
 
 import { DataGrid } from '.';
-import { Button } from '../Button';
-import { Page } from '../Page';
+import { Button, Page, Stack, Heading } from '../../';
 import { views, columns, rows, actions } from './data.mock';
 
 export default {
@@ -21,14 +20,19 @@ export default {
 } as ComponentMeta<typeof DataGrid>;
 
 const Template: ComponentStory<typeof DataGrid> = (args) => {
-  const handleRowSelect = (selectedRows) => console.log(selectedRows);
+  const handleRowSelect = (selectedRows: unknown) => console.log(selectedRows);
 
   return (
     <div className="main-container col-span-6 overflow-x-auto overscroll-x-contain">
-      <div className="title-bar flex justify-between">
-        <h1>Orders</h1>
-        <Button>Sync Orders</Button>
-      </div>
+      <Stack>
+        <Stack.Item fill>
+          <Heading>Orders</Heading>
+        </Stack.Item>
+        <Stack.Item>
+          <Button>Sync Orders</Button>
+          <Button primary>Import Orders</Button>
+        </Stack.Item>
+      </Stack>
 
       <DataGrid
         className="my-20"

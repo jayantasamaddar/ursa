@@ -56,9 +56,10 @@ export const Accordion = styled(UrsaAccordion)(
             padding: 4px;
             border-bottom: 1px solid ${color['--ursa-border-primary']};
 
-            h4 {
+            & > h4 {
               flex-grow: 1;
               color: ${color['--ursa-text-primary']};
+              padding: 20px 10px;
             }
         }
         .UrsaAccordionContent {

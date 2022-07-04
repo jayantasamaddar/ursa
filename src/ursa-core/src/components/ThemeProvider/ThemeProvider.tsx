@@ -57,14 +57,30 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           li {
             margin: 0;
             padding: 0;
+          }
+          li {
             list-style: none;
           }
           h1,
           h2,
           h3,
           h4,
-          h5 {
+          h5,
+          h6 {
             font-weight: bold;
+            margin: 0;
+          }
+          table,
+          thead,
+          tr {
+            border: 1px solid ${theme.color['--ursa-border-secondary']};
+          }
+          button + button {
+            margin: 0;
+          }
+          button,
+          a {
+            cursor: pointer;
           }
           .hidden {
             display: none;

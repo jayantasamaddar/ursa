@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import React, { FC, ReactElement } from 'react';
+import { ArrowLeftMinor, ArrowRightMinor } from '@zenius-one/ursa-icons';
 import { DataGridRow } from '../../../types';
+import { Icon } from '../../Icon';
 
-interface PaginationProps {
+export interface PaginationProps {
   view: DataGridRow[] | undefined;
   rowsPerPage: number;
   currentPageNumber: number;
@@ -21,7 +23,7 @@ export const UrsaPagination: FC<PaginationProps> = ({
 }): ReactElement => {
   const prevPageExists = currentPageNumber !== 1 ? true : false;
   const nextPageExists =
-    currentPageNumber < Math.ceil(view?.length || 0 / rowsPerPage);
+    currentPageNumber < Math.ceil((view as DataGridRow[]).length / rowsPerPage);
   const active = 'active border-slate-700 cursor-pointer';
 
   return (
@@ -35,24 +37,26 @@ export const UrsaPagination: FC<PaginationProps> = ({
             title="Previous"
             onClick={prevPage}
           >
-            <i
-              className={`fas fa-angle-left ${
-                prevPageExists ? 'text-slate-100' : 'text-slate-900'
+            <Icon
+              source={ArrowLeftMinor}
+              color={`${
+                prevPageExists ? '--ursa-text-secondary' : '--ursa-btn-disabled'
               }`}
-            ></i>
+            />
           </div>
           <div
-            className={`data-table-next p-10 border ${
+            className={`Ursa-PaginationNext ${
               nextPageExists ? active : 'border-slate-900'
             }`}
             title="Next"
             onClick={nextPage}
           >
-            <i
-              className={`fas fa-angle-right ${
-                nextPageExists ? 'text-slate-100' : 'text-slate-900'
+            <Icon
+              source={ArrowRightMinor}
+              color={`${
+                nextPageExists ? '--ursa-text-secondary' : '--ursa-btn-disabled'
               }`}
-            ></i>
+            />
           </div>
         </div>
       )}
@@ -68,7 +72,8 @@ export const Pagination = styled(UrsaPagination)(
     margin-bottom: 20px;
     bottom: 0;
 
-    .Ursa-PaginationPrevious {
+    .Ursa-PaginationPrevious, .Ursa-PaginationNext {
+      padding: 10px;
       border-width: 1px;
       border-style: solid;
       border-color: ${color['--ursa-border-primary']};
@@ -80,5 +85,3 @@ export const Pagination = styled(UrsaPagination)(
     }
   `
 );
-
-export default Pagination;
