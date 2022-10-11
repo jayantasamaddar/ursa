@@ -37,15 +37,20 @@
     "build:js": "rollup -c",
     "build:types": "tsc --declarationDir dist/types --declaration --emitDeclarationOnly",
     "format": "prettier --write src",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "clean": "rm -rf dist .rollup.cache",
     "clean:all": "rm -rf dist node_modules .rollup.cache"
   },
   "dependencies": {
     "@emotion/react": ">= 11.9.0",
     "@emotion/styled": ">= 11.8.1",
-    "@types/react": "*",
-    "@types/react-dom": "*",
     "@zenius-one/ursa-icons": "*"
+  },
+  "devDependencies": {
+    "@types/react": "*",
+    "@types/react-dom": "*"
   },
   "peerDependencies": {
     "react": ">= 18.0.0",

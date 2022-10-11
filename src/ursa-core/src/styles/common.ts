@@ -24,7 +24,7 @@ export const commonStyles = {
   },
   fontSize: {
     '--ursa-font-size-1': '0.75rem',
-    '--ursa-font-size-2': '0.8125rem',
+    '--ursa-font-size-2': '0.84375rem',
     '--ursa-font-size-3': '0.875rem',
     '--ursa-font-size-4': '0.9375rem',
     '--ursa-font-size-5': '1rem',

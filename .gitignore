@@ -30,6 +30,9 @@ build
 # rollup
 .rollup.cache
 
+# jest
+coverage
+
 # turbo
 .turbo
 

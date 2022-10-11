@@ -16,6 +16,7 @@ export interface LinkProps {
   external?: boolean;
   monochrome?: boolean;
   download?: string | boolean;
+  unstyled?: boolean;
   [key: string]: any;
 }
 
@@ -28,7 +29,7 @@ const UnstyledAnchorTag = styled.a(
 
 export const UnstyledLink: FC<LinkProps> = forwardRef(
   (props, ref: ForwardedRef<HTMLAnchorElement>): ReactElement => {
-    const { external, url, children, ...rest } = props;
+    const { external, url, children, unstyled, ...rest } = props;
     const target = external ? '_blank' : undefined;
     const rel = external ? 'noopener noreferrer' : undefined;
     return (
@@ -42,7 +43,7 @@ export const UnstyledLink: FC<LinkProps> = forwardRef(
           {...rest}
         >
           {children}
-          {external && (
+          {external && !unstyled && (
             <span className="Ursa-ExternalLinkIcon">
               <Icon
                 source={ExternalSmallMinor}
@@ -58,21 +59,21 @@ export const UnstyledLink: FC<LinkProps> = forwardRef(
 );
 
 export const Link = styled(UnstyledLink)(
-  ({ theme: { color }, monochrome }) => `
+  ({ theme: { color }, monochrome, unstyled }) => `
         display: inline-flex;
         align-items: center;
         gap: 5px;
         
         color: ${
-          monochrome
+          monochrome || unstyled
             ? color['--ursa-text-primary']
             : color['--ursa-link-primary']
         };
-        text-decoration: underline;
+        text-decoration: ${unstyled ? 'none' : 'underline'};
 
         &:hover {
             color: ${
-              monochrome
+              monochrome || unstyled
                 ? color['--ursa-text-primary']
                 : color['--ursa-link-primary-hovered']
             };

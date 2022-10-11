@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactElement } from 'react';
 
 interface ImageComponent {
   height?: number | string;
@@ -16,27 +16,27 @@ export const CardMedia: FC<CardMediaProps> = ({
   image: ImageComponent,
   height,
   width,
-  alt,
+  alt
 }): ReactElement => {
-  let imageType: "url" | "function";
+  let imageType: 'url' | 'function';
 
-  if (typeof ImageComponent === "string") {
-    imageType = "url";
+  if (typeof ImageComponent === 'string') {
+    imageType = 'url';
   } else {
-    imageType = "function";
+    imageType = 'function';
   }
 
   const cardMediaMarkup = {
     function: (
-      <ImageComponent height={height || "auto"} width={width || "auto"} />
+      <ImageComponent height={height || 'auto'} width={width || 'auto'} />
     ),
     url: (
       <img
         className="Ursa-CardImage"
         src={ImageComponent as string}
-        alt={alt || ""}
+        alt={alt || ''}
       />
-    ),
+    )
   };
 
   return <div className="Ursa-CardMedia">{cardMediaMarkup[imageType]}</div>;

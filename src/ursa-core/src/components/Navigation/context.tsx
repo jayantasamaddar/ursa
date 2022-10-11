@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 interface NavigationContextType {
   location: string;
@@ -7,5 +7,5 @@ interface NavigationContextType {
 }
 
 export const NavigationContext = createContext<NavigationContextType>({
-  location: "",
+  location: ''
 });

@@ -44,9 +44,5 @@ export const Spinner: FC<SpinnerProps> = ({
     </UrsaStyledLoader>
   );
 
-  return (
-    <>
-      <span className={''}>{spinnerSVGMarkup}</span>
-    </>
-  );
+  return <span className="Ursa-Spinner">{spinnerSVGMarkup}</span>;
 };

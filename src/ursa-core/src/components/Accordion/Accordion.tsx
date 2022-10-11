@@ -2,6 +2,7 @@ import React, { FC, ReactElement, useState } from 'react';
 import styled from '@emotion/styled';
 import { ChevronUpMinor, ChevronDownMinor } from '@zenius-one/ursa-icons';
 import { Icon } from '../Icon';
+import { UnstyledButton } from '../UnstyledButton';
 
 export interface AccordionProps {
   className?: string;
@@ -28,18 +29,20 @@ const UrsaAccordion: FC<AccordionProps> = ({
     ]);
 
   return (
-    <div className={`UrsaAccordion ${className || ''}`}>
+    <div className={`Ursa-Accordion ${className || ''}`}>
       {data?.map(({ label, content, active }, indx) => (
-        <div className="UrsaAccordionItem" key={indx}>
-          <div className="UrsaAccordionHead" onClick={() => toggleActive(indx)}>
+        <div className="Ursa-AccordionItem" key={indx}>
+          <div
+            className="Ursa-AccordionHeader"
+            onClick={() => toggleActive(indx)}
+          >
             <h4>{label}</h4>
-            {active ? (
-              <Icon source={ChevronUpMinor} size="large" />
-            ) : (
-              <Icon source={ChevronDownMinor} size="large" />
-            )}
+            <Icon
+              source={active ? ChevronUpMinor : ChevronDownMinor}
+              size="large"
+            />
           </div>
-          {active && <div className="UrsaAccordionContent">{content}</div>}
+          {active && <div className="Ursa-AccordionPanel">{content}</div>}
         </div>
       ))}
     </div>
@@ -48,7 +51,7 @@ const UrsaAccordion: FC<AccordionProps> = ({
 
 export const Accordion = styled(UrsaAccordion)(
   ({ theme: { color } }) => `
-        .UrsaAccordionHead {
+        .Ursa-AccordionHeader {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -62,7 +65,7 @@ export const Accordion = styled(UrsaAccordion)(
               padding: 20px 10px;
             }
         }
-        .UrsaAccordionContent {
+        .Ursa-AccordionPanel {
             display: flex;
             color: ${color['--ursa-text-primary']};
             padding: 20px 4px;

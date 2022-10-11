@@ -1,14 +1,14 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import React, {
   FC,
   ReactElement,
   ReactNode,
   useContext,
-  MouseEvent,
-} from "react";
-import { UnstyledLink } from "../../../Link";
-import { Icon, IconProps } from "../../../Icon";
-import { NavigationContext } from "../../context";
+  MouseEvent
+} from 'react';
+import { UnstyledLink } from '../../../Link';
+import { Icon, IconProps } from '../../../Icon';
+import { NavigationContext } from '../../context';
 
 export interface ItemURLProps {
   url?: string;
@@ -30,14 +30,14 @@ export interface SubNavigationItemProps extends ItemURLProps {
 interface SecondaryAction {
   url: string;
   accessibilityLabel: string;
-  icon: IconProps["source"];
+  icon: IconProps['source'];
   onClick?: () => void;
   tooltip?: string;
 }
 
 export interface NavigationItemProps extends ItemURLProps {
   label: string;
-  icon?: IconProps["source"];
+  icon?: IconProps['source'];
   badge?: ReactNode;
   className?: string;
   disabled?: boolean;
@@ -64,7 +64,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
   icon,
   className,
   subNavigationItems = [],
-  secondaryAction,
+  secondaryAction
 }): ReactElement => {
   /***************************************************************************************/
   // State Management
@@ -83,7 +83,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
     const { currentTarget } = event;
 
     // If clicked navigation link is current location, do nothing and prevent refresh.
-    if (currentTarget.getAttribute("href") === location) {
+    if (currentTarget.getAttribute('href') === location) {
       event.preventDefault();
     }
 
@@ -105,12 +105,12 @@ const NavigationItem: FC<NavigationItemProps> = ({
 
   return (
     <UnstyledLink
-      url={url || ""}
+      url={url || ''}
       external={external}
       className="Ursa-NavigationItemLink"
       onClick={handleClick}
     >
-      <li className={`Ursa-NavigationItem ${className || ""}`}>
+      <li className={`Ursa-NavigationItem ${className || ''}`}>
         <div className="Ursa-NavigationItemWrapper">
           {icon && (
             <div className="Ursa-NavigationIcon">
@@ -135,8 +135,8 @@ export const Item = styled(NavigationItem)(
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        color: ${color["--ursa-text-primary"]};
-        border-left: 4px solid ${color["--ursa-btn-primary"]};
+        color: ${color['--ursa-text-primary']};
+        border-left: 4px solid ${color['--ursa-btn-primary']};
         padding-left: 10px;
         padding-right: 10px;
         div {
@@ -152,7 +152,7 @@ export const Item = styled(NavigationItem)(
             padding-right: 20px;
             border-radius: 4px;
             &:hover {
-                background-color: ${color["--ursa-nav-item-bg-hovered"]};                
+                background-color: ${color['--ursa-nav-item-bg-hovered']};                
             }
         }
     `

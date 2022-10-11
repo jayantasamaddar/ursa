@@ -1,15 +1,15 @@
-import React, { FC, ReactElement } from "react";
-import styled from "@emotion/styled";
-import { ModalHeaderProps } from "../../../types";
-import { ModalCloseButton } from "./ModalCloseButton";
+import React, { FC, ReactElement } from 'react';
+import styled from '@emotion/styled';
+import { ModalHeaderProps } from '../../../types';
+import { ModalCloseButton } from './ModalCloseButton';
 
 const UrsaModalHeader: FC<ModalHeaderProps> = ({
   title,
   className,
-  onClose,
+  onClose
 }): ReactElement => {
   return (
-    <div className={`UrsaModalHeader ${className || ""}`}>
+    <div className={`UrsaModalHeader ${className || ''}`}>
       {title && (
         <div className="UrsaModalHeader-title">
           <h2>{title}</h2>
@@ -26,7 +26,7 @@ export const ModalHeader = styled(UrsaModalHeader)(
       display: flex;
       align-items: flex-start;
       flex-shrink: 0;
-      background-color: ${color["--ursa-bg-primary"]};
-      border-bottom: 1px solid ${color["--ursa-border-primary"]};
+      background-color: ${color['--ursa-bg-primary']};
+      border-bottom: 1px solid ${color['--ursa-border-primary']};
   `
 );

@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent } from 'react';
 
 export interface TagProps {
   name: string;

@@ -1,13 +1,13 @@
 export interface BaseButton {
   /** An unique identifier for the button */
   id?: string;
-  /** A destination to link to, rendered in the href attribute of a link */
-  name?: string;
   /** Button name attribute */
-  className?: string;
+  name?: string;
   /** Button className attribute */
-  uppercase?: boolean;
+  className?: string;
   /** Button text-decoration set to Uppercase */
+  uppercase?: boolean;
+  /** A destination to link to, rendered in the href attribute of a link */
   url?: string;
   /** Forces url to open in a new tab */
   external?: boolean;
@@ -21,10 +21,10 @@ export interface BaseButton {
   loading?: boolean;
   /** Sets the button in a pressed state */
   pressed?: boolean;
-  /** Visually hidden text for screen readers */
-  accessibilityLabel?: string;
   /** A valid WAI-ARIA role to define the semantic value of this element */
   role?: string;
+  /** Visually hidden text for screen readers */
+  ariaLabel?: string;
   /** Id of the element the button controls */
   ariaControls?: string;
   /** Tells screen reader the controlled element is expanded */
@@ -33,6 +33,8 @@ export interface BaseButton {
   ariaDescribedBy?: string;
   /** Indicates the current checked state of the button when acting as a toggle or switch */
   ariaChecked?: 'false' | 'true';
+  /** Identifies button as a toggle button and indicates whether pressed or not pressed */
+  ariaPressed?: 'false' | 'true';
   /** Callback when clicked */
   onClick?: () => void;
   /** Callback when button becomes focussed */

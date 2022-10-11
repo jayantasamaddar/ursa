@@ -1,7 +1,7 @@
-import React, { FC, ReactElement, ReactNode, useContext, useMemo } from "react";
-import styled from "@emotion/styled";
-import { NavigationContext } from "./context";
-import { Section, Item, NavigationItemProps } from "./components";
+import React, { FC, ReactElement, ReactNode, useContext, useMemo } from 'react';
+import styled from '@emotion/styled';
+import { NavigationContext } from './context';
+import { Section, Item, NavigationItemProps } from './components';
 
 interface NavigationProps {
   location: string;
@@ -24,8 +24,8 @@ const StyledNavigation = styled.div(
         height: 100%;
         max-width: 100%;
         min-height: calc(100vh - 2rem);
-        border-right: 1px solid ${color["--ursa-border-secondary"]};
-        background-color: ${color["--ursa-nav-bg-primary"]};
+        border-right: 1px solid ${color['--ursa-border-secondary']};
+        background-color: ${color['--ursa-nav-bg-primary']};
     `
 );
 
@@ -41,7 +41,7 @@ export const Navigation: FC<NavigationProps> & CompoundProps = (
 
   return (
     <NavigationContext.Provider value={context}>
-      <StyledNavigation className={`Ursa-Navigation ${className || ""}`}>
+      <StyledNavigation className={`Ursa-Navigation ${className || ''}`}>
         <nav className="Ursa-Navigation">{children}</nav>
       </StyledNavigation>
     </NavigationContext.Provider>
