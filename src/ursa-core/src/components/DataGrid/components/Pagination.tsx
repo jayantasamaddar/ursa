@@ -21,7 +21,7 @@ export const UrsaPagination: FC<PaginationProps> = ({
   nextPage,
   className
 }): ReactElement => {
-  const prevPageExists = currentPageNumber !== 1 ? true : false;
+  const prevPageExists = currentPageNumber > 1 ? true : false;
   const nextPageExists =
     currentPageNumber < Math.ceil((view as DataGridRow[]).length / rowsPerPage);
   const active = 'active border-slate-700 cursor-pointer';
@@ -72,14 +72,14 @@ export const Pagination = styled(UrsaPagination)(
     margin-bottom: 20px;
     bottom: 0;
 
-    .Ursa-PaginationPrevious, .Ursa-PaginationNext {
+    & > .Ursa-PaginationPrevious, .Ursa-PaginationNext {
       padding: 10px;
       border-width: 1px;
       border-style: solid;
       border-color: ${color['--ursa-border-primary']};
     }
 
-    .Ursa-PaginationPrevious.active, .Ursa-PaginationNext.active {
+    & > .Ursa-PaginationPrevious.active, .Ursa-PaginationNext.active {
       cursor: pointer;
       border-color: ${color['--ursa-border-secondary']};
     }

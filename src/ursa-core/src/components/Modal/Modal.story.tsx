@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme, lightTheme } from '../../styles';
 
 import { Modal } from './Modal';
 import { Button } from '../Button';
@@ -9,25 +8,27 @@ import { Button } from '../Button';
 export default {
   title: 'Components/Modal',
   component: Modal,
-  decorators: [
-    (Story) => (
-      <ThemeProvider theme={darkTheme}>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  decorators: [(Story) => <Story />]
 } as ComponentMeta<typeof Modal>;
 
 const Template: ComponentStory<typeof Modal> = ({ children, ...args }) => {
   const [openModal, setOpenModal] = useState(false);
 
+  const onSubmit = () => {
+    setOpenModal(false);
+    setTimeout(() => alert('Submitted'), 200);
+  };
+
   return (
     <div className="Ursa-ModalProvider">
-      <Button onClick={() => setOpenModal(true)}>Open</Button>
+      <Button primary onClick={() => setOpenModal(true)}>
+        Open
+      </Button>
+
       <Modal
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
-        primaryButton={{ name: 'Submit' }}
+        primaryButton={{ name: 'Submit', onClick: () => onSubmit() }}
         {...args}
       >
         <div>

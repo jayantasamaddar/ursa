@@ -1,6 +1,5 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
 
 import { Stack } from '.';
 import { Tag } from '../Tag';
@@ -10,14 +9,7 @@ import { ButtonGroup } from '../ButtonGroup';
 
 export default {
   title: 'Components/Stack',
-  component: Stack,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: Stack
 } as ComponentMeta<typeof Stack>;
 
 const Template: ComponentStory<typeof Stack> = (args) => (

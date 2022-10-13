@@ -93,3 +93,6 @@ export type { TextfieldProps } from './components/Textfield';
 
 export { Toast } from './components/Toast';
 export type { ToastProps } from './components/Toast';
+
+export { UnstyledButton } from './components/UnstyledButton';
+export type { UnstyledButtonProps } from './components/UnstyledButton';

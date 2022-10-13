@@ -1,19 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Accordion } from './Accordion';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme, lightTheme } from '../../styles';
+import {
+  ComponentStory,
+  ComponentMeta,
+  ComponentStoryFn
+} from '@storybook/react';
+import { Accordion, AccordionProps } from './Accordion';
 
 export default {
   title: 'Components/Accordion',
   component: Accordion,
-  decorators: [
-    (Story) => (
-      <ThemeProvider theme={lightTheme}>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  decorators: [(Story) => <Story />]
 } as ComponentMeta<typeof Accordion>;
 
 const itemsData = [
@@ -53,4 +49,6 @@ const Template: ComponentStory<typeof Accordion> = ({ items, ...args }) => (
   <Accordion items={itemsData} {...args} />
 );
 
-export const BasicAccordion = Template.bind({});
+export const BasicAccordion: ComponentStoryFn<typeof Accordion> = Template.bind(
+  {}
+);

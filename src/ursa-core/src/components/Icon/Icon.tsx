@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { IconSource } from '../../types';
 import styled from '@emotion/styled';
 import type { Color as themeColor } from '../../types/theme';
+import { useTestId } from '../../utilities';
 
 type colorKeys = keyof themeColor;
 
@@ -39,18 +40,23 @@ const UrsaIcon: FC<IconProps> = ({
   /*****************************************************************/
 
   let sourceType: 'function' | 'placeholder' | 'external';
+  let testid: string | { 'data-testid': undefined | string } = 'icon';
 
   if (typeof IconSVGComponent === 'function') {
     sourceType = 'function';
   } else if (IconSVGComponent === 'placeholder') {
     sourceType = 'placeholder';
+    testid += '-placeholder';
   } else {
     sourceType = 'external';
+    testid += '-external';
   }
+
+  testid = useTestId(testid) as { 'data-testid': undefined | string };
 
   /*********************************************************************************/
   // Show warning if color provided for sourceType "external" in development mode,
-  // i.e. if the icon is not a react component included in @ursa/icons
+  // i.e. if the icon is not a react component included in @zenius-one/ursa-icons
   /*********************************************************************************/
 
   if (
@@ -73,7 +79,6 @@ const UrsaIcon: FC<IconProps> = ({
     !COLORS_WITH_BACKDROPS.includes(color) &&
     process.env.NODE_ENV === 'development'
   ) {
-    // eslint-disable-next-line no-console
     console.warn(
       `The ${color} variant does not have a supported backdrop color`
     );
@@ -89,15 +94,17 @@ const UrsaIcon: FC<IconProps> = ({
         className="Ursa-IconSVG"
         focusable="false"
         aria-hidden="true"
+        {...testid}
       />
     ),
-    placeholder: <div className="Ursa-IconPlaceholder" />,
+    placeholder: <div className="Ursa-IconPlaceholder" {...testid} />,
     external: (
       <img
         className="Ursa-IconSVG"
         src={`data:image/svg+xml;utf8,${IconSVGComponent}`}
         alt=""
         aria-hidden="true"
+        {...testid}
       />
     )
   };
@@ -120,7 +127,6 @@ export const Icon = styled(UrsaIcon)(
       width: ${fontSize['--ursa-font-size-4']};
       max-height: 100%;
       max-width: 100%;
-      margin: auto;
 
       svg {
           fill: ${IconColor ? color[IconColor] : color['--ursa-text-primary']};

@@ -1,20 +1,11 @@
 import React, { ChangeEvent } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
 
 import { UnstyledButton } from './UnstyledButton';
 
 export default {
   title: 'Components/UnstyledButton',
-  component: UnstyledButton,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: UnstyledButton
 } as ComponentMeta<typeof UnstyledButton>;
 
 const Template: ComponentStory<typeof UnstyledButton> = ({

@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
 
 import { DataGrid } from '.';
 import { Button, Page, Stack, Heading } from '../../';
@@ -9,14 +7,7 @@ import { views, columns, rows, actions } from './data.mock';
 
 export default {
   title: 'Components/DataGrid',
-  component: DataGrid,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: DataGrid
 } as ComponentMeta<typeof DataGrid>;
 
 const Template: ComponentStory<typeof DataGrid> = (args) => {

@@ -47,6 +47,7 @@ import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Link } from '../Link';
 import { Tag } from '../Tag';
+import { UnstyledButton } from '../UnstyledButton';
 import { generateUniqueID } from '../../utilities';
 
 const UrsaDataGrid: FC<DataGridProps> = ({
@@ -315,7 +316,8 @@ const UrsaDataGrid: FC<DataGridProps> = ({
               </div> 
               
             </button>*/}
-            <Button className="Ursa-DataGridControllerButton p-10">
+
+            <Button className="Ursa-DataGridControllerButton">
               <Checkbox
                 className="Ursa-DataGridRowController"
                 name="ursa-controller"
@@ -472,7 +474,8 @@ export const DataGrid = styled(UrsaDataGrid)(
   ({ theme: { color, fontSize } }) => `
         background-color: ${color['--ursa-bg-primary']};
         color: ${color['--ursa-text-primary']};
-        padding-top: 2.15rem;
+        margin-top: 2.15rem;
+        padding-top: 1rem;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         min-width: 100%;
@@ -507,16 +510,23 @@ export const DataGrid = styled(UrsaDataGrid)(
             }
 
             & > .Ursa-ButtonContainer > button {
-              padding: 10px 6px 10px 6px;
+              display: inline-flex;
+              padding: 10px 6px 10px 10px;
               width: 100%;
               font-size: ${fontSize['--ursa-font-size-4']};
-              justify-content: stretch;
+              justify-content: flex-start;
+              background-color: transparent;
+              border-width: 0;
             }
             
             &:hover {
               
             }
           }
+        }
+
+        .Ursa-DataGridColumn {
+          padding: 10px;
         }
 
         .Ursa-DataGridContainer {

@@ -1,6 +1,7 @@
 import { commonStyles } from './common';
 
 export const lightTheme = {
+  name: 'light',
   ...commonStyles,
   color: {
     ...commonStyles.color,

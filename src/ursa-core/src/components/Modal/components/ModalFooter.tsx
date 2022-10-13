@@ -16,7 +16,7 @@ const UrsaModalFooter: FC<ModalFooterProps> = ({
           {secondaryButton?.name || 'Cancel'}
         </Button>
       )}
-      <Button onClick={() => primaryButton?.onClick}>
+      <Button primary onClick={primaryButton?.onClick}>
         {primaryButton?.name || 'Submit'}
       </Button>
     </div>

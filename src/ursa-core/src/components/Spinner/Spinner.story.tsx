@@ -1,5 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {
+  ComponentStory,
+  ComponentMeta,
+  ComponentStoryFn
+} from '@storybook/react';
 
 import { Spinner } from './Spinner';
 
@@ -12,12 +16,14 @@ const Template: ComponentStory<typeof Spinner> = (args) => (
   <Spinner {...args} />
 );
 
-export const DefaultSpinner = Template.bind({});
+export const DefaultSpinner: ComponentStoryFn<typeof Spinner> = Template.bind(
+  {}
+);
 DefaultSpinner.args = {
   size: 'large'
 };
 
-export const SmallSpinner = Template.bind({});
+export const SmallSpinner: ComponentStoryFn<typeof Spinner> = Template.bind({});
 SmallSpinner.args = {
   size: 'small'
 };

@@ -1,7 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
 
 import { Button } from './Button';
 import { Icon } from '../Icon';
@@ -19,11 +18,15 @@ export default {
   ]
 } as ComponentMeta<typeof Button>;
 
+/*********************************************************************************/
+/** Define Templates */
+/*********************************************************************************/
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-const IconTemplate: ComponentStory<typeof Button> = ({ icon, ...args }) => (
-  <Button icon={<Icon source={HomeMajor} />} {...args} />
-);
+const IconButtonTemplate: ComponentStory<typeof Button> = ({
+  icon,
+  ...args
+}) => <Button icon={<Icon source={HomeMajor} />} {...args} />;
 
 const UploadTemplate: ComponentStory<typeof Button> = ({
   children,
@@ -51,6 +54,9 @@ const UploadTemplate: ComponentStory<typeof Button> = ({
   );
 };
 
+/***************************************************************************/
+/** Create Stories */
+/***************************************************************************/
 export const Basic = Template.bind({});
 Basic.args = {
   children: 'Button',
@@ -106,7 +112,7 @@ FullWidth.args = {
   fullWidth: true
 };
 
-export const IconButton = IconTemplate.bind({});
+export const IconButton = IconButtonTemplate.bind({});
 IconButton.args = {
   children: 'Home',
   primary: true,
@@ -116,7 +122,7 @@ IconButton.args = {
   uppercase: false
 };
 
-export const IconOnlyButton = IconTemplate.bind({});
+export const IconOnlyButton = IconButtonTemplate.bind({});
 IconOnlyButton.args = {
   children: 'Home',
   primary: true,

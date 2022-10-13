@@ -40,11 +40,12 @@ export const UnstyledLink: FC<LinkProps> = forwardRef(
           target={target}
           href={url}
           rel={rel}
+          data-testid="link"
           {...rest}
         >
-          {children}
-          {external && !unstyled && (
-            <span className="Ursa-ExternalLinkIcon">
+          <span className="Ursa-LinkText">{children}</span>
+          {external && !unstyled && typeof children === 'string' && (
+            <span className="Ursa-LinkExternalIcon">
               <Icon
                 source={ExternalSmallMinor}
                 size="large"
@@ -63,14 +64,15 @@ export const Link = styled(UnstyledLink)(
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        
         color: ${
           monochrome || unstyled
             ? color['--ursa-text-primary']
             : color['--ursa-link-primary']
         };
         text-decoration: ${unstyled ? 'none' : 'underline'};
-
+        transition-property: color;
+        transition-duration: 3s;
+        transition-timing-function: ease-in-out;
         &:hover {
             color: ${
               monochrome || unstyled

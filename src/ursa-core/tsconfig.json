@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["./src", "../../config/types"],
+  "include": ["./src", "../../config/types", "__mocks__"],
   "exclude": [
     "**/*.story.tsx",
     "**/*.mock.ts",
@@ -14,6 +14,7 @@
     // "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
+    "strictBindCallApply": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true

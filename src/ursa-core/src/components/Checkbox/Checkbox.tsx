@@ -123,7 +123,7 @@ const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
             <Icon source={iconSource} color={'--ursa-white'} />
           </span>
 
-          {!labelHidden && label}
+          <span className="Ursa-LabelText">{label}</span>
         </label>
       </div>
     );
@@ -138,12 +138,10 @@ export const Checkbox = styled(UrsaCheckbox)(
   ({ theme: { color }, labelHidden, checked }) => `
     display: inline-flex;
     align-items: center;
-    color: ${color['--ursa-text-primary']};
     label.Ursa-CheckboxLabel {
         display: inline-flex;
         align-items: center;
-        padding-left: ${labelHidden ? '0' : '4px'};
-        invisibility: ${labelHidden ? 'hidden' : 'visible'};
+        padding-left: 4px;
     }
     input[type="checkbox"].Ursa-Checkbox {
         width: 1.2em;
@@ -174,6 +172,9 @@ export const Checkbox = styled(UrsaCheckbox)(
           ? color['--ursa-accent-color']
           : color['--ursa-border-secondary']
       };
+    }
+    .Ursa-LabelText {
+      visibility: ${labelHidden ? 'hidden' : 'visible'};
     }
     `
 );

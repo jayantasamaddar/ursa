@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React, { FC, ReactElement, ReactNode } from 'react';
 import { BaseButton } from '../../types';
 
-interface UnstyledButtonProps extends BaseButton {
+export interface UnstyledButtonProps extends BaseButton {
   /** The content to display inside the button */
   children: ReactNode;
   /** A custom class name to apply styles to button */

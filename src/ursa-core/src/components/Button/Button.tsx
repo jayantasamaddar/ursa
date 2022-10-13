@@ -284,6 +284,9 @@ export const Button = styled(UrsaButton)(
       : 'white'
   };
   color: ${ButtonTextColor};
+  transition-property: color, background-color, box-shadow, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
   &:hover {
     color: "auto";
     background-color: ${
@@ -324,8 +327,11 @@ export const Button = styled(UrsaButton)(
     align-items: center;
     gap: 0.5em;
   }
-  .UrsaIcon svg {
-    fill: ${ButtonTextColor}
+  .UrsaIcon {
+    margin: auto;
+    svg {
+      fill: ${ButtonTextColor};
+    }
   }
 `;
   }

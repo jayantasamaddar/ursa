@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme, lightTheme } from '../../styles';
 
 import { Checkbox } from './Checkbox';
 
@@ -14,13 +12,7 @@ type checkedProps = boolean | 'indeterminate';
 export default {
   title: 'Components/Checkbox',
   component: Checkbox,
-  decorators: [
-    (Story) => (
-      <ThemeProvider theme={lightTheme}>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  decorators: [(Story) => <Story />]
 } as ComponentMeta<typeof Checkbox>;
 
 /** Template 1 */

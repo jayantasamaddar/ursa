@@ -1,6 +1,7 @@
 import { commonStyles } from './common';
 
 export const darkTheme = {
+  name: 'dark',
   ...commonStyles,
   color: {
     ...commonStyles.color,

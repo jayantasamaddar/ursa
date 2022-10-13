@@ -12,7 +12,7 @@ export interface ModalFooterProps {
   className?: string;
   primaryButton?: {
     name?: string;
-    onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (event?: MouseEvent<HTMLButtonElement>) => void;
   };
   secondaryButton?: {
     name?: string;

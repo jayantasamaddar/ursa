@@ -17,7 +17,7 @@ export interface HeadingProps {
   className?: string;
 }
 
-export const Heading: FC<HeadingProps> = ({
+const UnstyledHeading: FC<HeadingProps> = ({
   element: Element = 'h2',
   children,
   className,
@@ -30,8 +30,8 @@ export const Heading: FC<HeadingProps> = ({
   );
 };
 
-// export const Heading = styled(UrsaHeading)(
-//   ({ theme: { fontSize } }) => `
-//         font-size: ${fontSize['--ursa-font-size-9']};
-//     `
-// );
+export const Heading = styled(UnstyledHeading)(
+  ({ theme: { color } }) => `
+        color: ${color['--ursa-text-primary']}
+    `
+);
