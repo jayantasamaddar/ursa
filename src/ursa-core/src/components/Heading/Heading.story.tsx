@@ -1,27 +1,24 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryFn
+} from '@storybook/react';
 
 import { Heading } from '.';
 
 export default {
   title: 'Components/Heading',
-  component: Heading,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: Heading
 } as ComponentMeta<typeof Heading>;
 
 const Template: ComponentStory<typeof Heading> = (args) => (
   <Heading {...args} />
 );
 
-export const DefaultHeading = Template.bind({});
+export const DefaultHeading: ComponentStoryFn<typeof Heading> = Template.bind(
+  {}
+);
 DefaultHeading.args = {
   children: 'Shipments'
 };

@@ -2,10 +2,19 @@ import React, { FC, ReactElement } from 'react';
 import styled from '@emotion/styled';
 import { Icon } from '../Icon';
 import { AlertMinor } from '@zenius-one/ursa-icons';
+import { generateUniqueID } from '../../utilities';
 
 export interface ErrorProps {
+  /** Id of the Error field.
+   * Can be referenced with aria-describedby on any relevant fiel whose error this is supposed to be.
+   */
+  id?: string;
+  /** The className attribute for the error */
   className?: string;
+  /** The Error text */
   children: string;
+  /** Icon element if any */
+  icon?: boolean;
 }
 
 const StyledError = styled.p(
@@ -20,13 +29,22 @@ const StyledError = styled.p(
 );
 
 export const Error: FC<ErrorProps> = ({
+  id,
   children,
-  className
+  className,
+  icon
 }): ReactElement => {
+  const _id = id || generateUniqueID('error');
   return (
-    <StyledError className={`${className || ''}`}>
-      <Icon source={AlertMinor} color="--ursa-btn-alert" />
-      {children}
+    <StyledError
+      id={_id}
+      className={`Ursa-Error ${className || ''}`}
+      role="alert"
+    >
+      {icon && <Icon source={AlertMinor} color="--ursa-btn-alert" />}
+      <span id={`${_id}-text`} className="Ursa-ErrorText">
+        {children}
+      </span>
     </StyledError>
   );
 };

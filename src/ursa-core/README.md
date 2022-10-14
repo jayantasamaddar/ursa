@@ -6,7 +6,7 @@ Ursa components library.
 
 ## Installation
 
-```
+```s
 # With yarn
 yarn add @zenius-one/ursa
 

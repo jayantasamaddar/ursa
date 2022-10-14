@@ -1,19 +1,11 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
 
 import { Tabs } from './Tabs';
 
 export default {
   title: 'Components/Tabs',
-  component: Tabs,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: Tabs
 } as ComponentMeta<typeof Tabs>;
 
 const itemsData = [

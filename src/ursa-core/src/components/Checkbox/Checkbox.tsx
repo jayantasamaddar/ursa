@@ -11,10 +11,13 @@ import React, {
   forwardRef
 } from 'react';
 
+import styled from '@emotion/styled';
+
 import { MinusMinor, TickMinor } from '@zenius-one/ursa-icons';
 import { Icon } from '../Icon';
-import styled from '@emotion/styled';
 import { generateUniqueID } from '../../utilities';
+
+console.log({ MinusMinor });
 
 export interface CheckboxProps {
   /** Unique identifier for checkbox input */
@@ -37,9 +40,9 @@ export interface CheckboxProps {
   // onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   /** Callback when checkbox is focussed */
-  onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (event?: FocusEvent<HTMLInputElement>) => void;
   /** Callback when focus is removed */
-  onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (event?: FocusEvent<HTMLInputElement>) => void;
   /** Indicates the ID of the element that is controlled by the checkbox*/
   ariaControls?: string;
   /** Indicates the ID of the element that describes the checkbox*/
@@ -52,7 +55,6 @@ const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
       id,
       name,
       label,
-      labelHidden,
       value,
       className,
       checked,
@@ -111,6 +113,7 @@ const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
             name={name}
             value={value}
             type="checkbox"
+            role="checkbox"
             checked={isChecked}
             disabled={disabled}
             onClick={handleClick}
@@ -134,7 +137,7 @@ const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
 // Styled Checkbox
 /********************************************************************/
 
-export const Checkbox = styled(UrsaCheckbox)(
+const Checkbox = styled(UrsaCheckbox)(
   ({ theme: { color }, labelHidden, checked }) => `
     display: inline-flex;
     align-items: center;
@@ -178,3 +181,7 @@ export const Checkbox = styled(UrsaCheckbox)(
     }
     `
 );
+
+Checkbox.displayName = 'Checkbox';
+
+export { Checkbox };

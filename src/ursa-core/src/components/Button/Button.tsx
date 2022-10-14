@@ -95,10 +95,10 @@ const UrsaButton = forwardRef<
     /** Handle Events */
     /***************************************************************************************/
 
-    const toggleDropdownActive = useCallback(
-      () => setDropdownActive((prev) => !prev),
-      []
-    );
+    // const toggleDropdownActive = useCallback(
+    //   () => setDropdownActive((prev) => !prev),
+    //   []
+    // );
 
     const handleUploadButton = useCallback(
       (event: ChangeEvent<HTMLInputElement>) => {

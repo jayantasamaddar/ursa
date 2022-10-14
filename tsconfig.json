@@ -9,7 +9,8 @@
     "./config",
     "./config/types",
     "./tests",
-    "src/ursa-core/__mocks__"
+    "src/ursa-core/__mocks__",
+    "src/ursa-core/config"
   ],
   "exclude": [
     "public",
@@ -18,7 +19,7 @@
     "config/.storybook/main.js",
     "node_modules",
     "src/ursa-*/esm/**/*",
-    "src/ursa-*/lib/**/*",
+    "src/ursa-*/types/**/*",
     "src/ursa-*/cjs/**/*"
   ],
   "compilerOptions": {

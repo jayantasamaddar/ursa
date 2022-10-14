@@ -1,25 +1,20 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
-
-import { ThemeProvider } from '@emotion/react';
-import { darkTheme, lightTheme } from '../../styles';
+import React from 'react';
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryFn
+} from '@storybook/react';
 
 import { Error } from '.';
 
 export default {
   title: 'Components/Error',
-  component: Error,
-  decorators: [
-    (Story) => (
-      <ThemeProvider theme={lightTheme}>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: Error
 } as ComponentMeta<typeof Error>;
 
 const Template: ComponentStory<typeof Error> = (args) => <Error {...args} />;
 
-export const BasicError = Template.bind({});
+export const BasicError: ComponentStoryFn<typeof Error> = Template.bind({});
 
 BasicError.args = {
   children: 'This is an error message'

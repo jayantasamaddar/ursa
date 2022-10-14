@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, ReactNode } from 'react';
 import styled from '@emotion/styled';
+import { generateUniqueID } from '../../utilities';
 
 type HeadingTagName = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
@@ -23,8 +24,10 @@ const UnstyledHeading: FC<HeadingProps> = ({
   className,
   id
 }): ReactElement => {
+  const _id = id || generateUniqueID('heading');
+
   return (
-    <Element id={id} className={`Ursa-Heading ${className || ''}`}>
+    <Element id={_id} className={`Ursa-Heading ${className || ''}`}>
       {children}
     </Element>
   );

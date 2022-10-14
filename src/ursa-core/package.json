@@ -1,6 +1,6 @@
 {
   "name": "@zenius-one/ursa",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Ursa core components library: inputs, buttons, overlays etc.",
   "author": "Jayanta Samaddar",
   "license": "SEE LICENSE IN LICENSE.md",
@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "build": "yarn clean && yarn build:types && yarn build:js",
-    "build-docs": "copyfiles './src/**/*.md' './dist/docs'",
+    "build-docs": "cp './src/**/*.md' './dist/docs'",
     "build:js": "rollup -c",
     "build:types": "tsc --declarationDir dist/types --declaration --emitDeclarationOnly",
     "format": "prettier --write src",
@@ -44,16 +44,16 @@
     "clean:all": "rm -rf dist node_modules .rollup.cache"
   },
   "dependencies": {
-    "@emotion/react": ">= 11.9.0",
-    "@emotion/styled": ">= 11.8.1",
+    "@emotion/react": ">=11.9.0",
+    "@emotion/styled": ">=11.8.1",
     "@zenius-one/ursa-icons": "*"
   },
   "devDependencies": {
-    "@types/react": "*",
-    "@types/react-dom": "*"
+    "@types/react": ">=18.0.0",
+    "@types/react-dom": ">=18.0.0"
   },
   "peerDependencies": {
-    "react": ">= 18.0.0",
-    "react-dom": ">= 18.0.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   }
 }

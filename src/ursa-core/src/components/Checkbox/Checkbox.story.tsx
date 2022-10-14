@@ -1,5 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryFn
+} from '@storybook/react';
 
 import { Checkbox } from './Checkbox';
 
@@ -11,8 +15,7 @@ type checkedProps = boolean | 'indeterminate';
 
 export default {
   title: 'Components/Checkbox',
-  component: Checkbox,
-  decorators: [(Story) => <Story />]
+  component: Checkbox
 } as ComponentMeta<typeof Checkbox>;
 
 /** Template 1 */
@@ -112,14 +115,17 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
   );
 };
 
-export const Checkbox_with_Label = Template.bind({});
+export const Checkbox_with_Label: ComponentStoryFn<typeof Checkbox> =
+  Template.bind({});
 Checkbox_with_Label.args = {
   name: 'agree',
   label: 'Agree to the terms and conditions',
   checked: false
 };
 
-export const Checkbox_Indeterminate_with_Label_hidden = Template.bind({});
+export const Checkbox_Indeterminate_with_Label_hidden: ComponentStoryFn<
+  typeof Checkbox
+> = Template.bind({});
 Checkbox_Indeterminate_with_Label_hidden.args = {
   name: 'partially-agree',
   label: 'Partially agree to the terms and conditions',
@@ -127,4 +133,5 @@ Checkbox_Indeterminate_with_Label_hidden.args = {
   checked: 'indeterminate'
 };
 
-export const Checkbox_Indeterminate_List = IndeterminateTemplate.bind({});
+export const Checkbox_Indeterminate_List: ComponentStoryFn<typeof Checkbox> =
+  IndeterminateTemplate.bind({});

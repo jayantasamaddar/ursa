@@ -1,18 +1,10 @@
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme, lightTheme } from '../../styles';
 import { Card } from './Card';
 
 export default {
   title: 'Components/Card',
-  component: Card,
-  decorators: [
-    (Story) => (
-      <ThemeProvider theme={darkTheme}>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: Card
 } as ComponentMeta<typeof Card>;
 
 const fieldsObj = {
@@ -22,7 +14,7 @@ const fieldsObj = {
 
 const fieldsData = Object.entries(fieldsObj);
 
-const Template = ({ fields, ...args }) => (
+const Template: ComponentStory<typeof Card> = ({ fields, ...args }) => (
   <Card {...args} fields={fieldsData} />
 );
 
