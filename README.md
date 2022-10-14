@@ -33,7 +33,7 @@
 
 ---
 
-React Testing without Storybook
+**React Testing without Storybook**
 
 ```es6
 import React from 'react';

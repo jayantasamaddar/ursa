@@ -1,21 +1,12 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
 
 import { ButtonGroup } from './ButtonGroup';
 import { Button } from '../Button';
 
 export default {
   title: 'Components/ButtonGroup',
-  component: ButtonGroup,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: ButtonGroup
 } as ComponentMeta<typeof ButtonGroup>;
 
 const Template: ComponentStory<typeof ButtonGroup> = (args) => (
@@ -57,7 +48,6 @@ FullWidth.args = {
 
 export const Segmented = SegmentedTemplate.bind({});
 Segmented.args = {
-  children: 'ButtonGroup',
   segmented: true
 };
 

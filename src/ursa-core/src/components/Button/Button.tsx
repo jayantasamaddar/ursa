@@ -13,6 +13,7 @@ import styled from '@emotion/styled';
 
 import { BaseButton, UploadButtonProps } from '../../types';
 import { Spinner } from '../Spinner';
+import { useTestId } from '../../utilities';
 
 export interface ButtonProps extends BaseButton {
   children?: string | ReactElement;
@@ -65,10 +66,7 @@ const UrsaButton = forwardRef<
       icon,
       iconOnly,
       upload,
-      uploadOptions = {
-        allowMultiple: true,
-        accept: undefined
-      },
+      uploadOptions,
       primary,
       outline,
       alert,
@@ -83,9 +81,6 @@ const UrsaButton = forwardRef<
     const classes = `Ursa-Button ${className ?? ''}`;
 
     const [dropdownActive, setDropdownActive] = useState(false);
-
-    const { allowMultiple, accept, onChange } =
-      uploadOptions as UploadButtonProps;
 
     const inputRef = useRef<HTMLInputElement>(null); // For File Upload Button (input type: file)
     const buttonRef = useRef<HTMLButtonElement>(null); // For other Buttons
@@ -105,10 +100,13 @@ const UrsaButton = forwardRef<
       []
     );
 
-    const handleUploadButton = (event: ChangeEvent<HTMLInputElement>) => {
-      event.preventDefault();
-      onChange && onChange(event);
-    };
+    const handleUploadButton = useCallback(
+      (event: ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        uploadOptions?.onChange?.(event);
+      },
+      []
+    );
 
     /***************************************************************************************/
     /** Categorize Props */
@@ -210,12 +208,14 @@ const UrsaButton = forwardRef<
           <input
             type="file"
             hidden
+            aria-hidden="true"
             ref={inputRef}
             className={classes}
             name={name}
             onChange={handleUploadButton}
-            multiple={allowMultiple}
-            accept={accept}
+            multiple={uploadOptions?.allowMultiple}
+            accept={uploadOptions?.accept}
+            {...useTestId('button-upload')}
           />
         )}
       </div>

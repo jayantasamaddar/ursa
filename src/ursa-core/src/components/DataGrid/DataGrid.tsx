@@ -42,7 +42,6 @@ import {
   SortMinor
 } from '@zenius-one/ursa-icons';
 
-import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Link } from '../Link';
@@ -317,7 +316,7 @@ const UrsaDataGrid: FC<DataGridProps> = ({
               
             </button>*/}
 
-            <Button className="Ursa-DataGridControllerButton">
+            <UnstyledButton className="Ursa-DataGridControllerButton">
               <Checkbox
                 className="Ursa-DataGridRowController"
                 name="ursa-controller"
@@ -325,7 +324,7 @@ const UrsaDataGrid: FC<DataGridProps> = ({
                 checked={checked}
                 onChange={selectAll}
               />
-            </Button>
+            </UnstyledButton>
           </div>
 
           {isValidActions(actionButtons as ActionButtonProps) && (
@@ -509,7 +508,7 @@ export const DataGrid = styled(UrsaDataGrid)(
               height: 100%;
             }
 
-            & > .Ursa-ButtonContainer > button {
+            .Ursa-DataGridControllerButton {
               display: inline-flex;
               padding: 10px 6px 10px 10px;
               width: 100%;
@@ -517,11 +516,19 @@ export const DataGrid = styled(UrsaDataGrid)(
               justify-content: flex-start;
               background-color: transparent;
               border-width: 0;
+
+              .Ursa-LabelText {
+                color: ${color['--ursa-text-secondary']};
+                cursor: pointer;
+                transition: color 0.1s ease-in-out;
+
+                &:hover {
+                  color: ${color['--ursa-text-primary']};
+                }
+              }
             }
             
-            &:hover {
-              
-            }
+            
           }
         }
 

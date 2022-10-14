@@ -21,13 +21,11 @@ export interface ButtonGroupProps {
 }
 
 const UrsaButtonGroup: FC<ButtonGroupProps> = ({
-  spacing,
-  segmented,
-  connectedTop,
   children,
   className
 }): ReactElement => {
-  const content = Children.toArray(children).map((child, index) => (
+  const childrenArray = Children.toArray(children);
+  const content = childrenArray.map((child, index) => (
     <ButtonItem button={child as ReactElement} key={index} />
   ));
 
@@ -41,8 +39,34 @@ export const ButtonGroup = styled(UrsaButtonGroup)(
     flex-grow: ${fullWidth ? '1' : '0'};
     min-width: ${fullWidth ? '100%' : 'auto'};
     gap: ${segmented ? '0' : '10px'};
-    align-items: center;
-    margin-left: ${segmented ? '0' : '2px'};
-    margin-top: ${segmented ? '0' : '2px'}
+    align-items: center; 
+
+    ${
+      segmented &&
+      `.Ursa-ButtonItem:nth-of-type(n+1)
+        > .Ursa-ButtonContainer
+        > button {}
+      
+      .Ursa-ButtonItem:nth-of-type(n+2):nth-last-of-type(n+2)
+        > .Ursa-ButtonContainer
+        > button {
+        border-radius: unset;
+      }
+
+      .Ursa-ButtonItem:last-of-type > .Ursa-ButtonContainer > button {
+        margin-left: -1px;
+        border-top-left-radius: unset;
+        border-bottom-left-radius: unset;
+        ${connectedTop && `border-top-right-radius: unset`}
+      }
+
+      .Ursa-ButtonItem:first-of-type > .Ursa-ButtonContainer > button {
+        margin-right: -1px;
+        border-top-right-radius: unset;
+        border-bottom-right-radius: unset;
+        ${connectedTop && `border-top-left-radius: unset`}
+      }`
+    }
+  }
   `
 );

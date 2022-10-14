@@ -1,21 +1,16 @@
 import React, { ChangeEvent } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-
+import {
+  ComponentStory,
+  ComponentMeta,
+  ComponentStoryFn
+} from '@storybook/react';
 import { Button } from './Button';
 import { Icon } from '../Icon';
 import { HomeMajor } from '@zenius-one/ursa-icons';
 
 export default {
   title: 'Components/Button',
-  component: Button,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: Button
 } as ComponentMeta<typeof Button>;
 
 /*********************************************************************************/
@@ -45,7 +40,6 @@ const UploadTemplate: ComponentStory<typeof Button> = ({
       upload
       uploadOptions={{
         ...uploadOptions,
-        allowMultiple: true,
         onChange: handleChange
       }}
     >
@@ -57,14 +51,14 @@ const UploadTemplate: ComponentStory<typeof Button> = ({
 /***************************************************************************/
 /** Create Stories */
 /***************************************************************************/
-export const Basic = Template.bind({});
+export const Basic: ComponentStoryFn<typeof Button> = Template.bind({});
 Basic.args = {
   children: 'Button',
   uppercase: false,
   onClick: () => alert('Button clicked')
 };
 
-export const Primary = Template.bind({});
+export const Primary: ComponentStoryFn<typeof Button> = Template.bind({});
 Primary.args = {
   children: 'Button',
   primary: true,
@@ -72,7 +66,7 @@ Primary.args = {
   onClick: () => alert('Button clicked')
 };
 
-export const Alert = Template.bind({});
+export const Alert: ComponentStoryFn<typeof Button> = Template.bind({});
 Alert.args = {
   children: 'Button',
   uppercase: false,
@@ -80,7 +74,7 @@ Alert.args = {
   onClick: () => alert('Button clicked')
 };
 
-export const Outline = Template.bind({});
+export const Outline: ComponentStoryFn<typeof Button> = Template.bind({});
 Outline.args = {
   children: 'Button',
   uppercase: false,
@@ -90,21 +84,21 @@ Outline.args = {
   onClick: () => alert('Button clicked')
 };
 
-export const Disabled = Template.bind({});
+export const Disabled: ComponentStoryFn<typeof Button> = Template.bind({});
 Disabled.args = {
   children: 'Button',
   uppercase: false,
   disabled: true
 };
 
-export const Loading = Template.bind({});
+export const Loading: ComponentStoryFn<typeof Button> = Template.bind({});
 Loading.args = {
   children: 'Button',
   uppercase: false,
   loading: true
 };
 
-export const FullWidth = Template.bind({});
+export const FullWidth: ComponentStoryFn<typeof Button> = Template.bind({});
 FullWidth.args = {
   children: 'Button',
   primary: true,
@@ -112,7 +106,8 @@ FullWidth.args = {
   fullWidth: true
 };
 
-export const IconButton = IconButtonTemplate.bind({});
+export const IconButton: ComponentStoryFn<typeof Button> =
+  IconButtonTemplate.bind({});
 IconButton.args = {
   children: 'Home',
   primary: true,
@@ -122,7 +117,8 @@ IconButton.args = {
   uppercase: false
 };
 
-export const IconOnlyButton = IconButtonTemplate.bind({});
+export const IconOnlyButton: ComponentStoryFn<typeof Button> =
+  IconButtonTemplate.bind({});
 IconOnlyButton.args = {
   children: 'Home',
   primary: true,
@@ -133,7 +129,9 @@ IconOnlyButton.args = {
   iconOnly: true
 };
 
-export const Upload_button_for_single_PDF_upload = UploadTemplate.bind({});
+export const Upload_button_for_single_PDF_upload: ComponentStoryFn<
+  typeof Button
+> = UploadTemplate.bind({});
 Upload_button_for_single_PDF_upload.args = {
   children: 'Import PDF',
   uppercase: false,
@@ -144,7 +142,8 @@ Upload_button_for_single_PDF_upload.args = {
   }
 };
 
-export const Upload_Button_for_multiple_files = UploadTemplate.bind({});
+export const Upload_Button_for_multiple_files: ComponentStoryFn<typeof Button> =
+  UploadTemplate.bind({});
 Upload_Button_for_multiple_files.args = {
   children: 'Import Orders',
   uppercase: false,
@@ -155,7 +154,9 @@ Upload_Button_for_multiple_files.args = {
   }
 };
 
-export const Outline_Button_with_External_Link = Template.bind({});
+export const Outline_Button_with_External_Link: ComponentStoryFn<
+  typeof Button
+> = Template.bind({});
 Outline_Button_with_External_Link.args = {
   children: 'View on GitHub',
   outline: true,
