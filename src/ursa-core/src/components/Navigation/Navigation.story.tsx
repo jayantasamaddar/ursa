@@ -12,14 +12,7 @@ import {
 
 export default {
   title: 'Components/Navigation',
-  component: Navigation,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: Navigation
 } as ComponentMeta<typeof Navigation>;
 
 const items = [

@@ -39,7 +39,9 @@
     "format": "prettier --write src",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test:c": "jest --coverage",
+    "test:cv": "jest --coverage --verbose",
+    "ts-check": "tsc --noemit",
     "clean": "rm -rf dist .rollup.cache",
     "clean:all": "rm -rf dist node_modules .rollup.cache"
   },

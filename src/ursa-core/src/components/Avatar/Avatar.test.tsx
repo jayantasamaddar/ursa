@@ -14,11 +14,7 @@ const px = (size?: string) =>
 
 describe('components/Avatar', () => {
   it('Renders Small Avatar', () => {
-    render(
-      <ThemeProvider>
-        <SmallAvatar />
-      </ThemeProvider>
-    );
+    render(<SmallAvatar />);
     const iconEl = screen.getByTestId('avatar');
     expect(iconEl).not.toBeNull(); // Element is Present
     expect(iconEl).toHaveAttribute('src', SmallAvatar.args?.src); // Match src
@@ -30,11 +26,7 @@ describe('components/Avatar', () => {
   });
 
   it('Renders Standard Avatar', () => {
-    render(
-      <ThemeProvider>
-        <StandardAvatar />
-      </ThemeProvider>
-    );
+    render(<StandardAvatar />);
     const iconEl = screen.getByTestId('avatar');
     expect(iconEl).not.toBeNull(); // Element is Present
     expect(iconEl).toHaveAttribute('src', StandardAvatar.args?.src); // Match src
@@ -46,11 +38,7 @@ describe('components/Avatar', () => {
   });
 
   it('Renders Large Avatar', () => {
-    render(
-      <ThemeProvider>
-        <LargeAvatar />
-      </ThemeProvider>
-    );
+    render(<LargeAvatar />);
     const iconEl = screen.getByTestId('avatar');
     expect(iconEl).not.toBeNull(); // Element is Present
     expect(iconEl).toHaveAttribute('src', LargeAvatar.args?.src); // Match src
@@ -66,11 +54,7 @@ describe('components/Avatar', () => {
       Square_with_NoImage_Avatar.args?.variant === 'square'
         ? 0
         : lightTheme.border['--ursa-border-radius-full'];
-    render(
-      <ThemeProvider>
-        <Square_with_NoImage_Avatar />
-      </ThemeProvider>
-    );
+    render(<Square_with_NoImage_Avatar />);
     const iconEl = screen.getByTestId('avatar-placeholder');
     expect(iconEl).not.toBeNull(); // Element is Present
     expect(iconEl).not.toHaveAttribute('src'); // Does not have src attribute

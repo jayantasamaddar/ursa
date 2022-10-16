@@ -6,23 +6,10 @@ import * as stories from './Icon.story'; // import all stories from the stories 
 
 const { DefaultIcon } = composeStories(stories);
 
-const Icon = () => (
-  <svg
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-    className="Ursa-IconSVG"
-    focusable="false"
-    aria-hidden="true"
-    data-testid="icon"
-  >
-    <path d="M18 7.261v10.239c0 .841-.672 1.5-1.5 1.5h-2c-.828 0-1.5-.659-1.5-1.5v-4.5h-6v4.477c0 .841-.672 1.523-1.5 1.523h-2c-.828 0-1.5-.682-1.5-1.523v-10.216a1.5 1.5 0 0 1 .615-1.21l6.59-4.82a1.481 1.481 0 0 1 1.59 0l6.59 4.82a1.5 1.5 0 0 1 .615 1.209z"></path>
-  </svg>
-);
-
 describe('components/Icon', () => {
   it('Renders Default Icon', () => {
-    render(<DefaultIcon source={Icon} />);
-    const iconEl = screen.getByTestId('icon');
+    render(<DefaultIcon />);
+    const iconEl = screen.getByTestId('icon-external');
     expect(iconEl).not.toBeNull();
   });
   it('Renders Placeholder Icon', () => {

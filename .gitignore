@@ -47,6 +47,7 @@ out/
 docs/.cache
 docs/public
 storybook-static
+examples
 docs/src/components/Test.tsx
 ____*.internal.ts
 ____*.internal.tsx

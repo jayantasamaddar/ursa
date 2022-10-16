@@ -75,6 +75,9 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           tr {
             border: 1px solid ${theme.color['--ursa-border-secondary']};
           }
+          textarea {
+            font-family: 'Roboto', 'Helvetica', sans-serif;
+          }
           button + button {
             margin: 0;
           }

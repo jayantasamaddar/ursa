@@ -21,19 +21,6 @@ const {
   Outline_Button_with_External_Link
 } = composeStories(stories);
 
-const SVG = () => (
-  <svg
-    viewBox="0 0 20 20"
-    xmlns="http://www.w3.org/2000/svg"
-    className="Ursa-IconSVG"
-    focusable="false"
-    aria-hidden="true"
-    data-testid="icon"
-  >
-    <path d="M18 7.261v10.239c0 .841-.672 1.5-1.5 1.5h-2c-.828 0-1.5-.659-1.5-1.5v-4.5h-6v4.477c0 .841-.672 1.523-1.5 1.523h-2c-.828 0-1.5-.682-1.5-1.523v-10.216a1.5 1.5 0 0 1 .615-1.21l6.59-4.82a1.481 1.481 0 0 1 1.59 0l6.59 4.82a1.5 1.5 0 0 1 .615 1.209z"></path>
-  </svg>
-);
-
 describe('components/Button', () => {
   describe('Renders Button', () => {
     describe('Tests Basic Button', () => {
@@ -141,14 +128,25 @@ describe('components/Button', () => {
       expect(tree).toMatchSnapshot();
     });
 
-    it('Renders IconButton Button', () => {
-      const tree = renderer.create(<IconButton />).toJSON();
-      expect(tree).toMatchSnapshot();
+    describe('Test Icon Button', () => {
+      it('Renders IconButton Button', () => {
+        const tree = renderer.create(<IconButton />).toJSON();
+        expect(tree).toMatchSnapshot();
+      });
     });
 
-    it('Renders IconOnlyButton Button', () => {
-      const tree = renderer.create(<IconOnlyButton />).toJSON();
-      expect(tree).toMatchSnapshot();
+    describe('Test Icon Only Button', () => {
+      it('Run Snapshot Test', () => {
+        const tree = renderer.create(<IconOnlyButton />).toJSON();
+        expect(tree).toMatchSnapshot();
+      });
+      it('Expects Icon to be Present', () => {
+        render(<IconOnlyButton />);
+        const buttonEl = screen.getByRole('button');
+        expect(buttonEl).toBeInTheDocument();
+        const iconEl = screen.getByTestId('icon-external');
+        expect(iconEl).toBeInTheDocument();
+      });
     });
 
     describe('Test Upload Button (Single PDF)', () => {

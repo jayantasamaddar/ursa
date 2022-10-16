@@ -11,8 +11,14 @@ describe('components/Spinner', () => {
     render(<DefaultSpinner />);
     const svgEl = screen.getByTestId('spinner');
     expect(svgEl).not.toBeNull();
-    expect(svgEl).toHaveAttribute('height', '32');
-    expect(svgEl).toHaveAttribute('width', '32');
+    expect(svgEl).toHaveAttribute(
+      'height',
+      SmallSpinner.args?.color === 'small' ? '16' : '32'
+    );
+    expect(svgEl).toHaveAttribute(
+      'width',
+      SmallSpinner.args?.color === 'small' ? '16' : '32'
+    );
   });
   it('Renders Small Spinner with Color', () => {
     const props = {
@@ -23,6 +29,7 @@ describe('components/Spinner', () => {
     expect(svgEl).not.toBeNull();
     expect(svgEl).toHaveAttribute('height', '16');
     expect(svgEl).toHaveAttribute('width', '16');
-    expect(svgEl).toHaveAttribute('fill', SmallSpinner.args.color);
+    expect(svgEl).toHaveAttribute('fill', SmallSpinner.args?.color);
+    expect(svgEl).toHaveAttribute('width');
   });
 });

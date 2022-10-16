@@ -23,7 +23,7 @@ const StyledError = styled.p(
         flex-flow: row wrap;
         gap: 5px;
         font-family: ${font['--ursa-font-primary']};
-        font-size: ${fontSize['--ursa-font-size-4']};
+        font-size: ${fontSize['--ursa-font-size-3']};
         color: ${color['--ursa-btn-alert']};
     `
 );

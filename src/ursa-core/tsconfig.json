@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["./src", "../../config/types", "./config"],
+  "include": ["./src", "../../config/types"],
   "exclude": [
     "**/*.story.tsx",
     "**/*.mock.ts",

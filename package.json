@@ -85,6 +85,7 @@
     "format:test": "prettier --check \"**/*.{ts,tsx}\"",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "clean": "turbo run clean",
-    "clean:all": "turbo run clean:all"
+    "clean:all": "turbo run clean:all",
+    "ts-check": "tsc --noemit"
   }
 }
