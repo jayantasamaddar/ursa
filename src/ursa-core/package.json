@@ -1,6 +1,6 @@
 {
   "name": "@zenius-one/ursa",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Ursa core components library: inputs, buttons, overlays etc.",
   "author": "Jayanta Samaddar",
   "license": "SEE LICENSE IN LICENSE.md",
