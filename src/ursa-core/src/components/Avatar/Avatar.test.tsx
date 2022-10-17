@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import { composeStories } from '@storybook/testing-react';
 import '@testing-library/jest-dom';
 import * as stories from './Avatar.story'; // import all stories from the stories file
-import { ThemeProvider } from '../ThemeProvider';
 import { lightTheme } from '../../styles';
 
 const { SmallAvatar, StandardAvatar, LargeAvatar, Square_with_NoImage_Avatar } =

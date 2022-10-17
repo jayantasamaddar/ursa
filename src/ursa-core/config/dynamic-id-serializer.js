@@ -1,10 +1,12 @@
 let counter = 0;
-
 module.exports = {
   test: (val) => typeof val === 'string',
   print: (val) => {
-    if (val.match(/^Ursa-Icon-/)) {
-      const newVal = `"Ursa-Icon-${counter}"`;
+    const match = val.match(
+      /^(?:Ursa-Icon-|Ursa-Textfield-|Ursa-TextfieldLabel-)/
+    );
+    if (match?.input === val) {
+      const newVal = `"Ursa-${val.split('-')[1]}-${counter}"`;
       counter++;
       return newVal;
     }

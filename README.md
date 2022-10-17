@@ -1,3 +1,14 @@
+# Roadmap
+
+- Make an Ursa CLI tool:
+
+  ```s
+  # Run unit tests for isolated components with a simple syntax:
+  ursa test [Component Name [...Component Names] ]
+  ```
+
+---
+
 # Dependencies List
 
 ## DevDependencies

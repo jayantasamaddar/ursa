@@ -5,13 +5,12 @@ import { BaseButton } from '../../types';
 export interface UnstyledButtonProps extends BaseButton {
   /** The content to display inside the button */
   children: ReactNode;
-  /** A custom class name to apply styles to button */
-  className?: string;
   [key: string]: any;
 }
 
 const UrsaUnstyledButton: FC<UnstyledButtonProps> = ({
   id,
+  name,
   children,
   className,
   url,
@@ -27,6 +26,7 @@ const UrsaUnstyledButton: FC<UnstyledButtonProps> = ({
   ariaExpanded,
   ariaDescribedBy,
   ariaChecked,
+  ariaPressed,
   onClick,
   onFocus,
   onBlur,
@@ -39,6 +39,9 @@ const UrsaUnstyledButton: FC<UnstyledButtonProps> = ({
 }): ReactElement => {
   let buttonMarkup: ReactElement;
 
+  /***************************************************************************************/
+  /** Categorize Props */
+  /***************************************************************************************/
   const commonProps = {
     id,
     className,
@@ -55,6 +58,10 @@ const UrsaUnstyledButton: FC<UnstyledButtonProps> = ({
     onTouchStart
   };
 
+  /***************************************************************************************/
+  /** Content Generation Helpers */
+  /***************************************************************************************/
+
   if (url) {
     buttonMarkup = disabled ? (
       <a {...commonProps}>{children}</a>
@@ -67,6 +74,7 @@ const UrsaUnstyledButton: FC<UnstyledButtonProps> = ({
     buttonMarkup = (
       <button
         {...interactiveProps}
+        name={name}
         type={submit ? 'submit' : 'button'}
         disabled={disabled}
         aria-busy={loading ? true : undefined}

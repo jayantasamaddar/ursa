@@ -130,7 +130,7 @@ export interface TextfieldProps extends BaseInputField {
   /** Text / Symbol to display after value. E.g. `₹` */
   suffix?: ReactNode;
   /** Display the Toggle Password Icon */
-  toggleShowPassword?: boolean;
+  togglePasswordIcon?: boolean;
 }
 
 const UrsaTextfield = forwardRef<
@@ -169,7 +169,7 @@ const UrsaTextfield = forwardRef<
       spellCheck,
       selectOnFocus,
       clearButton,
-      toggleShowPassword,
+      togglePasswordIcon,
       prefix,
       suffix
     },
@@ -328,7 +328,7 @@ const UrsaTextfield = forwardRef<
     );
 
     const toggleShowPasswordMarkup = type === 'password' &&
-      toggleShowPassword && (
+      togglePasswordIcon && (
         <Icon
           className="Ursa-PasswordShowHide"
           source={showPassword ? HideMinor : ViewMinor}
@@ -370,7 +370,7 @@ const UrsaTextfield = forwardRef<
         </div>
         {/* Error Handling - If errors = [] is passed as props */}
         {errors?.length && (
-          <div className="Ursa-TextfieldErrors">
+          <div id={`${id}-errors`} className="Ursa-TextfieldErrors">
             {errors.map((error, indx) => (
               <Error id={`${id}-${indx + 1}-error`} key={indx}>
                 {error}

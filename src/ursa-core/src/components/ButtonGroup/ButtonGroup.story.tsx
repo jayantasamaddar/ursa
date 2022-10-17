@@ -1,5 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {
+  ComponentStory,
+  ComponentMeta,
+  ComponentStoryFn
+} from '@storybook/react';
 
 import { ButtonGroup } from './ButtonGroup';
 import { Button } from '../Button';
@@ -9,6 +13,9 @@ export default {
   component: ButtonGroup
 } as ComponentMeta<typeof ButtonGroup>;
 
+/******************************************************************************************/
+/** Templates */
+/******************************************************************************************/
 const Template: ComponentStory<typeof ButtonGroup> = (args) => (
   <ButtonGroup {...args}>
     <Button alert>Cancel</Button>
@@ -25,34 +32,50 @@ const SegmentedTemplate: ComponentStory<typeof ButtonGroup> = (args) => (
 
 const SegmentedTemplate2: ComponentStory<typeof ButtonGroup> = (args) => (
   <ButtonGroup {...args}>
-    <Button plain outline>
-      Bold
-    </Button>
-    <Button plain outline>
-      Italic
-    </Button>
-    <Button plain outline>
-      Underline
-    </Button>
+    <Button outline>Bold</Button>
+    <Button outline>Italic</Button>
+    <Button outline>Underline</Button>
+    <Button outline>Strikethrough</Button>
   </ButtonGroup>
 );
 
-export const DefaultButtonGroup = Template.bind({});
+/******************************************************************************************/
+/** Stories */
+/******************************************************************************************/
+
+export const DefaultButtonGroup: ComponentStoryFn<typeof ButtonGroup> =
+  Template.bind({});
 DefaultButtonGroup.args = {};
 
-export const FullWidth = Template.bind({});
+export const ButtonGroupWithSpacing: ComponentStoryFn<typeof ButtonGroup> =
+  Template.bind({});
+ButtonGroupWithSpacing.args = {
+  spacing: 'loose'
+};
+
+export const ButtonGroupWithJustification: ComponentStoryFn<
+  typeof ButtonGroup
+> = Template.bind({});
+ButtonGroupWithJustification.args = {
+  justify: 'between'
+};
+
+export const FullWidth: ComponentStoryFn<typeof ButtonGroup> = Template.bind(
+  {}
+);
 FullWidth.args = {
-  children: 'ButtonGroup',
   fullWidth: true
 };
 
-export const Segmented = SegmentedTemplate.bind({});
+export const Segmented: ComponentStoryFn<typeof ButtonGroup> =
+  SegmentedTemplate.bind({});
 Segmented.args = {
   segmented: true
 };
 
-export const Outline_buttons_in_a_segmented_group = SegmentedTemplate2.bind({});
-Outline_buttons_in_a_segmented_group.args = {
-  children: 'ButtonGroup',
+export const SegmentedButtonGroup_With_OutlineButtons: ComponentStoryFn<
+  typeof ButtonGroup
+> = SegmentedTemplate2.bind({});
+SegmentedButtonGroup_With_OutlineButtons.args = {
   segmented: true
 };
