@@ -3,3 +3,4 @@ export * from './isFileAccepted';
 export * from './sortBy';
 export * from './target';
 export * from './useTestId';
+export * from './getSelectionText';

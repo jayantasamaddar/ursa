@@ -46,7 +46,7 @@ export const Radio = styled(UrsaRadio)(
     display: inline-flex;
     align-items: center;
 
-    input[type="radio"] {
+    input[type="radio"].Ursa-Radio {
       font-size: ${fontSize['--ursa-font-size-5']};
       width: 1.2em;
       height: 1.2em;

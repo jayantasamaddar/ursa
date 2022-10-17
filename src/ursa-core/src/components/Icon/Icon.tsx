@@ -131,7 +131,7 @@ export const Icon = styled(UrsaIcon)(
       max-width: 100%;
 
       svg {
-          fill: ${IconColor ? color[IconColor] : color['--ursa-text-primary']};
+          fill: ${IconColor ? color[IconColor] : 'currentColor'};
           transform: scale(${
             size === 'small' ? 0.5 : size === 'large' ? 2 : 1
           });

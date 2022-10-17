@@ -2,13 +2,16 @@ import React, { FC, ReactElement, MouseEvent } from 'react';
 import styled from '@emotion/styled';
 
 export interface BackdropProps {
-  onClick?: MouseEvent<HTMLDivElement>;
+  onClick?: (e?: MouseEvent<HTMLDivElement>) => void;
   transparent?: boolean;
   className?: string;
 }
 
-const UrsaBackdrop: FC<BackdropProps> = ({ className }): ReactElement => (
-  <div className={`UrsaBackdrop ${className || ''}`} />
+const UrsaBackdrop: FC<BackdropProps> = ({
+  className,
+  onClick
+}): ReactElement => (
+  <div className={`Ursa-Backdrop ${className || ''}`} onClick={onClick} />
 );
 
 export const Backdrop = styled(UrsaBackdrop)(

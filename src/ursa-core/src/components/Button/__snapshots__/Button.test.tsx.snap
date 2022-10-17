@@ -30,6 +30,7 @@ exports[`components/Button Renders Button Renders Disabled Button 1`] = `
   border-color: rgba(203, 213, 225, 1);
   cursor: auto;
   box-shadow: none;
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -41,12 +42,8 @@ exports[`components/Button Renders Button Renders Disabled Button 1`] = `
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: rgba(203, 213, 225, 1);
 }
 
 <div
@@ -93,6 +90,7 @@ exports[`components/Button Renders Button Renders FullWidth Button 1`] = `
   border-color: rgba(13, 148, 136, 1);
   cursor: pointer;
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),0px 2px 2px 0px rgb(0 0 0 / 14%),0px 1px 5px 0px rgb(0 0 0 / 12%);
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -104,12 +102,8 @@ exports[`components/Button Renders Button Renders FullWidth Button 1`] = `
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: white;
 }
 
 <div
@@ -155,6 +149,7 @@ exports[`components/Button Renders Button Renders Loading Button 1`] = `
   border-color: rgba(13, 148, 136, 1);
   cursor: pointer;
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),0px 2px 2px 0px rgb(0 0 0 / 14%),0px 1px 5px 0px rgb(0 0 0 / 12%);
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -166,12 +161,8 @@ exports[`components/Button Renders Button Renders Loading Button 1`] = `
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: rgba(128, 128, 128, 1);
 }
 
 .emotion-1 {
@@ -241,6 +232,7 @@ exports[`components/Button Renders Button Test Icon Button Renders IconButton Bu
   border-color: rgba(13, 148, 136, 1);
   cursor: pointer;
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),0px 2px 2px 0px rgb(0 0 0 / 14%),0px 1px 5px 0px rgb(0 0 0 / 12%);
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -252,12 +244,8 @@ exports[`components/Button Renders Button Test Icon Button Renders IconButton Bu
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: white;
 }
 
 .emotion-1 {
@@ -269,7 +257,7 @@ exports[`components/Button Renders Button Test Icon Button Renders IconButton Bu
 }
 
 .emotion-1 svg {
-  fill: rgba(0, 0, 0, 1);
+  fill: currentColor;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
@@ -316,7 +304,7 @@ exports[`components/Button Renders Button Test Icon Button Renders IconButton Bu
 exports[`components/Button Renders Button Test Icon Only Button Run Snapshot Test 1`] = `
 .emotion-0 {
   width: auto;
-  min-width: 85px;
+  min-width: auto;
   padding-top: 0.875em;
   padding-bottom: 0.875em;
   padding-left: 1.5em;
@@ -343,6 +331,7 @@ exports[`components/Button Renders Button Test Icon Only Button Run Snapshot Tes
   border-color: rgba(13, 148, 136, 1);
   cursor: pointer;
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),0px 2px 2px 0px rgb(0 0 0 / 14%),0px 1px 5px 0px rgb(0 0 0 / 12%);
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -354,12 +343,8 @@ exports[`components/Button Renders Button Test Icon Only Button Run Snapshot Tes
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: white;
 }
 
 .emotion-1 {
@@ -371,7 +356,7 @@ exports[`components/Button Renders Button Test Icon Only Button Run Snapshot Tes
 }
 
 .emotion-1 svg {
-  fill: rgba(0, 0, 0, 1);
+  fill: currentColor;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -ms-transform: scale(1);
@@ -439,6 +424,7 @@ exports[`components/Button Renders Button Tests Alert Button Renders Alert Butto
   border-color: rgba(220, 38, 38, 1);
   cursor: pointer;
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),0px 2px 2px 0px rgb(0 0 0 / 14%),0px 1px 5px 0px rgb(0 0 0 / 12%);
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -450,12 +436,8 @@ exports[`components/Button Renders Button Tests Alert Button Renders Alert Butto
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: white;
 }
 
 <div
@@ -502,6 +484,7 @@ exports[`components/Button Renders Button Tests Basic Button Basic Button - Snap
   border-color: auto;
   cursor: pointer;
   box-shadow: none;
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -513,12 +496,8 @@ exports[`components/Button Renders Button Tests Basic Button Basic Button - Snap
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: rgba(128, 128, 128, 1);
 }
 
 <div
@@ -565,6 +544,7 @@ exports[`components/Button Renders Button Tests Outline Button Renders Outline B
   border-color: rgba(13, 148, 136, 1);
   cursor: pointer;
   box-shadow: none;
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -576,12 +556,8 @@ exports[`components/Button Renders Button Tests Outline Button Renders Outline B
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: rgba(20, 184, 166, 1);
 }
 
 <div
@@ -629,6 +605,7 @@ exports[`components/Button Renders Button Tests Primary Button Primary Button - 
   border-color: rgba(13, 148, 136, 1);
   cursor: pointer;
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),0px 2px 2px 0px rgb(0 0 0 / 14%),0px 1px 5px 0px rgb(0 0 0 / 12%);
+  white-space: nowrap;
 }
 
 .emotion-0 .Ursa-ButtonIconLabel {
@@ -640,12 +617,8 @@ exports[`components/Button Renders Button Tests Primary Button Primary Button - 
   gap: 0.5em;
 }
 
-.emotion-0 .UrsaIcon {
+.emotion-0 .Ursa-Icon {
   margin: auto;
-}
-
-.emotion-0 .UrsaIcon svg {
-  fill: white;
 }
 
 <div

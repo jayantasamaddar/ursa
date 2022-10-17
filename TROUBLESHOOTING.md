@@ -1,6 +1,7 @@
 # Known Issues
 
 - [**Emotion.js** - Problems with **`:first-of-type`**, **`:nth-of-type`**, **`:last-of-type`** and a hacky temporary solution.](https://github.com/emotion-js/emotion/issues/2922)
+- **[`fireEvent.blur(HTMLInputElement)` not working as expected: Selection on focus is not being deselected on blur](https://github.com/testing-library/dom-testing-library/issues/1178)**
 
 ---
 

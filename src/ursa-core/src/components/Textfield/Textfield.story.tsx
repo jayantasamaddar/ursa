@@ -66,8 +66,9 @@ const ClearTemplate: ComponentStory<typeof Textfield> = ({
 /**************************************************************************/
 /** Stories */
 /**************************************************************************/
-export const Default: ComponentStoryFn<typeof Textfield> = Template.bind({});
-Default.args = {
+export const DefaultTextfield: ComponentStoryFn<typeof Textfield> =
+  Template.bind({});
+DefaultTextfield.args = {
   label: 'Name',
   value: 'Jayanta Samaddar'
 };
@@ -89,14 +90,17 @@ Password_with_Errors.args = {
   name: 'password',
   type: 'password',
   label: 'Password',
+  togglePasswordIcon: true,
   errors: [
     'Password is invalid',
     'Password must contain at least 1 upper case, numeric, and special character'
   ]
 };
 
-export const Multiline: ComponentStoryFn<typeof Textfield> = Template.bind({});
-Multiline.args = {
+export const MultilineField: ComponentStoryFn<typeof Textfield> = Template.bind(
+  {}
+);
+MultilineField.args = {
   label: 'Description',
   multiline: true,
   min: 4,
@@ -127,10 +131,9 @@ ReadOnly.args = {
   value: 'Zenius'
 };
 
-export const SelectOnFocus: ComponentStoryFn<typeof Textfield> = Template.bind(
-  {}
-);
-SelectOnFocus.args = {
+export const TextfieldSelectedOnFocus: ComponentStoryFn<typeof Textfield> =
+  Template.bind({});
+TextfieldSelectedOnFocus.args = {
   label: 'Organization Name',
   selectOnFocus: true,
   value: 'Zenius'

@@ -23,4 +23,8 @@ export const SvgMinusMinor = SvgMock;
 export const SvgHomeMajor = SvgMock;
 export const SvgAlertMinor = SvgMock;
 export const SvgExternalSmallMinor = SvgMock;
+export const SvgMobileCancelMajor = SvgMock;
+export const SvgCircleCancelMajor = SvgMock;
+export const SvgViewMinor = SvgMock;
+export const SvgHideMinor = SvgMock;
 export default SvgMock;

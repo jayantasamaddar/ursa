@@ -15,6 +15,10 @@ const {
 /***************************************************************************/
 
 describe('components/Checkbox', () => {
+  /***************************************************************************/
+  /** Test Checkbox (with Label) */
+  /***************************************************************************/
+
   describe('Test Checkbox (with Label)', () => {
     it('Rendered in the DOM', () => {
       render(<Checkbox_with_Label />);
@@ -46,6 +50,11 @@ describe('components/Checkbox', () => {
       ); // Checkbox was unchecked
     });
   });
+
+  /***************************************************************************/
+  /** Test Checkbox (Indeterminate with Label Hidden) */
+  /***************************************************************************/
+
   describe('Test Checkbox (Indeterminate with Label Hidden)', () => {
     it('Rendered in the DOM', () => {
       render(<Checkbox_Indeterminate_with_Label_hidden />);
@@ -66,4 +75,19 @@ describe('components/Checkbox', () => {
       expect(checkboxEl).toHaveAttribute('aria-checked', 'false'); // Checkbox was unchecked
     });
   });
+
+  /***************************************************************************/
+  /** Test Checkbox (List of Checkboxes with Indeterminate Controller) */
+  /***************************************************************************/
+  // describe('Test Checkbox (List of Checkboxes with Indeterminate Controller)', () => {
+  //   it('Rendered in the DOM', () => {
+  //     render(<Checkbox_Indeterminate_List />);
+  //     const checkboxEl = screen.getByRole('checkbox');
+  //     expect(checkboxEl).toBeInTheDocument(); // expects checkbox to exist in document.
+  //     expect(checkboxEl).toHaveAttribute(
+  //       'name',
+  //       Checkbox_Indeterminate_List.args?.name
+  //     ); // match name
+  //   });
+  // });
 });

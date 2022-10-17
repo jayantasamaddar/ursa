@@ -182,7 +182,7 @@ const UrsaButton = forwardRef<
         <button
           {...commonProps}
           name={name}
-          type={`${submit ? 'submit' : 'button'}`}
+          type={submit ? 'submit' : 'button'}
           ref={buttonRef}
           disabled={disabled}
           onKeyDown={onKeyDown}
@@ -227,6 +227,7 @@ export const Button = styled(UrsaButton)(
   ({
     theme: { color, fontSize },
     fullWidth,
+    iconOnly,
     uppercase = false,
     outline,
     primary,
@@ -251,7 +252,7 @@ export const Button = styled(UrsaButton)(
 
     return `
   width: ${fullWidth ? '100%' : 'auto'};
-  min-width: 85px;
+  min-width: ${iconOnly ? 'auto' : '85px'};
   padding-top: 0.875em;
   padding-bottom: 0.875em;
   padding-left: 1.5em;
@@ -314,6 +315,7 @@ export const Button = styled(UrsaButton)(
     0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)`
         : 'none'
     };
+    white-space: nowrap;
   }
   .Ursa-ButtonIconLabel {
     display: flex;
@@ -327,11 +329,8 @@ export const Button = styled(UrsaButton)(
     align-items: center;
     gap: 0.5em;
   }
-  .UrsaIcon {
+  .Ursa-Icon {
     margin: auto;
-    svg {
-      fill: ${ButtonTextColor};
-    }
   }
 `;
   }
