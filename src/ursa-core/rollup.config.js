@@ -1,5 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import { move } from 'fs-extra';
+import { fileURLToPath } from 'url';
 
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -15,6 +17,28 @@ const pkg = JSON.parse(
 );
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+function relocate(files, { once, overwrite }) {
+  const targets = Array.isArray(files) ? files : [files];
+  let called = false;
+
+  return {
+    name: 'relocate',
+    writeBundle: {
+      async handler() {
+        if (called && once) return;
+        called = true;
+        for (const target of targets) {
+          await move(target.src, target.dest, {
+            overwrite: target.overwrite ?? overwrite
+          });
+        }
+      }
+    }
+  };
+}
+
 export default [
   {
     input,
@@ -23,6 +47,7 @@ export default [
         format: 'cjs',
         dir: path.dirname(pkg.main),
         preserveModules: true,
+        preserveModulesRoot: path.resolve(__dirname, 'src'),
         entryFileNames: '[name][assetExtname].js',
         exports: 'named'
       },
@@ -30,6 +55,7 @@ export default [
         format: 'esm',
         dir: path.dirname(pkg.module),
         preserveModules: true,
+        preserveModulesRoot: path.resolve(__dirname, 'src'),
         entryFileNames: '[name][assetExtname].js'
       }
     ],
