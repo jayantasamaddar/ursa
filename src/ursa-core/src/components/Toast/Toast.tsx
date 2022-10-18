@@ -3,7 +3,11 @@ import styled from '@emotion/styled';
 
 import { Portal } from '../Portal';
 import { Icon } from '../Icon';
-import { InfoMinor, AlertMinor, MobileCancelMajor } from 'src/ursa-icons';
+import {
+  InfoMinor,
+  AlertMinor,
+  MobileCancelMajor
+} from '@zenius-one/ursa-icons';
 
 export interface ToastProps {
   content: string;
