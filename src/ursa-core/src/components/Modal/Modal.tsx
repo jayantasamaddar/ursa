@@ -8,8 +8,6 @@ import { Backdrop } from '../Backdrop';
 import { ModalHeader, ModalFooter } from './components';
 
 const UrsaModal: FC<ModalProps> = ({
-  yPosition,
-  height,
   title,
   className,
   children,
@@ -20,35 +18,18 @@ const UrsaModal: FC<ModalProps> = ({
   onClose
 }): ReactElement | null => {
   /*********************************************************************************/
-  // useEffect - Close on Submission of Modal that has its own Submit Button
-  /********************************************************************************/
-  useEffect(() => {
-    if (!primaryButton) {
-      const handler = (event: MouseEvent<HTMLElement>) => {
-        if (
-          (event.target as HTMLElement) ===
-            document.querySelector('.UrsaButton') &&
-          !event.defaultPrevented
-        )
-          onClose && onClose();
-        else return;
-      };
-      document.addEventListener('click', (e: Event) => handler);
-      return () => document.removeEventListener('click', (e: Event) => handler);
-    } else return;
-  }, [primaryButton, onClose]);
-
-  /*********************************************************************************/
   // useEffect - Scrollbars
   /********************************************************************************/
 
   useEffect(() => {
     if (isOpen) {
       window.scrollTo(0, 0);
-      document.body.style.overflow = 'hidden';
-      document.body.scroll = () => 'no';
+      if (document) {
+        document.body.style.overflow = 'hidden';
+        document.body.scroll = () => 'no';
+      }
     }
-    if (!isOpen) {
+    if (!isOpen && document) {
       document.body.style.overflow = 'auto';
       document.body.scroll = () => 'yes';
     }
@@ -86,7 +67,7 @@ const UrsaModal: FC<ModalProps> = ({
 // Render Styled Modal
 /********************************************************************************/
 export const Modal = styled(UrsaModal)(
-  ({ theme: { color }, height, yPosition }) => `
+  ({ theme: { color }, width, height, yPosition }) => `
   position: fixed;
   display: flex;
   justify-content: center;
@@ -103,7 +84,7 @@ export const Modal = styled(UrsaModal)(
     flex-direction: column;
     background-color: ${color['--ursa-bg-primary']};
     border-radius: 3px;
-    width: 80%;
+    width: ${width || '80%'};
     height: ${height || '80%'};
     padding: 20px;
     box-shadow: 0 20px 25px -5px rgb(30 41 59 / 0.4), 0 8px 10px -6px rgb(30 41 59 / 0.4);

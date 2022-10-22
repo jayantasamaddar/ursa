@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styled from '@emotion/styled';
 
 export interface InvisibleProps {
@@ -21,8 +21,8 @@ const StyledInvisible = styled.span`
   clip-path: inset(50%) !important;
 `;
 
-export function Invisible({ children }: InvisibleProps) {
+export const Invisible = ({ children }: InvisibleProps): ReactElement => {
   return (
     <StyledInvisible className="Ursa-Invisible">{children}</StyledInvisible>
   );
-}
+};

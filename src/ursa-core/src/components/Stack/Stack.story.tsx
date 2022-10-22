@@ -66,7 +66,7 @@ export const Stack_with_an_Item_filling_space = StackItemTemplate.bind({});
 Stack_with_an_Item_filling_space.args = {
   vertical: false,
   align: 'center',
-  justify: 'stretch',
+  justify: 'between',
   spacing: 'normal',
   wrap: true
 };

@@ -60,19 +60,13 @@ export interface BaseInputField {
   /** Whether field is disabled */
   disabled?: boolean;
   /** Callback fired when value is changed */
-  onChange?: (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  onChange?(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void;
   /** Callback fired when a key is pressed up */
-  onKeyUp?: (
-    event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  onKeyUp?(event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>): void;
   /** Callback fired when input is focused */
-  onFocus?: (
-    event?: FocusEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  onFocus?(event?: FocusEvent<HTMLInputElement | HTMLTextAreaElement>): void;
   /** Callback fired when input is blurred */
-  onBlur?: (event?: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onBlur?(event?: FocusEvent<HTMLInputElement | HTMLTextAreaElement>): void;
   /** Whether field is required */
   required?: boolean;
   /** Whether field is read-only */
@@ -349,7 +343,7 @@ const UrsaTextfield = forwardRef<
     /***************************************************************************************/
 
     return (
-      <div className={`${className || ''}`}>
+      <div className={`Ursa-TextfieldContainer ${className || ''}`}>
         <div className="Ursa-LabelContainer">
           <label
             id={_labelid}
@@ -362,7 +356,7 @@ const UrsaTextfield = forwardRef<
             <div className="Ursa-TextfieldLabelAction">{labelAction}</div>
           )}
         </div>
-        <div className={`Ursa-TextfieldContainer`} data-field={name}>
+        <div className={`Ursa-Textfield`} data-field={name}>
           {prefixMarkup}
           {textfieldMarkup}
           {toggleShowPasswordMarkup}
@@ -396,7 +390,6 @@ export const Textfield = styled(UrsaTextfield)(
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.375rem;
         width: 100%;
         
         .Ursa-LabelContainer {
@@ -409,12 +402,14 @@ export const Textfield = styled(UrsaTextfield)(
           }
         }
 
-        .Ursa-TextfieldContainer {
+        .Ursa-Textfield {
           position: relative;
           display: flex;
           align-items: center;
           gap: 0.375rem;
           width: 100%;
+          padding-top: 0.375rem;
+          padding-bottom: 0.375rem;
 
           & > .Ursa-TextfieldPrefix {
             position: absolute;
@@ -438,7 +433,7 @@ export const Textfield = styled(UrsaTextfield)(
 
             &:focus {
               outline: 2px solid blue;
-              outline-offset: 0.125rem;
+              outline-offset: 0.1rem;
             }
           }
 

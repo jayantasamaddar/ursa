@@ -184,7 +184,6 @@ exports[`components/Button Renders Button Renders Loading Button 1`] = `
     >
       <svg
         className=emotion-1
-        color=white
         data-icon=spinner
         data-testid=spinner
         fill=white

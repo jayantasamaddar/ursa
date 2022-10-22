@@ -1,28 +1,27 @@
-import React, { FC, ReactElement, memo, NamedExoticComponent } from 'react';
+import React, { ReactElement, memo, NamedExoticComponent } from 'react';
 import styled from '@emotion/styled';
-
 import { Item } from './components';
 import { StackProps } from '../../types';
+import { useTestId } from '../../utilities';
 
-export interface StackCompoundProps {
-  Item: typeof Item;
-}
-
-const UnstyledStack: FC<StackProps> = ({
-  className,
-  children
-}): ReactElement => {
-  return <div className={`Ursa-Stack ${className || ''}`}>{children}</div>;
+const UnstyledStack = ({ className, children }: StackProps): ReactElement => {
+  const testid = useTestId('test-stack');
+  return (
+    <div className={`Ursa-Stack ${className || ''}`} {...testid}>
+      {children}
+    </div>
+  );
 };
 
-const StyledStack = styled(UnstyledStack)(
-  ({
-    vertical = false,
-    wrap = true,
-    justify = 'start',
-    align = 'center',
-    spacing = 'normal'
-  }) => `
+const Stack = memo(
+  styled(UnstyledStack)(
+    ({
+      vertical = false,
+      wrap = true,
+      justify = 'start',
+      align = `${vertical ? 'start' : 'center'}`,
+      spacing = 'normal'
+    }) => `
         display: flex;
         flex-direction: ${vertical ? 'column' : 'row'};
         flex-wrap: ${wrap ? 'wrap' : 'nowrap'};
@@ -51,25 +50,20 @@ const StyledStack = styled(UnstyledStack)(
         };
         gap: ${
           spacing === 'extraTight'
-            ? '2px'
+            ? '0.125rem'
             : spacing === 'tight'
-            ? '5px'
+            ? '0.375rem'
             : spacing === 'loose'
-            ? '15px'
+            ? '1rem'
             : spacing === 'extraLoose'
-            ? '20px'
-            : '10px'
+            ? '1.25rem'
+            : '0.75rem'
         };
         width: 100%;
         height: 100%;
     `
-);
-
-const Stack: FC<StackProps> & StackCompoundProps = memo(
-  (props): ReactElement => {
-    return <StyledStack {...props} />;
-  }
-) as NamedExoticComponent<StackProps> & StackCompoundProps;
+  )
+) as NamedExoticComponent<StackProps> & { Item: typeof Item };
 
 Stack.Item = Item;
 

@@ -51,6 +51,12 @@ export type { DropZoneProps } from './components/DropZone';
 export { Error } from './components/Error';
 export type { ErrorProps } from './components/Error';
 
+export { Form } from './components/Form';
+export type { FormProps } from './components/Form';
+
+export { FormLayout } from './components/FormLayout';
+export type { FormLayoutProps } from './components/FormLayout';
+
 export { Heading } from './components/Heading';
 export type { HeadingProps } from './components/Heading';
 

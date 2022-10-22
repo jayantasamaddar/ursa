@@ -4,7 +4,7 @@ export interface ModalHeaderProps {
   title?: string;
   children?: ReactNode;
   className?: string;
-  onClose?: () => void;
+  onClose?(): void;
 }
 
 export interface ModalFooterProps {
@@ -12,18 +12,18 @@ export interface ModalFooterProps {
   className?: string;
   primaryButton?: {
     name?: string;
-    onClick?: (event?: MouseEvent<HTMLButtonElement>) => void;
+    onClick?(event?: MouseEvent<HTMLButtonElement>): void;
   };
   secondaryButton?: {
     name?: string;
-    onClick?: () => void;
+    onClick?(event?: MouseEvent<HTMLButtonElement>): void;
   };
 }
 
 export interface ModalProps extends ModalHeaderProps, ModalFooterProps {
   /** The content to display inside modal */
   children: ReactNode | ReactNode[];
-  /** Add classes to the main modal container */
+  /** Classname attribute of the main modal container */
   className?: string;
   yPosition?: number;
   height?: number | string;
