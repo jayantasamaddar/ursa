@@ -137,7 +137,7 @@ exports[`components/Button Renders Button Renders Loading Button 1`] = `
   border-radius: 4px;
   border-color: rgba(203, 213, 225, 1);
   background-color: rgba(20, 184, 166, 1);
-  color: rgba(128, 128, 128, 1);
+  color: rgba(109, 113, 117, 1);
   transition-property: color,background-color,box-shadow,border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
@@ -184,7 +184,6 @@ exports[`components/Button Renders Button Renders Loading Button 1`] = `
     >
       <svg
         className=emotion-1
-        color=white
         data-icon=spinner
         data-testid=spinner
         fill=white
@@ -472,7 +471,7 @@ exports[`components/Button Renders Button Tests Basic Button Basic Button - Snap
   border-radius: 4px;
   border-color: rgba(203, 213, 225, 1);
   background-color: white;
-  color: rgba(128, 128, 128, 1);
+  color: rgba(109, 113, 117, 1);
   transition-property: color,background-color,box-shadow,border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;

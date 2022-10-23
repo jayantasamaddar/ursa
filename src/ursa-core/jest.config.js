@@ -4,9 +4,10 @@ module.exports = {
   snapshotSerializers: [
     /* if needed other snapshotSerializers should go here */
     '@emotion/jest/serializer',
-    '<rootDir>/config/dynamic-id-serializer.js' // Serializes Dynamic IDs
+    '<rootDir>/config/jest/dynamic-id-serializer.js' // Serializes Dynamic IDs
   ],
+  snapshotResolver: '<rootDir>/config/jest/snapshot-resolver.js',
   moduleNameMapper: {
-    '^.+\\.svg.*js$': '<rootDir>/config/__mocks__/SvgMock.tsx'
+    '^.+\\.svg.*js$': '<rootDir>/config/jest/__mocks__/SvgMock.tsx'
   }
 };

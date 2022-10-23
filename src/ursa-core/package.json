@@ -44,7 +44,7 @@
     "test:w": "jest --watch",
     "test:wa": "jest --watchAll",
     "test:c": "jest --coverage",
-    "test:cv": "jest --coverage --verbose",
+    "test:cv": "clear && jest --coverage --verbose",
     "ts-check": "tsc --noemit"
   },
   "dependencies": {

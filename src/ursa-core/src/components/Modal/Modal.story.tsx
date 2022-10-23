@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
+import {
+  ComponentStory,
+  ComponentMeta,
+  ComponentStoryFn
+} from '@storybook/react';
 
 import { Modal } from './Modal';
 import { Button } from '../Button';
 
 export default {
   title: 'Components/Modal',
-  component: Modal,
-  decorators: [(Story) => <Story />]
+  component: Modal
 } as ComponentMeta<typeof Modal>;
 
 const Template: ComponentStory<typeof Modal> = ({ children, ...args }) => {
@@ -28,7 +30,7 @@ const Template: ComponentStory<typeof Modal> = ({ children, ...args }) => {
       <Modal
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
-        primaryButton={{ name: 'Submit', onClick: () => onSubmit() }}
+        primaryButton={{ name: 'Submit', onClick: onSubmit }}
         {...args}
       >
         <div>
@@ -42,7 +44,7 @@ const Template: ComponentStory<typeof Modal> = ({ children, ...args }) => {
   );
 };
 
-export const BasicModal = Template.bind({});
+export const BasicModal: ComponentStoryFn<typeof Modal> = Template.bind({});
 
 BasicModal.args = {
   title: 'Reach more shoppers with Instagram product tags'

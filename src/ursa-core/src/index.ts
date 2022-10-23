@@ -10,6 +10,7 @@ export type {
   DataGridProps,
   IconSource,
   ModalProps,
+  SelectProps,
   StackProps,
   TabPanelProps,
   TabsProps,
@@ -51,6 +52,12 @@ export type { DropZoneProps } from './components/DropZone';
 export { Error } from './components/Error';
 export type { ErrorProps } from './components/Error';
 
+export { Form } from './components/Form';
+export type { FormProps } from './components/Form';
+
+export { FormLayout } from './components/FormLayout';
+export type { FormLayoutProps } from './components/FormLayout';
+
 export { Heading } from './components/Heading';
 export type { HeadingProps } from './components/Heading';
 
@@ -59,6 +66,9 @@ export type { IconProps } from './components/Icon';
 
 export { Invisible } from './components/Invisible';
 export type { InvisibleProps } from './components/Invisible';
+
+export { Label } from './components/Label';
+export type { LabelProps } from './components/Label';
 
 export { Link } from './components/Link';
 export type { LinkProps } from './components/Link';
@@ -77,7 +87,6 @@ export { Radio } from './components/Radio';
 export type { RadioProps } from './components/Radio';
 
 export { Select } from './components/Select';
-export type { SelectProps } from './components/Select';
 
 export { Spinner } from './components/Spinner';
 export type { SpinnerProps } from './components/Spinner';

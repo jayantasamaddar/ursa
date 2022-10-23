@@ -31,7 +31,7 @@ export const Portal: FC<PortalProps> = ({
     if (target.current) container.appendChild(target.current);
 
     return () => {
-      if (container?.childNodes.length === 0) {
+      if (container?.childNodes.length) {
         if (target.current) container.removeChild(target.current);
         document.body.removeChild(container);
       }

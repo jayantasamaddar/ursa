@@ -4,6 +4,7 @@ export interface Color {
   '--ursa-backdrop': string;
   '--ursa-text-primary': string;
   '--ursa-text-secondary': string;
+  '--ursa-text-tertiary': string;
   '--ursa-btn-primary': string;
   '--ursa-btn-primary-hovered': string;
   '--ursa-btn-basic': string;

@@ -36,20 +36,22 @@ export interface CheckboxProps {
   disabled?: boolean;
   /** Callback when checkbox is toggled */
   // onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?(event: ChangeEvent<HTMLInputElement>): void;
   /** Callback when checkbox is focussed */
-  onFocus?: (event?: FocusEvent<HTMLInputElement>) => void;
+  onFocus?(event?: FocusEvent<HTMLInputElement>): void;
   /** Callback when focus is removed */
-  onBlur?: (event?: FocusEvent<HTMLInputElement>) => void;
+  onBlur?(event?: FocusEvent<HTMLInputElement>): void;
   /** Indicates the ID of the element that is controlled by the checkbox*/
   ariaControls?: string;
   /** Indicates the ID of the element that describes the checkbox*/
   ariaDescribedBy?: string;
+  /** Help */
+  helpText?: string;
 }
 
 const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  (props, ref): ReactElement => {
-    const {
+  (
+    {
       id,
       name,
       label,
@@ -59,10 +61,17 @@ const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
       disabled,
       onChange,
       onFocus,
-      onBlur
-    } = props;
-
-    const _id = id || generateUniqueID(name);
+      onBlur,
+      ariaControls,
+      ariaDescribedBy,
+      helpText
+    },
+    ref
+  ): ReactElement => {
+    const uniqueID = generateUniqueID('Ursa-Checkbox');
+    const _id = id || `Ursa-Checkbox-${uniqueID}`;
+    const labelID = `Ursa-CheckboxLabel-${uniqueID}`;
+    const helpTextID = `Ursa-CheckboxHelpText-${uniqueID}`;
     const [isChecked, setIsChecked] = useState(checked == true || false);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -103,7 +112,7 @@ const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <div className={`Ursa-CheckboxContainer ${className || ''}`}>
-        <label className="Ursa-CheckboxLabel" htmlFor={id}>
+        <label id={labelID} className="Ursa-CheckboxLabel" htmlFor={_id}>
           <input
             id={_id}
             className="Ursa-Checkbox"
@@ -118,14 +127,22 @@ const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
             onChange={onChange}
             onFocus={onFocus}
             onBlur={onBlur}
+            aria-labelledby={labelID}
+            aria-describedby={helpText ? helpTextID : ariaDescribedBy}
+            aria-controls={ariaControls}
             {...indeterminateAttributes}
           />
           <span className="Ursa-CheckboxIcon">
             <Icon source={iconSource} color={'--ursa-white'} />
           </span>
 
-          <span className="Ursa-LabelText">{label}</span>
+          <span className="Ursa-CheckboxLabelText">{label}</span>
         </label>
+        {helpText && (
+          <p id={helpTextID} className="Ursa-CheckboxHelpText">
+            {helpText}
+          </p>
+        )}
       </div>
     );
   }
@@ -135,14 +152,15 @@ const UrsaCheckbox = forwardRef<HTMLInputElement, CheckboxProps>(
 // Styled Checkbox
 /********************************************************************/
 
-const Checkbox = styled(UrsaCheckbox)(
+export const Checkbox = styled(UrsaCheckbox)(
   ({ theme: { color }, labelHidden, checked }) => `
-    display: inline-flex;
-    align-items: center;
     label.Ursa-CheckboxLabel {
         display: inline-flex;
         align-items: center;
-        padding-left: 4px;
+        padding-left: 0.25rem;
+        cursor: pointer;
+        padding-top: 0.625rem;
+        padding-bottom: 0.625rem;
     }
     input[type="checkbox"].Ursa-Checkbox {
         width: 1.2em;
@@ -174,12 +192,12 @@ const Checkbox = styled(UrsaCheckbox)(
           : color['--ursa-border-secondary']
       };
     }
-    .Ursa-LabelText {
+    .Ursa-CheckboxLabelText {
       visibility: ${labelHidden ? 'hidden' : 'visible'};
+    }
+    & > .Ursa-CheckboxHelpText {
+      padding-left: calc(1.2rem + 2px + 0.625rem);
+      color: ${color['--ursa-text-secondary']}
     }
     `
 );
-
-Checkbox.displayName = 'Checkbox';
-
-export { Checkbox };

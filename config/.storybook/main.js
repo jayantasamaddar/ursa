@@ -4,7 +4,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin').default;
 
 const storiesPath = !argv._[0]
   ? path
-      .resolve(__dirname, '../../src/**/*.story.@(ts|tsx)')
+      .resolve(__dirname, '../../src/**/*.@(story|stories).@(js|jsx|ts|tsx)')
       .replace(/\\/g, '/')
   : path
       .resolve(
@@ -12,7 +12,7 @@ const storiesPath = !argv._[0]
         `../../src/ursa-${argv._[0].replace(
           '@ursa/',
           ''
-        )}/**/*.story.@(js|jsx|ts|tsx)`
+        )}/**/*.@(story|stories).@(js|jsx|ts|tsx)`
       )
       .replace(/\\/g, '/');
 

@@ -94,6 +94,7 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
         {...args}
         name="item1"
         label="Item 1"
+        value="item-1"
         onChange={handleChange}
         checked={checkboxes.item1}
       />
@@ -101,6 +102,7 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
         {...args}
         name="item2"
         label="Item 2"
+        value="item-2"
         onChange={handleChange}
         checked={checkboxes.item2}
       />
@@ -108,6 +110,7 @@ const IndeterminateTemplate: ComponentStory<typeof Checkbox> = (args) => {
         {...args}
         name="item3"
         label="Item 3"
+        value="item-3"
         onChange={handleChange}
         checked={checkboxes.item3}
       />
@@ -120,7 +123,8 @@ export const Checkbox_with_Label: ComponentStoryFn<typeof Checkbox> =
 Checkbox_with_Label.args = {
   name: 'agree',
   label: 'Agree to the terms and conditions',
-  checked: false
+  checked: false,
+  helpText: 'Please read the terms and conditions before applying'
 };
 
 export const Checkbox_Indeterminate_with_Label_hidden: ComponentStoryFn<

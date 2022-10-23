@@ -19,3 +19,11 @@ export const BasicError: ComponentStoryFn<typeof Error> = Template.bind({});
 BasicError.args = {
   children: 'This is an error message'
 };
+
+export const ErrorWithAlertIcon: ComponentStoryFn<typeof Error> = Template.bind(
+  {}
+);
+ErrorWithAlertIcon.args = {
+  children: 'This is an error message',
+  icon: true
+};

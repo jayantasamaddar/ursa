@@ -24,7 +24,7 @@ const UnstyledHeading: FC<HeadingProps> = ({
   className,
   id
 }): ReactElement => {
-  const _id = id || generateUniqueID('heading');
+  const _id = id || generateUniqueID('Ursa-Heading');
 
   return (
     <Element id={_id} className={`Ursa-Heading ${className || ''}`}>

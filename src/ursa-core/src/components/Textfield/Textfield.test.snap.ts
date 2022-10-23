@@ -13,7 +13,6 @@ exports[`components/Textfield Default Textfield Snapshot Test 1`] = `
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  gap: 0.375rem;
   width: 100%;
 }
 
@@ -35,7 +34,7 @@ exports[`components/Textfield Default Textfield Snapshot Test 1`] = `
   font-size: 0.9375rem;
 }
 
-.emotion-0 .Ursa-TextfieldContainer {
+.emotion-0 .Ursa-Textfield {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -47,15 +46,17 @@ exports[`components/Textfield Default Textfield Snapshot Test 1`] = `
   align-items: center;
   gap: 0.375rem;
   width: 100%;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
 }
 
-.emotion-0 .Ursa-TextfieldContainer>.Ursa-TextfieldPrefix {
+.emotion-0 .Ursa-Textfield>.Ursa-TextfieldPrefix {
   position: absolute;
   left: 0.5rem;
-  color: rgba(128, 128, 128, 1);
+  color: rgba(109, 113, 117, 1);
 }
 
-.emotion-0 .Ursa-TextfieldContainer>.Ursa-Input {
+.emotion-0 .Ursa-Textfield>.Ursa-Input {
   width: 100%;
   min-height: inherit;
   padding: 0.625rem;
@@ -71,13 +72,13 @@ exports[`components/Textfield Default Textfield Snapshot Test 1`] = `
   resize: none;
 }
 
-.emotion-0 .Ursa-TextfieldContainer>.Ursa-Input:focus {
+.emotion-0 .Ursa-Textfield>.Ursa-Input:focus {
   outline: 2px solid blue;
-  outline-offset: 0.125rem;
+  outline-offset: 0.1rem;
 }
 
-.emotion-0 .Ursa-TextfieldContainer>.Ursa-PasswordShowHide,
-.emotion-0 .Ursa-TextfieldContainer .Ursa-TextClearButton {
+.emotion-0 .Ursa-Textfield>.Ursa-PasswordShowHide,
+.emotion-0 .Ursa-Textfield .Ursa-TextClearButton {
   cursor: pointer;
   position: absolute;
   right: 0.5rem;
@@ -94,7 +95,7 @@ exports[`components/Textfield Default Textfield Snapshot Test 1`] = `
 }
 
 <div
-  className=emotion-0
+  className=Ursa-TextfieldContainer emotion-0
 >
   <div
     className=Ursa-LabelContainer
@@ -108,7 +109,7 @@ exports[`components/Textfield Default Textfield Snapshot Test 1`] = `
     </label>
   </div>
   <div
-    className=Ursa-TextfieldContainer
+    className=Ursa-Textfield
   >
     <input
       aria-labelledby="Ursa-TextfieldLabel-2"
