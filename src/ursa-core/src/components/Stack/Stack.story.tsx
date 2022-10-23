@@ -35,6 +35,25 @@ const StackItemTemplate: ComponentStory<typeof Stack> = (args) => (
   </Stack>
 );
 
+const NoWrapTemplate: ComponentStory<typeof Stack> = (args) => (
+  <Stack {...args}>
+    <Tag name="Jackets & Hoodies" />
+    <Tag name="Red" />
+    <Tag name="Black" />
+    <Tag name="Cotton" />
+    <Tag name="Polyurethane" />
+    <Tag name="Menswear" />
+    <Tag name="Outerwear" />
+    <Tag name="Fall-Winter 2022" />
+    <Tag name="Runway" />
+    <Tag name="New In" />
+    <Tag name="Best Sellers" />
+    <Tag name="Most Reviewed" />
+    <Tag name="Eco-Friendly" />
+    <Tag name="Upcycled" />
+  </Stack>
+);
+
 export const DefaultStack = Template.bind({});
 DefaultStack.args = {
   vertical: false,
@@ -69,4 +88,11 @@ Stack_with_an_Item_filling_space.args = {
   justify: 'between',
   spacing: 'normal',
   wrap: true
+};
+
+export const HorizontalStack_withNoWrap = NoWrapTemplate.bind({});
+HorizontalStack_withNoWrap.args = {
+  justify: 'start',
+  spacing: 'loose',
+  wrap: false
 };

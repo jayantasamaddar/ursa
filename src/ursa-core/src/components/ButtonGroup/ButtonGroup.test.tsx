@@ -17,6 +17,10 @@ const {
   SegmentedButtonGroup_With_OutlineButtons
 } = composeStories(stories);
 
+interface CSSStyles {
+  [property: string]: string;
+}
+
 /***************************************************************************/
 /** Run Tests */
 /***************************************************************************/
@@ -140,11 +144,11 @@ describe('components/ButtonGroup', () => {
 
     it('Segmented Styles: The last item has border-radius only on the left', () => {
       const buttonGroup = renderer.create(<Segmented />).toJSON();
-      const firstItemStyles = {
+      const firstItemStyles: CSSStyles = {
         'border-top-right-radius': 'unset',
         'border-bottom-right-radius': 'unset'
       };
-      const notfirstItemStyles = {
+      const notfirstItemStyles: CSSStyles = {
         'border-top-left-radius': 'unset',
         'border-bottom-left-radius': 'unset'
       };
@@ -179,11 +183,11 @@ describe('components/ButtonGroup', () => {
 
     it('Segmented Styles: The last item has border-radius only on the right', () => {
       const buttonGroup = renderer.create(<Segmented />).toJSON();
-      const lastItemStyles = {
+      const lastItemStyles: CSSStyles = {
         'border-top-left-radius': 'unset',
         'border-bottom-left-radius': 'unset'
       };
-      const notLastItemStyles = {
+      const notLastItemStyles: CSSStyles = {
         'border-top-right-radius': 'unset',
         'border-bottom-right-radius': 'unset'
       };

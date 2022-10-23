@@ -61,6 +61,7 @@ const Stack = memo(
         };
         width: 100%;
         height: 100%;
+        white-space: nowrap;
     `
   )
 ) as NamedExoticComponent<StackProps> & { Item: typeof Item };

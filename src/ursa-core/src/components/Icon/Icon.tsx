@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, MouseEvent } from 'react';
 import { IconSource } from '../../types';
 import styled from '@emotion/styled';
 import type { Color as themeColor } from '../../types/theme';
@@ -23,7 +23,7 @@ export interface IconProps {
   /** Descriptive text to be read to screenreaders */
   accessibilityLabel?: string;
   className?: string;
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?(event: MouseEvent<HTMLDivElement>): void;
 }
 
 const UrsaIcon: FC<IconProps> = ({

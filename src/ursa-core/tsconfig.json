@@ -2,16 +2,11 @@
   "extends": "../../tsconfig.base.json",
   "include": ["./src", "../../config/types"],
   "exclude": [
-    "**/*.(?:story|mock|test).(?:js|ts|jsx|tsx)",
-    "**/__snapshots__",
+    "**/*.(?:story|mock|test|snap).(?:js|ts|jsx|tsx)",
     ".turbo",
     "coverage"
   ],
   "compilerOptions": {
-    // "rootDir": "src",
-    // "declaration": true,
-    // "declarationDir": "dist/types",
-    // "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "strictBindCallApply": true,

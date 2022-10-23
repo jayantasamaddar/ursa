@@ -41,5 +41,63 @@ const Template: ComponentStory<typeof Radio> = () => {
     </Stack>
   );
 };
+
+const DisabledTemplate: ComponentStory<typeof Radio> = () => {
+  const [value, setValue] = useState<string>('s');
+
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value, disabled } = e.target;
+      !disabled && setValue(value);
+    },
+    [value]
+  );
+
+  return (
+    <Stack>
+      <Radio
+        name="sizes"
+        label="S"
+        value="s"
+        checked={value === 's'}
+        onChange={handleChange}
+      />
+      <Radio
+        name="sizes"
+        label="M"
+        value="m"
+        checked={value === 'm'}
+        onChange={handleChange}
+      />
+      <Radio
+        name="sizes"
+        label="L"
+        value="l"
+        checked={value === 'l'}
+        onChange={handleChange}
+      />
+      <Radio
+        name="sizes"
+        label="XL"
+        value="xl"
+        checked={false}
+        disabled
+        onChange={handleChange}
+      />
+      <Radio
+        name="sizes"
+        label="XXL"
+        value="xxl"
+        checked={false}
+        disabled
+        onChange={handleChange}
+      />
+    </Stack>
+  );
+};
+
 export const DefaultRadioButton = Template.bind({});
 DefaultRadioButton.args = {};
+
+export const DisabledRadioButton = DisabledTemplate.bind({});
+DisabledRadioButton.args = {};

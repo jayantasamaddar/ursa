@@ -64,7 +64,7 @@ exports[`components/FormLayout <BasicFormLayout /> Run Snapshot Test 1`] = `
 .emotion-1 .Ursa-Textfield>.Ursa-TextfieldPrefix {
   position: absolute;
   left: 0.5rem;
-  color: rgba(128, 128, 128, 1);
+  color: rgba(109, 113, 117, 1);
 }
 
 .emotion-1 .Ursa-Textfield>.Ursa-Input {
@@ -298,7 +298,7 @@ exports[`components/FormLayout <CondensedFormLayout /> Run Snapshot Test 1`] = `
 .emotion-2 .Ursa-Textfield>.Ursa-TextfieldPrefix {
   position: absolute;
   left: 0.5rem;
-  color: rgba(128, 128, 128, 1);
+  color: rgba(109, 113, 117, 1);
 }
 
 .emotion-2 .Ursa-Textfield>.Ursa-Input {
@@ -609,7 +609,7 @@ exports[`components/FormLayout <GroupedFormLayout /> Run Snapshot Test 1`] = `
 .emotion-2 .Ursa-Textfield>.Ursa-TextfieldPrefix {
   position: absolute;
   left: 0.5rem;
-  color: rgba(128, 128, 128, 1);
+  color: rgba(109, 113, 117, 1);
 }
 
 .emotion-2 .Ursa-Textfield>.Ursa-Input {

@@ -2,10 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import renderer from 'react-test-renderer';
+import { matchers } from '@emotion/jest';
 import { composeStories } from '@storybook/testing-react';
 import * as stories from './Stack.story';
 
-const { DefaultStack } = composeStories(stories);
+expect.extend(matchers);
+
+const { DefaultStack, HorizontalStack_withNoWrap } = composeStories(stories);
 
 describe('components/Stack', () => {
   describe('<DefaultStack />', () => {
@@ -15,12 +18,10 @@ describe('components/Stack', () => {
       expect(stackEl).toBeInTheDocument();
     });
   });
-
   it('Run Snapshot Test', () => {
     const StackEl = renderer.create(<DefaultStack />).toJSON();
     expect(StackEl).toMatchSnapshot();
   });
-
   it('Styles are Rendered correctly', () => {
     render(<DefaultStack />);
     const wrap = DefaultStack.args?.wrap as boolean;
@@ -63,9 +64,35 @@ describe('components/Stack', () => {
           ? '1.25rem'
           : '0.75rem'
     };
-
-    console.log({ defaultStyles });
     const stackEl = screen.getByTestId('test-stack');
     expect(stackEl).toHaveStyle(defaultStyles);
+  });
+
+  describe('<HorizontalStack_withNoWrap />', () => {
+    beforeEach(() => {
+      render(<HorizontalStack_withNoWrap />);
+    });
+    it('Rendered in the DOM', () => {
+      const stackEl = screen.getByTestId('test-stack');
+      expect(stackEl).toBeInTheDocument();
+    });
+    it('Styles: Horizontal and No wrap', () => {
+      const spacing = HorizontalStack_withNoWrap.args?.spacing;
+      const stackEl = renderer.create(<HorizontalStack_withNoWrap />).toJSON();
+      expect(stackEl).toHaveStyleRule('flex-direction', 'row');
+      expect(stackEl).toHaveStyleRule('flex-wrap', 'nowrap');
+      expect(stackEl).toHaveStyleRule(
+        'gap',
+        spacing === 'extraTight'
+          ? '0.125rem'
+          : spacing === 'tight'
+          ? '0.375rem'
+          : spacing === 'loose'
+          ? '1rem'
+          : spacing === 'extraLoose'
+          ? '1.25rem'
+          : '0.75rem'
+      );
+    });
   });
 });

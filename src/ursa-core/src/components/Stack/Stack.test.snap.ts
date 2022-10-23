@@ -27,6 +27,7 @@ exports[`components/Stack Run Snapshot Test 1`] = `
   gap: 0.75rem;
   width: 100%;
   height: 100%;
+  white-space: nowrap;
 }
 
 .emotion-1 {

@@ -34,7 +34,7 @@ export interface RadioProps {
   helpText?: string;
 }
 
-const UrsaRadio: FC<RadioProps> = forwardRef(
+const UrsaRadio = forwardRef<HTMLInputElement, RadioProps>(
   (
     {
       id,
@@ -49,7 +49,7 @@ const UrsaRadio: FC<RadioProps> = forwardRef(
       disabled,
       helpText
     },
-    ref: ForwardedRef<HTMLInputElement>
+    ref
   ): ReactElement => {
     const uniqueID = generateUniqueID();
     const _id = id || `Ursa-RadioButtonInput-${uniqueID}`;
@@ -79,9 +79,11 @@ const UrsaRadio: FC<RadioProps> = forwardRef(
             {label}
           </label>
         </span>
-        <p id={helpTextID} className="Ursa-RadioButtonHelpText">
-          {helpText}
-        </p>
+        {helpText && (
+          <p id={helpTextID} className="Ursa-RadioButtonHelpText">
+            {helpText}
+          </p>
+        )}
       </div>
     );
   }
@@ -89,8 +91,6 @@ const UrsaRadio: FC<RadioProps> = forwardRef(
 
 export const Radio = styled(UrsaRadio)(
   ({ theme: { color, fontSize } }) => `
-
-    width: 100%;
    
     & > .Ursa-RadioButton {
       display: inline-flex;

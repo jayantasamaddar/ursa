@@ -53,7 +53,7 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
 .emotion-1 .Ursa-Textfield>.Ursa-TextfieldPrefix {
   position: absolute;
   left: 0.5rem;
-  color: rgba(128, 128, 128, 1);
+  color: rgba(109, 113, 117, 1);
 }
 
 .emotion-1 .Ursa-Textfield>.Ursa-Input {
@@ -143,7 +143,7 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
   autoComplete=off
   className=Ursa-Form emotion-0
   data-testid=test-form
-  id=Ursa-Form-a809d97f73334
+  id="Ursa-Form-0"
   name=subscribe-form
   onSubmit={[Function]}
 >
@@ -155,8 +155,8 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
     >
       <label
         className=Ursa-TextfieldLabel 
-        htmlFor="Ursa-Textfield-0"
-        id="Ursa-TextfieldLabel-1"
+        htmlFor="Ursa-Textfield-1"
+        id="Ursa-TextfieldLabel-2"
       >
         First Name
       </label>
@@ -166,9 +166,9 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
       data-field=firstname
     >
       <input
-        aria-labelledby="Ursa-TextfieldLabel-2"
+        aria-labelledby="Ursa-TextfieldLabel-3"
         className=Ursa-Input
-        id="Ursa-Textfield-3"
+        id="Ursa-Textfield-4"
         name=firstname
         onBlur={[Function]}
         onChange={[Function]}
@@ -187,8 +187,8 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
     >
       <label
         className=Ursa-TextfieldLabel 
-        htmlFor="Ursa-Textfield-4"
-        id="Ursa-TextfieldLabel-5"
+        htmlFor="Ursa-Textfield-5"
+        id="Ursa-TextfieldLabel-6"
       >
         Last Name
       </label>
@@ -198,9 +198,9 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
       data-field=lastname
     >
       <input
-        aria-labelledby="Ursa-TextfieldLabel-6"
+        aria-labelledby="Ursa-TextfieldLabel-7"
         className=Ursa-Input
-        id="Ursa-Textfield-7"
+        id="Ursa-Textfield-8"
         name=lastname
         onBlur={[Function]}
         onChange={[Function]}
@@ -219,8 +219,8 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
     >
       <label
         className=Ursa-TextfieldLabel 
-        htmlFor="Ursa-Textfield-8"
-        id="Ursa-TextfieldLabel-9"
+        htmlFor="Ursa-Textfield-9"
+        id="Ursa-TextfieldLabel-10"
       >
         Email
       </label>
@@ -230,9 +230,9 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
       data-field=email
     >
       <input
-        aria-labelledby="Ursa-TextfieldLabel-10"
+        aria-labelledby="Ursa-TextfieldLabel-11"
         className=Ursa-Input
-        id="Ursa-Textfield-11"
+        id="Ursa-Textfield-12"
         name=email
         onBlur={[Function]}
         onChange={[Function]}

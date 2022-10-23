@@ -10,6 +10,7 @@ export type {
   DataGridProps,
   IconSource,
   ModalProps,
+  SelectProps,
   StackProps,
   TabPanelProps,
   TabsProps,
@@ -66,6 +67,9 @@ export type { IconProps } from './components/Icon';
 export { Invisible } from './components/Invisible';
 export type { InvisibleProps } from './components/Invisible';
 
+export { Label } from './components/Label';
+export type { LabelProps } from './components/Label';
+
 export { Link } from './components/Link';
 export type { LinkProps } from './components/Link';
 
@@ -83,7 +87,6 @@ export { Radio } from './components/Radio';
 export type { RadioProps } from './components/Radio';
 
 export { Select } from './components/Select';
-export type { SelectProps } from './components/Select';
 
 export { Spinner } from './components/Spinner';
 export type { SpinnerProps } from './components/Spinner';

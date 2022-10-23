@@ -84,7 +84,7 @@ exports[`components/Invisible <Invisible /> Run Snapshot Test 1`] = `
 .emotion-4 .Ursa-Textfield>.Ursa-TextfieldPrefix {
   position: absolute;
   left: 0.5rem;
-  color: rgba(128, 128, 128, 1);
+  color: rgba(109, 113, 117, 1);
 }
 
 .emotion-4 .Ursa-Textfield>.Ursa-Input {
@@ -128,7 +128,7 @@ exports[`components/Invisible <Invisible /> Run Snapshot Test 1`] = `
 <form
   className=Ursa-Form emotion-0
   data-testid=test-form
-  id=Ursa-Form-224923aa1a3f3c
+  id="Ursa-Form-0"
   onSubmit={[Function]}
 >
   <span
@@ -136,7 +136,7 @@ exports[`components/Invisible <Invisible /> Run Snapshot Test 1`] = `
   >
     <h2
       className=Ursa-Heading emotion-2
-      id=heading-9a6298045e87a
+      id="Ursa-Heading-1"
     >
       This Title is Hidden
     </h2>
@@ -155,8 +155,8 @@ exports[`components/Invisible <Invisible /> Run Snapshot Test 1`] = `
         >
           <label
             className=Ursa-TextfieldLabel 
-            htmlFor="Ursa-Textfield-0"
-            id="Ursa-TextfieldLabel-1"
+            htmlFor="Ursa-Textfield-2"
+            id="Ursa-TextfieldLabel-3"
           >
             Email
           </label>
@@ -166,9 +166,9 @@ exports[`components/Invisible <Invisible /> Run Snapshot Test 1`] = `
           data-field=email
         >
           <input
-            aria-labelledby="Ursa-TextfieldLabel-2"
+            aria-labelledby="Ursa-TextfieldLabel-4"
             className=Ursa-Input
-            id="Ursa-Textfield-3"
+            id="Ursa-Textfield-5"
             name=email
             onBlur={[Function]}
             onFocus={[Function]}

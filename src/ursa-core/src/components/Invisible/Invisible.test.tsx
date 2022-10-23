@@ -13,6 +13,7 @@ describe('components/Invisible', () => {
       const InvisibleEl = renderer.create(<DefaultInvisible />).toJSON();
       expect(InvisibleEl).toMatchSnapshot();
     });
+
     it('Title is Invisible', () => {
       render(<DefaultInvisible />);
       const headingEl = screen.getByText('This Title is Hidden');
