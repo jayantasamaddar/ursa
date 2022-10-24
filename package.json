@@ -27,6 +27,7 @@
     "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.18.6",
     "@babel/runtime": "^7.19.4",
+    "@changesets/changelog-github": "^0.4.7",
     "@changesets/cli": "^2.25.0",
     "@emotion/babel-plugin": "^11.10.2",
     "@emotion/jest": "^11.10.0",
@@ -88,6 +89,7 @@
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "clean": "turbo run clean",
     "clean:all": "turbo run clean:all",
-    "ts-check": "tsc --noemit"
+    "ts-check": "tsc --noemit",
+    "release": "turbo run build && changeset publish"
   }
 }

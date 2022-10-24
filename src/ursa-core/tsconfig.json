@@ -2,7 +2,11 @@
   "extends": "../../tsconfig.base.json",
   "include": ["./src", "../../config/types"],
   "exclude": [
-    "**/*.(?:story|mock|test|snap).(?:js|ts|jsx|tsx)",
+    "**/*.story.tsx",
+    "**/*.mock.ts",
+    "**/*.test.tsx",
+    "**/*.test.ts",
+    "**/*.snap.ts",
     ".turbo",
     "coverage"
   ],

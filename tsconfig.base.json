@@ -1,9 +1,6 @@
 {
   "exclude": [
     "node_modules",
-    "lib",
-    "esm",
-    "cjs",
     "jest.config.js",
     "config/.storybook/main.js",
     "lib/**/*",

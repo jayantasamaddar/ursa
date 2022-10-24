@@ -8,7 +8,9 @@ import React, {
   useCallback
 } from 'react';
 
-import { Icon, Label, Invisible } from '../..';
+import { Icon } from '../Icon';
+import { Label } from '../Label';
+import { Invisible } from '../Invisible';
 import { SelectMinor } from '@zenius-one/ursa-icons';
 import { generateUniqueID, wrapWithComponent } from '../../utilities';
 import { SelectProps } from '../../types';
