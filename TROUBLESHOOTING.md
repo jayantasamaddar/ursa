@@ -1,13 +1,18 @@
 # Known Issues
 
-- [**Emotion.js** - Problems with **`:first-of-type`**, **`:nth-of-type`**, **`:last-of-type`** and a hacky temporary solution.](https://github.com/emotion-js/emotion/issues/2922)
 - **[`fireEvent.blur(HTMLInputElement)` not working as expected: Selection on focus is not being deselected on blur](https://github.com/testing-library/dom-testing-library/issues/1178)**
+- **[`checked` attribute for radio buttons and checkboxes do not update correctly in the DOM](https://github.com/facebook/react/issues/24439)** -
+  An HTML Radio or Checkbox element that may have the `element.checked === true`
+  attribute, does not see the correct visual implementation in the DOM. The
+  radio button and checkbox function as intended, functionally have the value
+  updated, but the checked attribute doesn't show up on the DOM node. Apparently
+  this is a known issue for now.
 
 ---
 
 # Partially Solved / Work-in-Progress Issues
 
-- [Types **`unknown`**, not read by Jest](https://github.com/storybookjs/testing-react/issues/117) -
+- [Storybook Story Types **`unknown`**, not read by Jest](https://github.com/storybookjs/testing-react/issues/117) -
   Using the following syntax seems to remove the `unknown` error in the test
   files, but it's a verbose, non-elegant solution. The types should infer
   correctly.
@@ -15,6 +20,8 @@
   ```es6
   const BasicComponent: ComponentStoryFn<typeof Component> = Template.bind({});
   ```
+
+- [**Emotion.js** - Problems with **`:first-of-type`**, **`:nth-of-type`**, **`:last-of-type`** and a hacky temporary solution.](https://github.com/emotion-js/emotion/issues/2922)
 
 ---
 
