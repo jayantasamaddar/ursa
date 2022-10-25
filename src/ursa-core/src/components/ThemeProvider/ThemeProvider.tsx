@@ -19,7 +19,7 @@ export interface ThemeProviderProps {
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
-  theme,
+  theme = lightTheme,
   themeOptions: { detect = true } = {}
 }): ReactElement => {
   const colorScheme = detect ? useColorScheme() : 'light';
@@ -45,9 +45,9 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
             box-sizing: border-box;
           }
           :root {
-            color-scheme: ${theme?.color['--ursa-color-scheme']};
+            color-scheme: ${theme.color['--ursa-color-scheme']};
             font-size: 15px;
-            color: ${theme?.color['--ursa-text-primary']};
+            color: ${theme.color['--ursa-text-primary']};
             font-family: 'Roboto', 'Helvetica', sans-serif;
             width: 100%;
             height: 100%;
@@ -81,7 +81,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           table,
           thead,
           tr {
-            border: 1px solid ${theme?.color['--ursa-border-secondary']};
+            border: 1px solid ${theme.color['--ursa-border-secondary']};
           }
           textarea {
             font-family: 'Roboto', 'Helvetica', sans-serif;

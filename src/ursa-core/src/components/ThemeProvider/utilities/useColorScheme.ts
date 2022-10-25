@@ -7,6 +7,7 @@ export const useColorScheme = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>(defaultScheme);
 
   useEffect(() => {
+    if (process.env.NODE_ENV === 'test' && colorScheme) return;
     if (window) {
       const media = window.matchMedia('(prefers-color-scheme: dark)');
       /** Run the first time */

@@ -17,7 +17,6 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "jsxImportSource": "@emotion/react"
+    "jsx": "react"
   }
 }
