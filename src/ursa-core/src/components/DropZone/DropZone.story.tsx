@@ -1,20 +1,11 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
 
 import { DropZone } from '.';
 
 export default {
   title: 'Components/Drop Zone',
-  component: DropZone,
-  decorators: [
-    (Story) => (
-      <ThemeProvider theme={darkTheme}>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: DropZone
 } as ComponentMeta<typeof DropZone>;
 
 const Template: ComponentStory<typeof DropZone> = (args) => {

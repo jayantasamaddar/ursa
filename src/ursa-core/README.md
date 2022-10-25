@@ -1,6 +1,11 @@
-# Ursa Core
+# Ursa
 
-Ursa components library.
+[![npm version](https://img.shields.io/npm/v/@zenius-one/ursa.svg?label=%40zenius%2Fursa&style=flat)](https://www.npmjs.com/package/@zenius-one/ursa)
+[![npm downloads](https://img.shields.io/npm/dm/@zenius-one/ursa?style=flat)](https://www.npmjs.com/package/@zenius-one/ursa)
+
+Ursa is a themeable, but opinionated component library designed for the Zenius
+One ecosystem to create the best experience for users who use Zenius One
+products.
 
 ---
 
@@ -16,66 +21,110 @@ npm install @zenius-one/ursa
 
 ---
 
-## License
+## Usage
 
-See LICENSE.md
+Wrap your main **`App`** component with the **`ThemeProvider`** component.
 
-# Upcoming Releases
+- In `Next.js` this is usually at `pages/_app.tsx`.
+- In `Create-React-App` this is usually at `src/index.ts`.
+- Equivalent for other React frameworks.
 
-### 0.3.0
+**Example:** Usage in `Next.js`. This is the default behaviour where it switches
+from `light` to `dark` themes as the preferred
+**[`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)**
+changes.
 
-- Semantic Versioning to be officially adopted at the time of launch.
+```tsx
+import { ThemeProvider } from '@zenius-one/ursa';
 
-- **FIXED:**
-
-  - Type definitions in the `ButtonGroup` test that were throwing errors during
-    compilation.
-  - For **Developers**: Storybook files can now be saved as
-    `*.stories.(?:ts|js)x?`.
-  - **`Stack`** - Fixed an issue with the alignment.
-
-- **ADDED:**
-
-  - **Components:**
-    - **`Form`** - The HTML Form Element in its unstyled structure.
-    - **`FormLayout`** - Composite Component that allows to group Form elements
-      using nested **`FormLayout.Group`** components and adds Ursa styling.
-  - **Tests:** Invisible, Modal, Stack, Radio, Select.
-  - **Theme:** Color `--ursa-text-tertiary` added.
-
-- **UPDATED:**
-
-  - **Components:**
-    - **`Radio`** - Added a `helpText` prop that allows the radio button to be
-      described in details. Radio button `value` has to be manually added now.
-    - **`Modal`** - Improved usability of the `onChange`, `onClose`, `onClick`
-      functions to Modal elements.
-    - **`Checkbox`** - Improved accessibility. Added padding on the Y-axis.
-      Added a `helpText` prop that allows the Checkbox to be described in
-      details.
-    - **`Select`** - Select now has the same styling as the rest of the form
-      elements and new customizations, including `helpText`.
-  - **Tests:**
-    - Snapshot tests' location and filename.
-    - **`Error`** is fully tested.
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+}
+export default MyApp;
+```
 
 ---
 
-# Releasing and Branching Convention
+## Themes
 
-1. The Ursa team will list the agenda for the next release.
-2. We will be working on the release on a branch with the name in the format:
-   `[workspace]-[version]`. For e.g. if we are working on `ursa-core` and
-   version `0.3.1` the branch name should be `ursa-core-0.3.1`.
-3. We will be completing the tasks on each item on the release agenda as its own
-   commit. If the task is complicated, we may break it down into smaller
-   commits. For example, the commit subjects for a task on the agenda called
-   **`Add X Component`** could look like:
+**`ThemeProvider`** ships with the Ursa **lightTheme** and the **darkTheme**.
+These are the only two officially supported themes at the moment. You can change
+themes programmatically or not, by providing the `ThemeProvider` component the
+`theme` prop.
 
-   - Added `X` Component - Visual Tested on Storybook
-   - Added `X` Component - Unit Tested, Integration Tested
+**Example:** Overriding theme in `Next.js`. This will apply `darkTheme` for all
+times.
 
-4. Only after all tasks of a Release are completed, do we release the version.
-   After the final commit is done to the branch, a pull request maybe raised
-   with the `main` branch and accepted by a moderator. Once the `main` branch is
-   updated the package is automatically published as a release.
+```tsx
+import { ThemeProvider } from '@zenius-one/ursa';
+import { darkTheme } from '@zenius-one/ursa/dist/esm/styles/darkTheme';
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+}
+export default MyApp;
+```
+
+By default, Ursa will auto detect the preferred color scheme of the Operating
+System and switch to a **`light`** or **`dark`** color scheme accordingly.
+
+---
+
+# Custom Themes
+
+Ursa can allow the developers on the Zenius platform using Ursa, to set their
+own custom themes for both `light` and `dark` modes (or any other theme switch
+logic they would like to use).
+
+As mentioned earlier, Ursa will auto detect the preferrer color scheme of the
+Operating System and do the switches. However, you can turn this behaviour off
+by adding the `{ detect: false }` option to `themeOptions` and providing your
+own theme. Ursa ships with a `useColorScheme` React hook that detects the
+preferred color scheme.
+
+**Example:** Using your custom themes that switch based on preferred color
+scheme.
+
+```tsx
+import { customLightTheme, customDarkTheme } from '.path/to/themes';
+import { useColorScheme } from '@zenius-one/ursa';
+
+function MyApp({ Component, pageProps }: AppProps) {
+  const currentScheme = useColorScheme();
+  const selectedScheme =
+    currentScheme === 'dark' ? customDarkTheme : customLightTheme;
+
+  return (
+    <ThemeProvider theme={selectedScheme} themeOptions={{ detect: false }}>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+}
+
+export default MyApp;
+```
+
+> **Note:**
+>
+> - Ursa allows custom themes. However, this means using the theme variables
+>   already defined by the Ursa style system. Currently, only custom colors are
+>   supported. (Documentation has to be expanded on this)
+> - This is a pre-alpha release. Custom themes and the manner of their
+>   implementation may be subject to change.
+
+---
+
+## License
+
+See
+[LICENSE.md](https://github.com/jayantasamaddar/ursa/blob/main/src/ursa-core/LICENSE.md)
+
+---

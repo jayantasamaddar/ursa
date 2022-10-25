@@ -1,3 +1,5 @@
+export type ColorScheme = 'light' | 'dark';
+
 export interface Color {
   '--ursa-color-scheme': string;
   '--ursa-bg-primary': string;

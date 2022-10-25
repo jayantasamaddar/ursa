@@ -8,14 +8,7 @@ import { Button } from '../Button';
 
 export default {
   title: 'Components/Toast',
-  component: Toast,
-  decorators: [
-    (Story) => (
-      <ThemeProvider>
-        <Story />
-      </ThemeProvider>
-    )
-  ]
+  component: Toast
 } as ComponentMeta<typeof Toast>;
 
 const Template: ComponentStory<typeof Toast> = (args) => {

@@ -1,45 +1,31 @@
-# Roadmap
+# About
 
-- Make an Ursa CLI tool:
-
-  ```s
-  # Run unit tests for isolated components with a simple syntax:
-  ursa test [Component Name [...Component Names] ]
-  ```
+This ursa repository is a multi-purpose monorepo made up of NPM packages, VSCode
+Extensions, CLI Tools and websites. Some of these are not yet built but in the
+pipeline.
 
 ---
 
-# Dependencies List
+# Commands
 
-## DevDependencies
+## Install Dependencies and build all Packages
 
-**Configuration**
+```s
+yarn && yarn build
+```
 
-1. **[`yargs`](https://www.npmjs.com/package/yargs)** - Yargs helps you build
-   interactive command line tools, by parsing arguments and generating an
-   elegant user interface.
+---
 
-**Testing**
+## Other Commands
 
-1. **[@testing-library/react](https://www.npmjs.com/package/@testing-library/react)** -
-   Simple and complete React DOM testing utilities that encourage good testing
-   practices.
-2. **[jest](https://www.npmjs.com/package/jest)** - Test Runner and Testing
-   Library.
-3. **[@types/jest]** - Typings for Jest.
-4. **[jest-environment-jsdom](https://www.npmjs.com/package/jest-environment-jsdom)** -
-   Add `jsdom` environment for Jest.
-5. **[@emotion/jest](https://www.npmjs.com/package/@emotion/jest)** - Test React
-   components easily with emotion with the `@emotion/jest/serializer` snapshot
-   serializer.
-6. **[@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom)** -
-   Custom jest matchers to test the state of the DOM.
-7. **[@storybook/testing-react](https://www.npmjs.com/package/@storybook/testing-react)** -
-   Reuse Storybook stories in React tests.
-8. **[@storybook/testing-library](https://www.npmjs.com/package/@testing-library/jest-dom)** -
-   Storybook integration for Testing Library, instrumented for use with the
-   Interactions addon.
-9. **[@storybook/addon-jest](https://www.npmjs.com/package/@testing-library/addon-jest)** -
-   Storybook addon for inspecting Jest unit test results.
+| Command            | Function                                             |
+| ------------------ | ---------------------------------------------------- |
+| `yarn changeset`   | Add a changeset (intention to publish a change).     |
+| `yarn ts-check`    | Check for type errors.                               |
+| `yarn test`        | Test a;; the workspaces.                             |
+| `yarn build:types` | Build only types.                                    |
+| `yarn clean`       | Clean all the cache in all workspaces.               |
+| `yarn clean:all`   | Clean all the cache as well as existing build files. |
+| `yarn format`      | Format all files with prettier.                      |
 
 ---
