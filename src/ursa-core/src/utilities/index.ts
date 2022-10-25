@@ -1,5 +1,6 @@
 export * from './components';
 export * from './generateUniqueID';
+export * from './getColorScheme';
 export * from './getSelectionText';
 export * from './isFileAccepted';
 export * from './select';

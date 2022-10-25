@@ -1,4 +1,4 @@
-export { ThemeProvider } from './components/ThemeProvider';
+export { ThemeProvider, useColorScheme } from './components/ThemeProvider';
 export type { ThemeProviderProps } from './components/ThemeProvider';
 
 export type {

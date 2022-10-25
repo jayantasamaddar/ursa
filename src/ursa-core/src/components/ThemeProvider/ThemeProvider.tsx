@@ -6,19 +6,27 @@ import {
   ThemeProvider as EmotionThemeProvider
 } from '@emotion/react';
 
-import { lightTheme } from '../../styles';
+import { lightTheme, darkTheme } from '../../styles';
+import { useColorScheme } from './utilities';
 
 export interface ThemeProviderProps {
   theme?: Theme;
   children: ReactNode;
+  themeOptions?: {
+    detect?: boolean;
+  };
 }
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({
   children,
-  theme = lightTheme
+  theme,
+  themeOptions: { detect = true } = {}
 }): ReactElement => {
+  const colorScheme = detect ? useColorScheme() : 'light';
+  const selectedTheme =
+    colorScheme === 'light' ? theme || lightTheme : darkTheme;
   return (
-    <EmotionThemeProvider theme={theme}>
+    <EmotionThemeProvider theme={selectedTheme}>
       <Global
         styles={css`
           @font-face {
@@ -37,9 +45,9 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
             box-sizing: border-box;
           }
           :root {
-            color-scheme: ${theme.color['--ursa-color-scheme']};
+            color-scheme: ${theme?.color['--ursa-color-scheme']};
             font-size: 15px;
-            color: ${theme.color['--ursa-text-primary']};
+            color: ${theme?.color['--ursa-text-primary']};
             font-family: 'Roboto', 'Helvetica', sans-serif;
             width: 100%;
             height: 100%;
@@ -73,7 +81,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           table,
           thead,
           tr {
-            border: 1px solid ${theme.color['--ursa-border-secondary']};
+            border: 1px solid ${theme?.color['--ursa-border-secondary']};
           }
           textarea {
             font-family: 'Roboto', 'Helvetica', sans-serif;
