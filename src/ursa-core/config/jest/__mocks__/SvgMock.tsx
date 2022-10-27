@@ -18,16 +18,17 @@ const SvgMock = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
 
 SvgMock.displayName = 'SvgMock';
 
-export const SvgTickMinor = SvgMock;
-export const SvgMinusMinor = SvgMock;
-export const SvgHomeMajor = SvgMock;
 export const SvgAlertMinor = SvgMock;
-export const SvgExternalSmallMinor = SvgMock;
-export const SvgMobileCancelMajor = SvgMock;
+export const SvgChevronUpMinor = SvgMock;
+export const SvgChevronDownMinor = SvgMock;
 export const SvgCircleCancelMajor = SvgMock;
-export const SvgViewMinor = SvgMock;
+export const SvgExternalSmallMinor = SvgMock;
 export const SvgHideMinor = SvgMock;
+export const SvgHomeMajor = SvgMock;
 export const SvgInfoMinor = SvgMock;
-export const SvgVMobileCancelMajor = SvgMock;
+export const SvgMinusMinor = SvgMock;
+export const SvgMobileCancelMajor = SvgMock;
 export const SvgSelectMinor = SvgMock;
+export const SvgTickMinor = SvgMock;
+export const SvgViewMinor = SvgMock;
 export default SvgMock;

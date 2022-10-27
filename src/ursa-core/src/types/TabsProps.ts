@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, KeyboardEvent } from 'react';
 
 type Layout = 'vertical' | 'horizontal';
 
@@ -30,6 +30,8 @@ export interface TabProps {
   className?: string;
   /** onClick to Select Tab */
   onClick: (indx: number) => void;
+  /** Callback when KeyUp */
+  onKeyUp?(event: KeyboardEvent<HTMLButtonElement>): void;
 }
 
 export interface TabPanelProps {
@@ -38,7 +40,7 @@ export interface TabPanelProps {
   /** aria-labelledby attribute. Same as id of the Tab */
   ariaLabelledBy: string;
   /** The content to display inside Tab Panel */
-  content: ReactNode;
+  children: ReactNode;
   /** Tab Panel classname attribute */
   className?: string;
 }

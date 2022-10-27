@@ -1,38 +1,47 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from '@emotion/styled';
 import { TagProps } from '../../types';
 import { MobileCancelMajor } from '@zenius-one/ursa-icons';
 import { Icon } from '../Icon';
+import { UnstyledButton } from '../UnstyledButton';
+import { useTestId } from '../../utilities';
 
-const UrsaTag: FC<TagProps> = ({
+const UrsaTag = ({
   name,
   className,
   onClick,
   onRemove
-}): ReactElement => {
+}: TagProps): ReactElement => {
+  const testid = useTestId('test-tag');
   return (
-    <div className={`UrsaTag ${className || ''}`} onClick={onClick}>
-      <span className="UrsaTagName text-base">{name}</span>
+    <div
+      className={`Ursa-Tag ${className || ''}`}
+      onClick={onClick}
+      {...testid}
+    >
+      <span className="Ursa-TagName">{name}</span>
       {onRemove && (
-        <Icon
+        <UnstyledButton
           className="Ursa-TagCloseButton"
-          source={MobileCancelMajor}
+          ariaLabel={`Remove ${name}`}
           onClick={onRemove}
-        />
+        >
+          <Icon className="Ursa-TagClose" source={MobileCancelMajor} />
+        </UnstyledButton>
       )}
     </div>
   );
 };
 
 export const Tag = styled(UrsaTag)(
-  ({ theme: { color, fontSize, border } }) => `
+  ({ theme: { color, fontSize, border }, onRemove }) => `
         cursor: pointer;
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 0.625rem;
         font-size: ${fontSize['--ursa-font-size-1']};
-        padding: 10px 15px;
+        padding: 0.825em 1.375em;
         background-color: ${color['--ursa-tag-bg-basic']};
         color: ${color['--ursa-tag-text']};
         border-radius: ${border['--ursa-border-radius-2xl']};
@@ -41,10 +50,18 @@ export const Tag = styled(UrsaTag)(
           outline: 1px solid ${color['--ursa-btn-primary']};
         }
 
-        .Ursa-TagCloseButton {
-          & > svg {
-            fill: ${color['--ursa-tag-text']};
-          }
+        ${
+          onRemove &&
+          `.Ursa-TagClose {
+            & > svg {
+              fill: ${color['--ursa-tag-text']};
+              transition: opacity .15s ease-in-out;
+
+              &:hover {
+                fill: ${color['--ursa-black']};
+              }
+            }
+          }`
         }
     `
 );

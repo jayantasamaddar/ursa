@@ -1,5 +1,9 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryFn
+} from '@storybook/react';
 
 import { Stack } from '.';
 import { Tag } from '../Tag';
@@ -54,7 +58,7 @@ const NoWrapTemplate: ComponentStory<typeof Stack> = (args) => (
   </Stack>
 );
 
-export const DefaultStack = Template.bind({});
+export const DefaultStack: ComponentStoryFn<typeof Stack> = Template.bind({});
 DefaultStack.args = {
   vertical: false,
   align: 'center',
@@ -63,7 +67,8 @@ DefaultStack.args = {
   wrap: true
 };
 
-export const Stack_fill_space_evenly = Template.bind({});
+export const Stack_fill_space_evenly: ComponentStoryFn<typeof Stack> =
+  Template.bind({});
 Stack_fill_space_evenly.args = {
   vertical: false,
   align: 'center',
@@ -72,7 +77,7 @@ Stack_fill_space_evenly.args = {
   wrap: true
 };
 
-export const VerticalStack = Template.bind({});
+export const VerticalStack: ComponentStoryFn<typeof Stack> = Template.bind({});
 VerticalStack.args = {
   vertical: true,
   align: 'start',
@@ -81,7 +86,8 @@ VerticalStack.args = {
   wrap: true
 };
 
-export const Stack_with_an_Item_filling_space = StackItemTemplate.bind({});
+export const Stack_with_an_Item_filling_space: ComponentStoryFn<typeof Stack> =
+  StackItemTemplate.bind({});
 Stack_with_an_Item_filling_space.args = {
   vertical: false,
   align: 'center',
@@ -90,7 +96,8 @@ Stack_with_an_Item_filling_space.args = {
   wrap: true
 };
 
-export const HorizontalStack_withNoWrap = NoWrapTemplate.bind({});
+export const HorizontalStack_withNoWrap: ComponentStoryFn<typeof Stack> =
+  NoWrapTemplate.bind({});
 HorizontalStack_withNoWrap.args = {
   justify: 'start',
   spacing: 'loose',
