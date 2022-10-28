@@ -3,6 +3,7 @@ export * from './generateUniqueID';
 export * from './getColorScheme';
 export * from './getSelectionText';
 export * from './isFileAccepted';
+export * from './normalizeBoolean';
 export * from './select';
 export * from './sortBy';
 export * from './target';

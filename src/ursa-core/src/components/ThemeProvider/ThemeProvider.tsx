@@ -91,6 +91,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           }
           button,
           a {
+            font-family: 'Roboto', 'Helvetica', sans-serif;
             cursor: pointer;
           }
           .hidden {

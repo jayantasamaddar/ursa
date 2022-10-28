@@ -3,15 +3,22 @@ import { ReactNode, KeyboardEvent } from 'react';
 type Layout = 'vertical' | 'horizontal';
 
 interface TabItem {
+  /** The unique ID of the Tab */
   id: string;
+  /** The label to display for the Tab */
   label: string;
+  /** The content to display inside the corresponding Tab Panel */
   content?: ReactNode;
+  /** Whether this Tab is selected when initialized  */
   selected?: boolean;
 }
 
 export interface TabsProps {
+  /** The className attribute of the Tabs */
   className?: string;
+  /** Whether Tabs are `vertical` or `horizontal` */
   layout?: Layout;
+  /** The details of each Tab and its corresponding content */
   items: TabItem[];
 }
 
