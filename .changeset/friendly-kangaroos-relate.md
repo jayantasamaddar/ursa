@@ -73,6 +73,7 @@
 
     - Prevented Storybook from being web crawled: Included a `noindex` meta tag,
       to the `manager-head.html` file in `config/.storybook`.
+    - Added Storybook publish to Github pages.
 
 - **UPDATED**:
 
