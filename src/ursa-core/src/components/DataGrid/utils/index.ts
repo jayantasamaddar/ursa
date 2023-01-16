@@ -3,7 +3,7 @@
 /****************************************************************************************/
 
 import {
-  ActionButtons,
+  ActionButtonProps,
   DataGridColumn,
   DataGridRow,
   DataGridFilter
@@ -25,7 +25,7 @@ export const DATAGRID_DEFAULTS = {
 // Validations
 /****************************************************************************************/
 
-export const isValidActions = (actionButtons: ActionButtons) => {
+export const isValidActions = (actionButtons: ActionButtonProps) => {
   const requiredKeys = ['actions'];
   const keys = Object.keys(actionButtons);
 
@@ -34,7 +34,7 @@ export const isValidActions = (actionButtons: ActionButtons) => {
   // }
 
   for (const key of requiredKeys) {
-    if (!actionButtons[key as keyof ActionButtons]) return false;
+    if (!actionButtons[key as keyof ActionButtonProps]) return false;
   }
 
   if (
