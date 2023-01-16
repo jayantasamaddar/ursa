@@ -15,14 +15,18 @@ exports[`components/ButtonGroup Test Default Button Group Snapshot Test Button G
   -ms-flex-positive: 0;
   flex-grow: 0;
   min-width: auto;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
+}
+
+.emotion-0 .Ursa-ButtonContainer {
+  height: 100%;
 }
 
 .emotion-0 .Ursa-ButtonItem:not(:first-of-type) {
@@ -30,12 +34,16 @@ exports[`components/ButtonGroup Test Default Button Group Snapshot Test Button G
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -52,7 +60,15 @@ exports[`components/ButtonGroup Test Default Button Group Snapshot Test Button G
   transition-timing-function: ease-in-out;
 }
 
-.emotion-1:hover {
+.emotion-2:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-2:hover {
   color: "auto";
   background-color: rgba(220, 38, 38, 1);
   border-color: rgba(220, 38, 38, 1);
@@ -61,26 +77,44 @@ exports[`components/ButtonGroup Test Default Button Group Snapshot Test Button G
   white-space: nowrap;
 }
 
-.emotion-1 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-1 .Ursa-Icon {
+.emotion-2 .Ursa-Icon {
   margin: auto;
 }
 
-.emotion-2 {
+.emotion-2>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-2.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-2 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.emotion-4 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -97,7 +131,15 @@ exports[`components/ButtonGroup Test Default Button Group Snapshot Test Button G
   transition-timing-function: ease-in-out;
 }
 
-.emotion-2:hover {
+.emotion-4:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-4:hover {
   color: "auto";
   background-color: #F8F8F8;
   border-color: auto;
@@ -106,17 +148,38 @@ exports[`components/ButtonGroup Test Default Button Group Snapshot Test Button G
   white-space: nowrap;
 }
 
-.emotion-2 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
+.emotion-4 .Ursa-Icon {
+  margin: auto;
 }
 
-.emotion-2 .Ursa-Icon {
-  margin: auto;
+.emotion-4>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-4.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-4 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 <div
@@ -127,14 +190,19 @@ exports[`components/ButtonGroup Test Default Button Group Snapshot Test Button G
     className=Ursa-ButtonItem
   >
     <div
-      className=Ursa-ButtonContainer
+      className=Ursa-ButtonContainer emotion-1
     >
       <button
-        className=Ursa-Button emotion-1
+        className=Ursa-Button emotion-2
         role=button
+        tabIndex={0}
         type=button
       >
-        Cancel
+        <span
+          className=Ursa-ButtonText
+        >
+          Cancel
+        </span>
       </button>
     </div>
   </div>
@@ -142,14 +210,19 @@ exports[`components/ButtonGroup Test Default Button Group Snapshot Test Button G
     className=Ursa-ButtonItem
   >
     <div
-      className=Ursa-ButtonContainer
+      className=Ursa-ButtonContainer emotion-1
     >
       <button
-        className=Ursa-Button emotion-2
+        className=Ursa-Button emotion-4
         role=button
+        tabIndex={0}
         type=button
       >
-        Save
+        <span
+          className=Ursa-ButtonText
+        >
+          Save
+        </span>
       </button>
     </div>
   </div>
@@ -171,36 +244,51 @@ exports[`components/ButtonGroup Test Outline Buttons in a Segmented Group Snapsh
   -ms-flex-positive: 0;
   flex-grow: 0;
   min-width: auto;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
 }
 
-.emotion-0 .Ursa-ButtonItem:nth-of-type(n+2):nth-last-of-type(n+2)>.Ursa-ButtonContainer>button {
+.emotion-0 .Ursa-ButtonContainer {
+  height: 100%;
+}
+
+.emotion-0 .Ursa-ButtonItem:nth-of-type(n+2):nth-last-of-type(n+2)>.Ursa-ButtonContainer>button,
+.emotion-0 .Ursa-ButtonItem:nth-of-type(n+2):nth-last-of-type(n+2)>.Ursa-ButtonContainer>a {
   border-radius: unset;
   margin-right: -1px;
 }
 
-.emotion-0 .Ursa-ButtonItem:last-of-type>.Ursa-ButtonContainer>button {
+.emotion-0 .Ursa-ButtonItem:last-of-type>.Ursa-ButtonContainer>button,
+.emotion-0 .Ursa-ButtonItem:last-of-type>.Ursa-ButtonContainer>a {
   margin-left: 0;
   border-top-left-radius: unset;
   border-bottom-left-radius: unset;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
-.emotion-0 .Ursa-ButtonItem:first-of-type>.Ursa-ButtonContainer>button {
+.emotion-0 .Ursa-ButtonItem:first-of-type>.Ursa-ButtonContainer>button,
+.emotion-0 .Ursa-ButtonItem:first-of-type>.Ursa-ButtonContainer>a {
   margin-right: -1px;
   border-top-right-radius: unset;
   border-bottom-right-radius: unset;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 .emotion-1 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-2 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -217,7 +305,15 @@ exports[`components/ButtonGroup Test Outline Buttons in a Segmented Group Snapsh
   transition-timing-function: ease-in-out;
 }
 
-.emotion-1:hover {
+.emotion-2:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-2:hover {
   color: "auto";
   background-color: transparent;
   border-color: rgba(13, 148, 136, 1);
@@ -226,17 +322,38 @@ exports[`components/ButtonGroup Test Outline Buttons in a Segmented Group Snapsh
   white-space: nowrap;
 }
 
-.emotion-1 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
+.emotion-2 .Ursa-Icon {
+  margin: auto;
 }
 
-.emotion-1 .Ursa-Icon {
-  margin: auto;
+.emotion-2>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-2.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-2 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 <div
@@ -247,14 +364,19 @@ exports[`components/ButtonGroup Test Outline Buttons in a Segmented Group Snapsh
     className=Ursa-ButtonItem
   >
     <div
-      className=Ursa-ButtonContainer
+      className=Ursa-ButtonContainer emotion-1
     >
       <button
-        className=Ursa-Button emotion-1
+        className=Ursa-Button emotion-2
         role=button
+        tabIndex={0}
         type=button
       >
-        Bold
+        <span
+          className=Ursa-ButtonText
+        >
+          Bold
+        </span>
       </button>
     </div>
   </div>
@@ -262,14 +384,19 @@ exports[`components/ButtonGroup Test Outline Buttons in a Segmented Group Snapsh
     className=Ursa-ButtonItem
   >
     <div
-      className=Ursa-ButtonContainer
+      className=Ursa-ButtonContainer emotion-1
     >
       <button
-        className=Ursa-Button emotion-1
+        className=Ursa-Button emotion-2
         role=button
+        tabIndex={0}
         type=button
       >
-        Italic
+        <span
+          className=Ursa-ButtonText
+        >
+          Italic
+        </span>
       </button>
     </div>
   </div>
@@ -277,14 +404,19 @@ exports[`components/ButtonGroup Test Outline Buttons in a Segmented Group Snapsh
     className=Ursa-ButtonItem
   >
     <div
-      className=Ursa-ButtonContainer
+      className=Ursa-ButtonContainer emotion-1
     >
       <button
-        className=Ursa-Button emotion-1
+        className=Ursa-Button emotion-2
         role=button
+        tabIndex={0}
         type=button
       >
-        Underline
+        <span
+          className=Ursa-ButtonText
+        >
+          Underline
+        </span>
       </button>
     </div>
   </div>
@@ -292,14 +424,19 @@ exports[`components/ButtonGroup Test Outline Buttons in a Segmented Group Snapsh
     className=Ursa-ButtonItem
   >
     <div
-      className=Ursa-ButtonContainer
+      className=Ursa-ButtonContainer emotion-1
     >
       <button
-        className=Ursa-Button emotion-1
+        className=Ursa-Button emotion-2
         role=button
+        tabIndex={0}
         type=button
       >
-        Strikethrough
+        <span
+          className=Ursa-ButtonText
+        >
+          Strikethrough
+        </span>
       </button>
     </div>
   </div>

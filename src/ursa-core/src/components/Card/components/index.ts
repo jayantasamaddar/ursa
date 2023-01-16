@@ -1,1 +1,2 @@
-export * from './CardMedia';
+export * from './CardHeader';
+export * from './CardSection';

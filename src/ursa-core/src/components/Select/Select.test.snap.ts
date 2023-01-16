@@ -73,18 +73,14 @@ exports[`components/Select <DefaultSelect /> Snapshot Test 1`] = `
 
 .emotion-2 {
   display: block;
-  height: 0.9375rem;
-  width: 0.9375rem;
+  height: 1.25rem;
+  width: 1.25rem;
   max-height: 100%;
   max-width: 100%;
 }
 
 .emotion-2 svg {
   fill: currentColor;
-  -webkit-transform: scale(2);
-  -moz-transform: scale(2);
-  -ms-transform: scale(2);
-  transform: scale(2);
   background-color: none;
 }
 

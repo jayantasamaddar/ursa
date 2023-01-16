@@ -13,6 +13,7 @@ export const darkTheme = {
     '--ursa-backdrop': 'rgba(15, 23, 42, 1)',
     '--ursa-border-primary': 'rgba(71, 85, 105, 1)',
     '--ursa-nav-bg-primary': 'rgba(22, 78, 99, 1)',
+    '--ursa-action-pressed': 'rgba(241, 242, 243, 1)',
     '--ursa-nav-item-bg-active': 'rgba(204, 251, 241, 1)',
     '--ursa-nav-item-bg-hovered': 'rgba(21, 94, 117, 1)'
   }

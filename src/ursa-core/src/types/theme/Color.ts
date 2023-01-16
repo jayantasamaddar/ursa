@@ -7,6 +7,10 @@ export interface Color {
   '--ursa-text-primary': string;
   '--ursa-text-secondary': string;
   '--ursa-text-tertiary': string;
+  '--ursa-text-success': string;
+  '--ursa-text-warning': string;
+  '--ursa-text-error': string;
+  '--ursa-text-subdued': string;
   '--ursa-btn-primary': string;
   '--ursa-btn-primary-hovered': string;
   '--ursa-btn-basic': string;
@@ -17,6 +21,7 @@ export interface Color {
   '--ursa-link-primary-hovered': string;
   '--ursa-border-primary': string;
   '--ursa-border-secondary': string;
+  '--ursa-action-pressed': string;
   '--ursa-nav-bg-primary': string;
   '--ursa-nav-item-bg-active': string;
   '--ursa-nav-item-bg-hovered': string;
@@ -27,6 +32,7 @@ export interface Color {
   '--ursa-badge-img-bg': string;
   '--ursa-accent-color': string;
   '--ursa-accent-color-hovered': string;
+  '--ursa-neutral': string;
   '--ursa-white': string;
   '--ursa-black': string;
 }

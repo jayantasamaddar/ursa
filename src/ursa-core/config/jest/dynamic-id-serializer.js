@@ -12,7 +12,8 @@ const ids = [
   'Ursa-SelectLabel-',
   'Ursa-SelectHelpText-',
   'Ursa-Textfield-',
-  'Ursa-TextfieldLabel-'
+  'Ursa-TextfieldLabel-',
+  'Ursa-Tooltip-'
 ];
 const regExp = new RegExp(`^(?:${ids.join('|')})`);
 

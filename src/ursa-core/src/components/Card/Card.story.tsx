@@ -1,5 +1,9 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import {
+  ComponentMeta,
+  ComponentStory,
+  ComponentStoryFn
+} from '@storybook/react';
 import { Card } from './Card';
 
 export default {
@@ -7,20 +11,65 @@ export default {
   component: Card
 } as ComponentMeta<typeof Card>;
 
-const fieldsObj = {
-  email: 'jayanta@zenius.one',
-  phone: '+91-9888888888'
+const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
+
+export const BasicCard: ComponentStoryFn<typeof Card> = Template.bind({});
+BasicCard.args = {
+  title: 'Order Information',
+  children: <p>View a summary of Order Information</p>,
+  sectioned: true
 };
 
-const fieldsData = Object.entries(fieldsObj);
+export const CardWithHeaderActions: ComponentStoryFn<typeof Card> =
+  Template.bind({});
+CardWithHeaderActions.args = {
+  title: 'Additional Information',
+  children: (
+    <p>
+      Add additional shipping information that the delivery partners can use.
+    </p>
+  ),
+  sectioned: true,
+  actions: [{ label: 'Add Info', onAction: () => alert('Add info') }]
+};
 
-const Template: ComponentStory<typeof Card> = ({ fields, ...args }) => (
-  <Card {...args} fields={fieldsData} />
-);
+export const CardWithFooterActions: ComponentStoryFn<typeof Card> =
+  Template.bind({});
+CardWithFooterActions.args = {
+  title: 'Shipment Information',
+  children: (
+    <Card.Section title="Items">
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+      </ul>
+    </Card.Section>
+  ),
+  primaryFooterAction: {
+    label: 'Add Tracking Number',
+    onAction: () => alert('Add Tracking Number')
+  },
+  secondaryFooterActions: [{ label: 'Print', onAction: () => alert('Print') }]
+};
 
-export const BasicCard = Template.bind({});
-
-BasicCard.args = {
-  name: 'Jayanta Samaddar'
-  //   image: "https://via.placeholder.com/150",
+export const CardWithMultipleSections: ComponentStoryFn<typeof Card> =
+  Template.bind({});
+CardWithMultipleSections.args = {
+  title: 'Order Information',
+  children: (
+    <>
+      <Card.Section title="Items">
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+        </ul>
+      </Card.Section>
+      <Card.Section title="Items">
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+        </ul>
+      </Card.Section>
+    </>
+  )
 };

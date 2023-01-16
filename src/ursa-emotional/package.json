@@ -1,0 +1,8 @@
+{
+  "name": "emotionaljs",
+  "version": "0.0.1",
+  "description": "Emotion Animation Library or Emotional is a multi-faceted animation library for React using Emotion. Comes with hooks to quickly access existing presets or scaffold new complex animations for use with CSS-in-JS object styles. Also comes with React components to wrap other components to add animation without any setup.",
+  "main": "index.ts",
+  "author": "Jayanta Samaddar <jayanta@zenius.one>",
+  "license": "See LICENSE.md"
+}

@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 export interface DataGridFilter {
   [key: string]: string | undefined;
 }
@@ -47,10 +49,21 @@ interface DataGridAction {
   /** Visible label of the action */
   label: string;
   /** Visible label attribute of the action */
-  onClick?: () => void;
+  onAction?: () => void;
 }
 
-export interface ActionButtons {
+export interface ActionButtonProps {
+  /** Actions that can be taken based on the data available in the Data Grid */
+  actions: DataGridAction[];
+  /** Truncate actions after a certain number of actions */
+  truncateAfter?: number;
+  /** Visible label for the truncated actions */
+  truncateLabel?: string;
+}
+
+export interface ActionBarProps {
+  /** The number of selected rows */
+  controller: ReactElement | null;
   /** Actions that can be taken based on the data available in the Data Grid */
   actions: DataGridAction[];
   /** Truncate actions after a certain number of actions */
@@ -71,7 +84,7 @@ export interface DataGridProps {
   /** Rows visible per page before pagination */
   rowsPerPage?: number;
   /** Action buttons available for the DataGrid */
-  actionButtons?: ActionButtons;
+  actionButtons?: ActionButtonProps;
   /** Trigger When a row is selected or deselected */
   onSelectChange?: (selectedRows: DataGridRow[] | []) => void;
 }

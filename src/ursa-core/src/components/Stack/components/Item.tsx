@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode } from 'react';
+import React, { ReactElement } from 'react';
 import styled from '@emotion/styled';
 import { StackProps } from '../../../types';
 
@@ -6,10 +6,10 @@ export interface StackItemProps extends StackProps {
   fill?: boolean;
 }
 
-const UrsaStackItem: FC<StackItemProps> = ({
+const UrsaStackItem = ({
   className,
   children
-}): ReactElement => {
+}: StackItemProps): ReactElement => {
   return <div className={`Ursa-StackItem ${className || ''}`}>{children}</div>;
 };
 

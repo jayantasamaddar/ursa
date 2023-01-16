@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { generateUniqueID } from '../../utilities';
 
@@ -18,12 +18,12 @@ export interface HeadingProps {
   className?: string;
 }
 
-const UnstyledHeading: FC<HeadingProps> = ({
+const UnstyledHeading = ({
   element: Element = 'h2',
   children,
   className,
   id
-}): ReactElement => {
+}: HeadingProps): ReactElement => {
   const _id = id || generateUniqueID('Ursa-Heading');
 
   return (

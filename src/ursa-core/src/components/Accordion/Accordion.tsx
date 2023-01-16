@@ -1,74 +1,57 @@
-import React, { FC, ReactElement, useState } from 'react';
-import styled from '@emotion/styled';
-import { ChevronUpMinor, ChevronDownMinor } from '@zenius-one/ursa-icons';
-import { Icon } from '../Icon';
-import { UnstyledButton } from '../UnstyledButton';
+import React, { useState, ReactElement, ReactNode } from 'react';
+import { AccordionHeader, AccordionPanel } from './components';
 
 export interface AccordionProps {
+  /** The className attribute of the Accordion element */
   className?: string;
+  /** The details of each Accordion Item and its corresponding content */
   items: {
+    /** The unique id of the Accordion item */
+    id: string;
+    /** The label to display for the Accordion Item */
     label: string;
-    content?: ReactElement;
+    /** The content to display for the Accordion Item */
+    content?: ReactNode;
+    /** Whether Accordion Item is active */
     active?: boolean;
   }[];
 }
 
-const UrsaAccordion: FC<AccordionProps> = ({
+export const Accordion = ({
   className,
   items
-}): ReactElement => {
+}: AccordionProps): ReactElement => {
   const [data, setData] = useState(
     items?.map((item) => ({ ...item, active: item.active ?? false })) ?? []
   );
 
   const toggleActive = (indx: number) =>
-    setData((prev) => [
-      ...prev.slice(0, indx),
-      { ...prev[indx], active: !prev[indx].active },
-      ...prev.slice(indx + 1)
-    ]);
+    setData((prev) =>
+      prev.map((item, i) => ({
+        ...item,
+        active: indx === i ? !item.active : item.active
+      }))
+    );
 
   return (
-    <div className={`Ursa-Accordion ${className || ''}`}>
-      {data?.map(({ label, content, active }, indx) => (
+    <div className={`Ursa-AccordionGroup ${className || ''}`}>
+      {data?.map(({ id, label, content, active }, indx) => (
         <div className="Ursa-AccordionItem" key={indx}>
-          <div
-            className="Ursa-AccordionHeader"
+          <AccordionHeader
+            id={id}
+            label={label}
+            active={active}
             onClick={() => toggleActive(indx)}
+          />
+          <AccordionPanel
+            id={`${id}-label`}
+            ariaLabelledBy={id}
+            active={active}
           >
-            <h4>{label}</h4>
-            <Icon
-              source={active ? ChevronUpMinor : ChevronDownMinor}
-              size="large"
-            />
-          </div>
-          {active && <div className="Ursa-AccordionPanel">{content}</div>}
+            {content}
+          </AccordionPanel>
         </div>
       ))}
     </div>
   );
 };
-
-export const Accordion = styled(UrsaAccordion)(
-  ({ theme: { color } }) => `
-        .Ursa-AccordionHeader {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            padding: 4px;
-            border-bottom: 1px solid ${color['--ursa-border-primary']};
-
-            & > h4 {
-              flex-grow: 1;
-              color: ${color['--ursa-text-primary']};
-              padding: 20px 10px;
-            }
-        }
-        .Ursa-AccordionPanel {
-            display: flex;
-            color: ${color['--ursa-text-primary']};
-            padding: 20px 4px;
-        }
-    `
-);

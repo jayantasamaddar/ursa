@@ -1,38 +1,39 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement, forwardRef } from 'react';
 import styled from '@emotion/styled';
 import { TabProps } from '../../../types';
 
-const UrsaTab: FC<TabProps> = ({
-  id,
-  label,
-  selected,
-  className,
-  index,
-  onClick
-}): ReactElement => {
-  return (
-    <li
-      className={`Ursa-TabHeadItem ${selected ? 'selected' : ''} ${
-        className || ''
-      }`}
-      role="presentation"
-    >
-      <button
-        className="Ursa-Tab"
-        id={id}
-        type="button"
-        role="tab"
-        aria-label={label}
-        aria-selected={selected ? 'true' : 'false'}
-        aria-controls={`${id}-panel`}
-        onClick={() => onClick(index)}
-        tabIndex={selected ? 0 : -1}
+const UrsaTab = forwardRef<HTMLButtonElement, TabProps>(
+  (
+    { id, label, selected, className, index, onClick, onKeyUp },
+    ref
+  ): ReactElement => {
+    return (
+      <li
+        className={`Ursa-TabHeadItem ${selected ? 'selected' : ''} ${
+          className || ''
+        }`}
+        role="presentation"
       >
-        {label}
-      </button>
-    </li>
-  );
-};
+        <button
+          className="Ursa-Tab"
+          id={id}
+          ref={ref}
+          type="button"
+          role="tab"
+          aria-label={label}
+          aria-selected={selected ? 'true' : 'false'}
+          aria-controls={`${id}-panel`}
+          onClick={() => onClick(index)}
+          onKeyUp={onKeyUp}
+          tabIndex={selected ? 0 : -1}
+          data-index={index}
+        >
+          <span className="Ursa-TabTitle">{label}</span>
+        </button>
+      </li>
+    );
+  }
+);
 
 export const Tab = styled(UrsaTab)(
   ({ theme: { color }, layout, selected }) => `
@@ -67,6 +68,9 @@ export const Tab = styled(UrsaTab)(
                 }`
               : '0'
           };
+          transition-property: color, border-bottom, border-left;
+          transition-duration: 0.15s;
+          transition-timing-function: ease-in-out;
       }
       &:hover {
           color: ${color['--ursa-text-primary']};

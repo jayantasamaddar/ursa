@@ -2,12 +2,15 @@ import styled from '@emotion/styled';
 import React, { FC, ReactElement, ReactNode } from 'react';
 
 export interface BadgeProps {
+  /** The main display content for the badge */
   children?: ReactNode;
+  /** The className attribute of the Badge component */
   className?: string;
   badgeContent?: number;
   color?: string;
   invisible?: boolean;
   showZero?: boolean;
+  /** The maximum number before the badge content truncates */
   max?: number;
   variant?: 'dot' | 'text' | 'outline';
   anchorOrigin?: {
@@ -16,19 +19,17 @@ export interface BadgeProps {
   };
 }
 
-const UrsaBadge: FC<BadgeProps> = (props): ReactElement => {
-  const {
-    children,
-    className,
-    badgeContent,
-    color,
-    invisible,
-    showZero,
-    max,
-    variant,
-    anchorOrigin
-  } = props;
-
+const UrsaBadge = ({
+  children,
+  className,
+  badgeContent,
+  color,
+  invisible,
+  showZero,
+  max,
+  variant,
+  anchorOrigin
+}: BadgeProps): ReactElement => {
   const content =
     badgeContent && max && badgeContent > max ? `${max}+` : badgeContent;
 

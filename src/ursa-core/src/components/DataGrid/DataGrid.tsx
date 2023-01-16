@@ -13,7 +13,7 @@ import React, {
 } from 'react';
 
 import {
-  ActionButtons as ActionButtonProps,
+  ActionButtonProps,
   DataGridProps,
   DataGridColumn,
   DataGridRow,
@@ -46,8 +46,9 @@ import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Link } from '../Link';
 import { Tag } from '../Tag';
-import { UnstyledButton } from '../UnstyledButton';
+import { Button } from '../Button';
 import { generateUniqueID } from '../../utilities';
+import { ActionBar } from './components/ActionButtons/ActionBar';
 
 const UrsaDataGrid: FC<DataGridProps> = ({
   views = DATAGRID_DEFAULTS.views,
@@ -246,6 +247,23 @@ const UrsaDataGrid: FC<DataGridProps> = ({
     return;
   }, [onSelectChange, selectedRows]);
 
+  /**************************************************************************************************/
+  //    Content Markup
+  /*************************************************************************************************/
+
+  const controllerMarkup =
+    selectedRows?.length !== 0 ? (
+      <Button className="Ursa-DataGridControllerButton">
+        <Checkbox
+          className="Ursa-DataGridRowController"
+          name="ursa-controller"
+          label={`${selectedRows?.length} selected`}
+          checked={checked}
+          onChange={selectAll}
+        />
+      </Button>
+    ) : null;
+
   /*****************************************************************************************/
   // Return JSX
   /*****************************************************************************************/
@@ -301,36 +319,26 @@ const UrsaDataGrid: FC<DataGridProps> = ({
       </div>
 
       {selectedRows?.length !== 0 && (
-        <div className="Ursa-DataGridActionBar">
-          <div className="Ursa-DataGridRowControllerContainer hover:bg-sky-600">
-            {/* <button className="Ursa-DataGridControllerButton p-10">
-              <div className="pr-10 inline-block">
-                <Checkbox
-                  className="Ursa-DataGridRowController"
-                  name="ursa-controller"
-                  label={`${selectedRows?.length} selected`}
-                  checked={checked}
-                  onChange={selectAll}
-                />
-              </div> 
-              
-            </button>*/}
+        // <ButtonGroup segmented connectedBottom>
+        //   <Button className="Ursa-DataGridControllerButton">
+        //     <Checkbox
+        //       className="Ursa-DataGridRowController"
+        //       name="ursa-controller"
+        //       label={`${selectedRows?.length} selected`}
+        //       checked={checked}
+        //       onChange={selectAll}
+        //     />
+        //   </Button>
 
-            <UnstyledButton className="Ursa-DataGridControllerButton">
-              <Checkbox
-                className="Ursa-DataGridRowController"
-                name="ursa-controller"
-                label={`${selectedRows?.length} selected`}
-                checked={checked}
-                onChange={selectAll}
-              />
-            </UnstyledButton>
-          </div>
+        //   {isValidActions(actionButtons as ActionButtonProps) && (
+        //     <ActionButtons {...(actionButtons as ActionButtonProps)} />
+        //   )}
+        // </ButtonGroup>
 
-          {isValidActions(actionButtons as ActionButtonProps) && (
-            <ActionButtons {...(actionButtons as ActionButtonProps)} />
-          )}
-        </div>
+        <ActionBar
+          controller={controllerMarkup}
+          {...(actionButtons as ActionButtonProps)}
+        />
       )}
 
       <div className="Ursa-DataGridContainer">
@@ -488,52 +496,31 @@ export const DataGrid = styled(UrsaDataGrid)(
           cursor: pointer;
         }
 
-        .Ursa-DataGridActionBar {
-          display: grid;
-          grid-template-columns: repeat(8, minmax(0, 1fr));
+        .Ursa-DataGridControllerButton {
+          font-size: ${fontSize['--ursa-font-size-5']};
+          padding-left: 10px;
 
-          .Ursa-DataGridRowControllerContainer {
-            border: 1px solid ${color['--ursa-border-secondary']};
-            border-top-left-radius: 4px;
-            position: relative;
-
-            & > .Ursa-DataGridControllerButton {
-              display: inline-flex;
-              align-items: center;
-              justify-content: stretch;
-              flex-grow: 1;
-              padding: 0;
-              margin: 0;
-              width: 100%;
-              height: 100%;
-            }
-
-            .Ursa-DataGridControllerButton {
-              display: inline-flex;
-              padding: 10px 6px 10px 10px;
-              width: 100%;
-              font-size: ${fontSize['--ursa-font-size-4']};
-              justify-content: flex-start;
-              background-color: transparent;
-              border-width: 0;
-
-              .Ursa-LabelText {
-                color: ${color['--ursa-text-secondary']};
-                cursor: pointer;
-                transition: color 0.1s ease-in-out;
-
-                &:hover {
-                  color: ${color['--ursa-text-primary']};
-                }
-              }
-            }
-            
-            
+          .Ursa-CheckboxLabelText {
+            font-size: ${fontSize['--ursa-font-size-3']};
           }
         }
 
+        .Ursa-DataGridActionButtons > .Ursa-ButtonItem > .Ursa-PopoverWrapper {
+          height: 100%;
+        }
+
+        .Ursa-DataGridActionButtons > 
+        .Ursa-ButtonItem > 
+        .Ursa-PopoverWrapper >
+        .Ursa-ButtonContainer >
+        .Ursa-Button {
+          border-top-left-radius: unset;
+          border-bottom-left-radius: unset;
+          border-bottom-right-radius: unset;
+        }
+
         .Ursa-DataGridColumn {
-          padding: 10px;
+          padding: 0.875rem 10px;
         }
 
         .Ursa-DataGridContainer {
