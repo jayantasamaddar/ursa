@@ -95,12 +95,16 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
 }
 
 .emotion-4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-5 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -117,7 +121,15 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
   transition-timing-function: ease-in-out;
 }
 
-.emotion-4:hover {
+.emotion-5:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-5:hover {
   color: "auto";
   background-color: rgba(13, 148, 136, 1);
   border-color: rgba(13, 148, 136, 1);
@@ -126,17 +138,38 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
   white-space: nowrap;
 }
 
-.emotion-4 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
+.emotion-5 .Ursa-Icon {
+  margin: auto;
 }
 
-.emotion-4 .Ursa-Icon {
-  margin: auto;
+.emotion-5>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-5.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-5 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 <form
@@ -244,14 +277,19 @@ exports[`components/Form <BasicForm /> Run Snapshot Test 1`] = `
     </div>
   </div>
   <div
-    className=Ursa-ButtonContainer
+    className=Ursa-ButtonContainer emotion-4
   >
     <button
-      className=Ursa-Button emotion-4
+      className=Ursa-Button emotion-5
       role=button
+      tabIndex={0}
       type=submit
     >
-      Submit
+      <span
+        className=Ursa-ButtonText
+      >
+        Submit
+      </span>
     </button>
   </div>
 </form>

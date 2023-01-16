@@ -285,37 +285,33 @@ export const views = [
   }
 ];
 
-const shipOrders = () => {
-  return console.log('Ship Orders');
-};
+const shipOrders = () => console.log('Ship Orders');
 
-const capturePayments = () => {
-  return console.log('Capture Payments');
-};
+const capturePayments = () => console.log('Capture Payments');
 
 export const actions = [
   {
     id: 'ship_orders',
     name: 'ship_orders',
     label: 'Ship Orders',
-    onClick: shipOrders
+    onAction: shipOrders
   },
   {
     id: 'capture_payments',
     name: 'capture_payments',
     label: 'Capture Payments',
-    onClick: capturePayments
+    onAction: capturePayments
   },
   {
     id: 'fulfill_orders',
     name: 'fulfill_orders',
     label: 'Fulfill Orders',
-    onClick: shipOrders
+    onAction: shipOrders
   },
   {
     id: 'print_orders',
     name: 'print_orders',
     label: 'Print Orders',
-    onClick: capturePayments
+    onAction: capturePayments
   }
 ];

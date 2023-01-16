@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import styled from '@emotion/styled';
 import { Icon } from '../Icon';
 import { AlertMinor } from '@zenius-one/ursa-icons';
@@ -28,12 +28,12 @@ const StyledError = styled.p(
     `
 );
 
-export const Error: FC<ErrorProps> = ({
+export const Error = ({
   id,
   children,
   className,
   icon
-}): ReactElement => {
+}: ErrorProps): ReactElement => {
   const _id = id || generateUniqueID('error');
   return (
     <StyledError

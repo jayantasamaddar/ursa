@@ -12,12 +12,12 @@ interface CardMediaProps {
   alt?: string;
 }
 
-export const CardMedia: FC<CardMediaProps> = ({
+export const CardMedia = ({
   image: ImageComponent,
   height,
   width,
   alt
-}): ReactElement => {
+}: CardMediaProps): ReactElement => {
   let imageType: 'url' | 'function';
 
   if (typeof ImageComponent === 'string') {

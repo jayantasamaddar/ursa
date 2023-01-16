@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { ThemeProvider } from '../ThemeProvider';
-import { darkTheme } from '../../styles';
 
 import { Toast } from '.';
 import { Button } from '../Button';
@@ -12,18 +10,28 @@ export default {
 } as ComponentMeta<typeof Toast>;
 
 const Template: ComponentStory<typeof Toast> = (args) => {
-  const [openToast, setOpenToast] = useState(false);
+  const [active, setActive] = useState(false);
+
+  const clickHandler = () => setActive((prev) => !prev);
 
   return (
     <>
-      <Button onClick={() => setOpenToast(true)}>Show Toast</Button>
-      {openToast && <Toast {...args} />}
+      <Button primary onClick={clickHandler}>
+        Show Toast
+      </Button>
+      {active && <Toast onDismiss={clickHandler} {...args} />}
     </>
   );
 };
 
 export const BasicToast = Template.bind({});
 BasicToast.args = {
-  content: 'Order updated',
-  duration: 5000
+  children: 'Order updated'
+};
+
+export const ToastWithProgressBarAndPauseOnHover = Template.bind({});
+ToastWithProgressBarAndPauseOnHover.args = {
+  children: 'Order updated',
+  progress: true,
+  pauseOnHover: true
 };

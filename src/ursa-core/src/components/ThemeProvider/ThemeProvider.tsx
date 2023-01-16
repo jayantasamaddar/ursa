@@ -86,9 +86,6 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
           textarea {
             font-family: 'Roboto', 'Helvetica', sans-serif;
           }
-          button + button {
-            margin: 0;
-          }
           button,
           a {
             font-family: 'Roboto', 'Helvetica', sans-serif;

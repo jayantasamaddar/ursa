@@ -26,7 +26,7 @@ const Template: ComponentStory<typeof DataGrid> = (args) => {
       </Stack>
 
       <DataGrid
-        className="my-20"
+        className="Orders"
         views={views}
         rows={rows}
         columns={columns}

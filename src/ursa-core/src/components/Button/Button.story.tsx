@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import {
   ComponentStory,
   ComponentMeta,
@@ -163,4 +163,54 @@ Outline_Button_with_External_Link.args = {
   uppercase: false,
   url: 'https://www.github.com/jayantasamaddar/ursa',
   external: true
+};
+
+export const IconLinkButton: ComponentStoryFn<typeof Button> =
+  IconButtonTemplate.bind({});
+IconLinkButton.args = {
+  children: 'View on GitHub',
+  primary: true,
+  url: 'https://www.github.com/jayantasamaddar/ursa'
+};
+
+const DisclosureTemplate: ComponentStory<typeof Button> = (args) => {
+  const [active, setActive] = useState(false);
+
+  const toggleDisclosure = () => setActive((prev) => !prev);
+
+  return (
+    <Button
+      disclosure={active ? 'up' : 'down'}
+      onClick={toggleDisclosure}
+      {...args}
+    />
+  );
+};
+
+export const ButtonWithDisclosure: ComponentStoryFn<typeof Button> =
+  DisclosureTemplate.bind({});
+ButtonWithDisclosure.args = {
+  children: 'More'
+};
+
+export const ButtonWithConnectedDisclosure: ComponentStoryFn<typeof Button> =
+  Template.bind({});
+ButtonWithConnectedDisclosure.args = {
+  children: 'More Actions',
+  primary: true,
+  connectedDisclosure: {
+    ariaLabel: 'More Actions',
+    actions: [
+      {
+        id: '1',
+        label: 'Import File',
+        onAction: () => console.log('Action: Import File')
+      },
+      {
+        id: '2',
+        label: 'Export File',
+        onAction: () => console.log('Action: Export File')
+      }
+    ]
+  }
 };
