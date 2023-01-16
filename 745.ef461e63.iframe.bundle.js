@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkursa=self.webpackChunkursa||[]).push([[745],{"./node_modules/react-dom/client.js":(t,e,a)=>{var o=a("./node_modules/react-dom/index.js");if(!0)e.createRoot=o.createRoot,e.hydrateRoot=o.hydrateRoot;else var s}}]);
