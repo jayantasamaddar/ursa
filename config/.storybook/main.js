@@ -32,7 +32,8 @@ module.exports = {
   //   },
   // },
   core: { builder: 'webpack5' },
-  stories: ['../../examples/**/*.stories.@(js|jsx|ts|tsx)', storiesPath],
+  // '../../examples/**/*.stories.@(js|jsx|ts|tsx)'
+  stories: [storiesPath],
   addons: [
     'storybook-addon-turbo-build',
     '@storybook/addon-a11y',
