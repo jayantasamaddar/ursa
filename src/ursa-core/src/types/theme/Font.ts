@@ -16,4 +16,5 @@ export interface FontSize {
   '--ursa-font-size-11': string;
   '--ursa-font-size-12': string;
   '--ursa-font-size-13': string;
+  '--ursa-font-size-14': string;
 }

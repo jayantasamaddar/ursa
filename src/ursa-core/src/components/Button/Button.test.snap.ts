@@ -2,12 +2,16 @@
 
 exports[`components/Button Renders Button Renders Disabled Button 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -24,7 +28,15 @@ exports[`components/Button Renders Button Renders Disabled Button 1`] = `
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: transparent;
   border-color: rgba(203, 213, 225, 1);
@@ -33,41 +45,71 @@ exports[`components/Button Renders Button Renders Disabled Button 1`] = `
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     disabled={true}
     role=button
+    tabIndex={0}
     type=button
   >
-    Button
+    <span
+      className=Ursa-ButtonText
+    >
+      Button
+    </span>
   </button>
 </div>
 `;
 
 exports[`components/Button Renders Button Renders FullWidth Button 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: 100%;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -84,7 +126,15 @@ exports[`components/Button Renders Button Renders FullWidth Button 1`] = `
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: rgba(13, 148, 136, 1);
   border-color: rgba(13, 148, 136, 1);
@@ -93,40 +143,70 @@ exports[`components/Button Renders Button Renders FullWidth Button 1`] = `
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     role=button
+    tabIndex={0}
     type=button
   >
-    Button
+    <span
+      className=Ursa-ButtonText
+    >
+      Button
+    </span>
   </button>
 </div>
 `;
 
 exports[`components/Button Renders Button Renders Loading Button 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -143,7 +223,15 @@ exports[`components/Button Renders Button Renders Loading Button 1`] = `
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: rgba(13, 148, 136, 1);
   border-color: rgba(13, 148, 136, 1);
@@ -152,38 +240,60 @@ exports[`components/Button Renders Button Renders Loading Button 1`] = `
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
-.emotion-1 {
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.emotion-2 {
   -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
 }
 
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
     aria-busy={true}
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     role=button
+    tabIndex={0}
     type=button
   >
     <span
       className=Ursa-Spinner
     >
       <svg
-        className=emotion-1
+        className=emotion-2
         data-icon=spinner
         data-testid=spinner
         fill=white
@@ -203,12 +313,16 @@ exports[`components/Button Renders Button Renders Loading Button 1`] = `
 
 exports[`components/Button Renders Button Test Icon Button Renders IconButton Button 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -225,7 +339,15 @@ exports[`components/Button Renders Button Test Icon Button Renders IconButton Bu
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: rgba(13, 148, 136, 1);
   border-color: rgba(13, 148, 136, 1);
@@ -234,55 +356,73 @@ exports[`components/Button Renders Button Test Icon Button Renders IconButton Bu
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
-.emotion-1 {
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.emotion-2 {
   display: block;
-  height: 0.9375rem;
-  width: 0.9375rem;
+  height: 1rem;
+  width: 1rem;
   max-height: 100%;
   max-width: 100%;
 }
 
-.emotion-1 svg {
+.emotion-2 svg {
   fill: currentColor;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
   background-color: none;
 }
 
-.emotion-1:hover {
+.emotion-2:hover {
   color: auto;
   background-color: auto;
 }
 
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     disabled={false}
     role=button
+    tabIndex={0}
     type=button
   >
     <span
-      className=Ursa-ButtonIconLabel
+      className=Ursa-ButtonIcon
     >
       <span
-        className=Ursa-Icon emotion-1
+        className=Ursa-Icon emotion-2
         id="Ursa-Icon-0"
       >
         <img
@@ -294,7 +434,11 @@ exports[`components/Button Renders Button Test Icon Button Renders IconButton Bu
         />
       </span>
        
-      Home
+      <span
+        className=Ursa-ButtonText
+      >
+        Home
+      </span>
     </span>
   </button>
 </div>
@@ -302,12 +446,16 @@ exports[`components/Button Renders Button Test Icon Button Renders IconButton Bu
 
 exports[`components/Button Renders Button Test Icon Only Button Run Snapshot Test 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: auto;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -324,7 +472,15 @@ exports[`components/Button Renders Button Test Icon Only Button Run Snapshot Tes
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: rgba(13, 148, 136, 1);
   border-color: rgba(13, 148, 136, 1);
@@ -333,52 +489,70 @@ exports[`components/Button Renders Button Test Icon Only Button Run Snapshot Tes
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
-.emotion-1 {
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.emotion-2 {
   display: block;
-  height: 0.9375rem;
-  width: 0.9375rem;
+  height: 1rem;
+  width: 1rem;
   max-height: 100%;
   max-width: 100%;
 }
 
-.emotion-1 svg {
+.emotion-2 svg {
   fill: currentColor;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
   background-color: none;
 }
 
-.emotion-1:hover {
+.emotion-2:hover {
   color: auto;
   background-color: auto;
 }
 
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     disabled={false}
     role=button
+    tabIndex={0}
     type=button
   >
     <span
-      className=Ursa-Icon emotion-1
+      className=Ursa-Icon emotion-2
       id="Ursa-Icon-1"
     >
       <img
@@ -395,12 +569,16 @@ exports[`components/Button Renders Button Test Icon Only Button Run Snapshot Tes
 
 exports[`components/Button Renders Button Tests Alert Button Renders Alert Button 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -417,7 +595,15 @@ exports[`components/Button Renders Button Tests Alert Button Renders Alert Butto
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: rgba(220, 38, 38, 1);
   border-color: rgba(220, 38, 38, 1);
@@ -426,41 +612,71 @@ exports[`components/Button Renders Button Tests Alert Button Renders Alert Butto
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     onClick={[Function]}
     role=button
+    tabIndex={0}
     type=button
   >
-    Button
+    <span
+      className=Ursa-ButtonText
+    >
+      Button
+    </span>
   </button>
 </div>
 `;
 
 exports[`components/Button Renders Button Tests Basic Button Basic Button - Snapshot Test 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -477,7 +693,15 @@ exports[`components/Button Renders Button Tests Basic Button Basic Button - Snap
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: #F8F8F8;
   border-color: auto;
@@ -486,41 +710,71 @@ exports[`components/Button Renders Button Tests Basic Button Basic Button - Snap
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     onClick={[Function]}
     role=button
+    tabIndex={0}
     type=button
   >
-    Button
+    <span
+      className=Ursa-ButtonText
+    >
+      Button
+    </span>
   </button>
 </div>
 `;
 
 exports[`components/Button Renders Button Tests Outline Button Renders Outline Button 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -537,7 +791,15 @@ exports[`components/Button Renders Button Tests Outline Button Renders Outline B
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: transparent;
   border-color: rgba(13, 148, 136, 1);
@@ -546,42 +808,72 @@ exports[`components/Button Renders Button Tests Outline Button Renders Outline B
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     disabled={false}
     onClick={[Function]}
     role=button
+    tabIndex={0}
     type=button
   >
-    Button
+    <span
+      className=Ursa-ButtonText
+    >
+      Button
+    </span>
   </button>
 </div>
 `;
 
 exports[`components/Button Renders Button Tests Primary Button Primary Button - Snapshot Test 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -598,7 +890,15 @@ exports[`components/Button Renders Button Tests Primary Button Primary Button - 
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: rgba(13, 148, 136, 1);
   border-color: rgba(13, 148, 136, 1);
@@ -607,29 +907,55 @@ exports[`components/Button Renders Button Tests Primary Button Primary Button - 
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
-}
-
-.emotion-0 .Ursa-Icon {
+.emotion-1 .Ursa-Icon {
   margin: auto;
 }
 
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
 <div
-  className=Ursa-ButtonContainer
+  className=Ursa-ButtonContainer emotion-0
 >
   <button
-    className=Ursa-Button emotion-0
+    className=Ursa-Button emotion-1
     onClick={[Function]}
     role=button
+    tabIndex={0}
     type=button
   >
-    Button
+    <span
+      className=Ursa-ButtonText
+    >
+      Button
+    </span>
   </button>
 </div>
 `;

@@ -44,9 +44,9 @@ exports[`components/Stack Run Snapshot Test 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   font-size: 0.75rem;
-  padding: 10px 15px;
+  padding: 0.825em 1.375em;
   background-color: rgba(156, 163, 175, 1);
   color: rgba(30, 41, 59, 1);
   border-radius: 1rem;
@@ -56,46 +56,46 @@ exports[`components/Stack Run Snapshot Test 1`] = `
   outline: 1px solid rgba(20, 184, 166, 1);
 }
 
-.emotion-1 .Ursa-TagCloseButton>svg {
-  fill: rgba(30, 41, 59, 1);
-}
-
 <div
   className=Ursa-Stack emotion-0
   data-testid=test-stack
 >
   <div
-    className=UrsaTag emotion-1
+    className=Ursa-Tag emotion-1
+    data-testid=test-tag
   >
     <span
-      className=UrsaTagName text-base
+      className=Ursa-TagName
     >
       Pending
     </span>
   </div>
   <div
-    className=UrsaTag emotion-1
+    className=Ursa-Tag emotion-1
+    data-testid=test-tag
   >
     <span
-      className=UrsaTagName text-base
+      className=Ursa-TagName
     >
       Unfulfilled
     </span>
   </div>
   <div
-    className=UrsaTag emotion-1
+    className=Ursa-Tag emotion-1
+    data-testid=test-tag
   >
     <span
-      className=UrsaTagName text-base
+      className=Ursa-TagName
     >
       Cancelled
     </span>
   </div>
   <div
-    className=UrsaTag emotion-1
+    className=Ursa-Tag emotion-1
+    data-testid=test-tag
   >
     <span
-      className=UrsaTagName text-base
+      className=Ursa-TagName
     >
       Returned
     </span>

@@ -7,6 +7,10 @@
   radio button and checkbox function as intended, functionally have the value
   updated, but the checked attribute doesn't show up on the DOM node. Apparently
   this is a known issue for now.
+- **`ActionBar`** component is not expanding the additional buttons. Needs
+  debugging.
+- **`Pagination`** component with Label has an alignment issue. Will be fixed in
+  next release.
 
 ---
 

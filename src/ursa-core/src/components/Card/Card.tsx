@@ -1,122 +1,159 @@
-import React, { FC, ReactElement } from 'react';
+import React, {
+  memo,
+  NamedExoticComponent,
+  ReactElement,
+  ReactNode
+} from 'react';
 import styled from '@emotion/styled';
-
-import { CardMedia } from './components';
-import { Avatar } from '../Avatar';
+import { DisabledAction, ComplexAction } from '../../types';
+import { CardHeader, CardSection } from './components';
+import { Button } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
 
 export interface CardProps {
-  image?: string;
-  name?: string;
-  fields?: [string, string][];
+  /** The title of the Card */
+  title?: ReactNode;
+  /** `className` attribute of the Card */
   className?: string;
-  hoverChange?: boolean;
-  noBorder?: boolean;
-  noShadow?: boolean;
+  /** The contents of the Card */
+  children?: ReactNode;
+  /** Whether to auto-wrap content into sections */
+  sectioned?: boolean;
+  /** Card Header actions */
+  actions?: DisabledAction[];
+  /** Card's Primary footer action */
+  primaryFooterAction?: ComplexAction;
+  /** Card's Secondary footer actions */
+  secondaryFooterActions?: ComplexAction[];
+  /** Footer actions' alignment */
+  footerActionAlignment?: 'left' | 'right' | 'space-between';
 }
 
-const UrsaCard: FC<CardProps> = ({
-  image,
-  name,
-  fields,
+const UrsaCard = ({
+  title,
   className,
-  noBorder,
-  noShadow
-}): ReactElement => {
+  children,
+  sectioned,
+  actions,
+  primaryFooterAction,
+  secondaryFooterActions
+}: CardProps): ReactElement => {
+  /*****************************************************************************************/
+  /** Content Markup */
+  /*****************************************************************************************/
+  const headerMarkup: ReactElement<typeof CardHeader> | undefined =
+    title || actions ? (
+      <CardHeader title={title} actions={actions} />
+    ) : undefined;
+
+  const contentMarkup: ReactNode = sectioned ? (
+    <CardSection>{children}</CardSection>
+  ) : (
+    children
+  );
+
+  const primaryFooterActionMarkup: ReactElement<typeof Button> | undefined =
+    primaryFooterAction ? (
+      <Button
+        primary
+        onClick={primaryFooterAction.onAction}
+        {...primaryFooterAction}
+      >
+        {primaryFooterAction.label}
+      </Button>
+    ) : undefined;
+
+  let secondaryFooterActionMarkup: ReactElement<typeof Button> | undefined;
+  if (secondaryFooterActions?.length) {
+    if (secondaryFooterActions.length === 1) {
+      secondaryFooterActionMarkup = (
+        <Button {...secondaryFooterActions[0]}>
+          {secondaryFooterActions[0].label}
+        </Button>
+      );
+    } else {
+      /** This has to be fixed: Has to render multiple buttons in a Popover instead of 1 button */
+      <Button {...secondaryFooterActions[0]}>
+        {secondaryFooterActions[0].label}
+      </Button>;
+    }
+  }
+
+  const footerMarkup: ReactElement<HTMLDivElement> | undefined =
+    primaryFooterActionMarkup || secondaryFooterActionMarkup ? (
+      <div className="Ursa-CardFooter">
+        <ButtonGroup>
+          {secondaryFooterActionMarkup}
+          {primaryFooterActionMarkup}
+        </ButtonGroup>
+      </div>
+    ) : undefined;
+
+  /*****************************************************************************************/
+  /** Render Card */
+  /*****************************************************************************************/
   return (
     <div className={`Ursa-Card ${className || ''}`}>
-      <div className="Ursa-CardImageContent">
-        <div className="Ursa-CardSnapshot">
-          <div className="Ursa-CardImageContainer">
-            {image ? (
-              <CardMedia image={image} alt="Card Image" />
-            ) : (
-              <span className="Ursa-CardPlaceholder">
-                <Avatar>{name}</Avatar>
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="Ursa-CardBlockContent">
-        <div className="Ursa-CardTitle">
-          <span className="name">{name && name}</span>
-        </div>
-        {fields?.length &&
-          fields?.map((e, indx) => {
-            return (
-              <div className="Ursa-CardText" key={indx}>
-                <span className="field">{e[1]}</span>
-              </div>
-            );
-          })}
-      </div>
+      {headerMarkup}
+      {contentMarkup}
+      {footerMarkup}
     </div>
   );
 };
 
-export const Card = styled(UrsaCard)(
-  ({ theme: { color, border, fontSize }, noShadow }) => `
-    display: flex;
-    cursor: pointer;
-    border: 1px solid ${color['--ursa-border-primary']};
-    border-radius: 4px;
-    background-color: ${color['--ursa-bg-primary']};
-    box-shadow: ${noShadow ? 'none' : '0px 0px 4px rgba(0, 0, 0, 0.25)'};
-
-    .Ursa-CardImageContent {
-      display: flex;
-      flex-basis: 20%;
-      justify-content: center;
-      align-items: center;
-      padding: 10px;
-
-      & > .Ursa-CardSnapshot {
-        display: flex;
-
-        & > .Ursa-CardImageContainer {
-
-          & > .Ursa-CardPlaceholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: ${border['--ursa-border-radius-full']};
-            color: ${color['--ursa-text-primary']};
-            background-color: ${color['--ursa-card-img-bg']};
-            width: 56px;
-            height: 56px;
-            font-size: ${fontSize['--ursa-font-size-5']};
-            font-weight: bold;
-          }
-        }
-      }
+/*****************************************************************************************/
+/** Styled Component */
+/*****************************************************************************************/
+const StyledCard = styled(UrsaCard)(
+  ({ theme: { color, fontSize, border }, footerActionAlignment }) => {
+    let justifyContent: 'flex-start' | 'flex-end' | 'space-between';
+    switch (footerActionAlignment) {
+      case 'left':
+        justifyContent = 'flex-start';
+        break;
+      case 'space-between':
+        justifyContent = 'space-between';
+        break;
+      default:
+        justifyContent = 'flex-end';
+        break;
     }
 
-    .Ursa-CardBlockContent {
-      flex-direction: column;
-      flex-basis: 80%;
-      padding: 10px;
-      color: ${color['--ursa-text-primary']};
+    return {
+      borderRadius: border['--ursa-border-radius-xl'],
+      backgroundColor: color['--ursa-white'],
+      color: color['--ursa-black'],
+      boxShadow:
+        '0 0 0.3125rem rgb(23 24 25 / 10%), 0 0 0.625rem rgb(23 24 25 / 15%)',
 
-      & > .Ursa-CardTitle {
-        display: flex;
-        flex-grow: 1;
-        padding-top: 2px;
-        padding-bottom: 2px;
+      '& > .Ursa-CardFooter': {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent,
+        padding: '0 1.25rem 1.25rem'
+      },
 
-        & > span {
-          font-weight: bold;
-        }
+      '& h2, h3': {
+        color: color['--ursa-black']
+      },
+
+      '& > .Ursa-CardSection + .Ursa-CardSection': {
+        borderTop: `1px solid ${color['--ursa-btn-disabled']}`
       }
-
-      & > .Ursa-CardText {
-        display: flex;
-        flex-grow: 1;
-        padding-top: 2px;
-        padding-bottom: 2px;
-      }
-    }
-
-  `
+    };
+  }
 );
+/*****************************************************************************************/
+/** Memoized Composite Component */
+/*****************************************************************************************/
+const Card = memo((props) => {
+  return <StyledCard {...props} />;
+}) as NamedExoticComponent<CardProps> & {
+  Header: typeof CardHeader;
+  Section: typeof CardSection;
+};
 
-export default Card;
+Card.Header = CardHeader;
+Card.Section = CardSection;
+
+export { Card };

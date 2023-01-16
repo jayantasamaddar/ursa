@@ -6,14 +6,38 @@ import React, {
   useRef,
   forwardRef,
   useImperativeHandle,
-  ChangeEvent
+  ChangeEvent,
+  createElement
 } from 'react';
 
 import styled from '@emotion/styled';
 
-import { BaseButton, UploadButtonProps } from '../../types';
+import {
+  ActionListItem,
+  BaseButton,
+  IconSource,
+  UploadButtonProps
+} from '../../types';
 import { Spinner } from '../Spinner';
-import { useTestId } from '../../utilities';
+import { useTestId, isIconSource } from '../../utilities';
+import { Icon } from '../Icon';
+import {
+  CaretUpMinor,
+  CaretDownMinor,
+  SelectMinor
+} from '@zenius-one/ursa-icons';
+import { Popover } from '../Popover';
+import { ActionList } from '../ActionList';
+import { Invisible } from '../Invisible';
+
+export interface ConnectedDisclosure {
+  /** Visually hidden label for screen readers */
+  ariaLabel?: string;
+  /** Whether Connected Disclosure is disabled or not */
+  disabled?: boolean;
+  /** The actions available from the popover */
+  actions?: ActionListItem[];
+}
 
 export interface ButtonProps extends BaseButton {
   children?: string | ReactElement;
@@ -24,11 +48,17 @@ export interface ButtonProps extends BaseButton {
   outline?: boolean;
   plain?: boolean;
   alert?: boolean;
-  icon?: React.ReactElement;
+  icon?: ReactElement | IconSource;
   iconOnly?: boolean;
+  disclosure?: 'down' | 'up' | 'select' | boolean;
   upload?: boolean;
   uploadOptions?: UploadButtonProps;
+  connectedDisclosure?: ConnectedDisclosure;
 }
+
+const ButtonContainer = styled.div(() => ({
+  display: 'inline-flex'
+}));
 
 const UrsaButton = forwardRef<
   HTMLButtonElement | HTMLInputElement,
@@ -67,6 +97,8 @@ const UrsaButton = forwardRef<
       iconOnly,
       upload,
       uploadOptions,
+      disclosure,
+      connectedDisclosure,
       primary,
       outline,
       alert,
@@ -80,7 +112,7 @@ const UrsaButton = forwardRef<
     /***************************************************************************************/
     const classes = `Ursa-Button ${className ?? ''}`;
 
-    const [dropdownActive, setDropdownActive] = useState(false);
+    const [disclosureActive, setDisclosureActive] = useState(false);
 
     const inputRef = useRef<HTMLInputElement>(null); // For File Upload Button (input type: file)
     const buttonRef = useRef<HTMLButtonElement>(null); // For other Buttons
@@ -95,17 +127,17 @@ const UrsaButton = forwardRef<
     /** Handle Events */
     /***************************************************************************************/
 
-    // const toggleDropdownActive = useCallback(
-    //   () => setDropdownActive((prev) => !prev),
-    //   []
-    // );
+    const toggleDisclosure = useCallback(
+      () => setDisclosureActive((prev) => !prev),
+      []
+    );
 
     const handleUploadButton = useCallback(
       (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         uploadOptions?.onChange?.(event);
       },
-      []
+      [uploadOptions?.onChange]
     );
 
     /***************************************************************************************/
@@ -117,6 +149,13 @@ const UrsaButton = forwardRef<
       className: classes,
       'aria-label': ariaLabel
     };
+
+    const childMarkup =
+      typeof children === 'string' ? (
+        <span className="Ursa-ButtonText">{children}</span>
+      ) : (
+        children
+      );
 
     const linkProps = {
       target: external ? '_blank' : undefined,
@@ -143,82 +182,150 @@ const UrsaButton = forwardRef<
     };
 
     /***************************************************************************************/
-    /** Content Generation Helpers */
+    /** Content Markup */
     /***************************************************************************************/
-    let iconContent: ReactNode;
-    if (icon) {
-      iconContent = iconOnly ? (
-        icon
+    const iconSource = isIconSource(icon) ? (
+      <Icon source={loading ? 'placeholder' : icon} />
+    ) : (
+      icon
+    );
+
+    let iconMarkup: ReactNode;
+    if (iconSource) {
+      iconMarkup = iconOnly ? (
+        iconSource
       ) : (
-        <span className="Ursa-ButtonIconLabel">
-          {icon} {children}
+        <span className="Ursa-ButtonIcon">
+          {iconSource} {childMarkup}
         </span>
+      );
+    }
+
+    const getDisclosureIconSource = (
+      disclosure: NonNullable<ButtonProps['disclosure']>
+    ) => {
+      switch (disclosure) {
+        case 'up':
+          return CaretUpMinor;
+        case 'select':
+          return SelectMinor;
+        default:
+          return CaretDownMinor;
+      }
+    };
+
+    /** Markup: Disclosure icon */
+    const disclosureMarkup = disclosure ? (
+      <Icon
+        className="Ursa-ButtonDisclosure"
+        source={loading ? 'placeholder' : getDisclosureIconSource(disclosure)}
+        size="large"
+      />
+    ) : undefined;
+
+    /** Markup: Connected Disclosure  */
+    let connectedDisclosureMarkup: ReactNode;
+    if (connectedDisclosure) {
+      const { disabled, ariaLabel, actions } = connectedDisclosure;
+
+      /** Disclosure Trigger */
+      const connectedDisclosureTrigger = (
+        <button
+          type="button"
+          className={`Ursa-ConnectedDisclosure ${classes}`}
+          aria-disabled={disabled}
+          aria-label={ariaLabel ?? 'Button Actions'}
+          aria-describedBy={ariaDescribedBy}
+          aria-checked={ariaChecked}
+          onClick={toggleDisclosure}
+          tabIndex={disabled ? -1 : undefined}
+        >
+          <Icon source={CaretDownMinor} size="large" />
+        </button>
+      );
+
+      connectedDisclosureMarkup = (
+        <Popover
+          active={disclosureActive}
+          trigger={connectedDisclosureTrigger}
+          onClose={toggleDisclosure}
+        >
+          <ActionList items={actions} onActionAnyItem={toggleDisclosure} />
+        </Popover>
       );
     }
 
     const buttonContent = loading ? (
       <Spinner color="white" size="small" />
     ) : icon ? (
-      iconContent
+      iconMarkup
     ) : (
-      children
+      childMarkup
     );
 
     /** Enable Button as a Link */
     let buttonMarkup: ReactElement;
     if (url && !upload) {
-      buttonMarkup = disabled ? (
-        <a {...commonProps} {...linkProps}>
+      buttonMarkup = (
+        <a
+          {...Object.assign(
+            linkProps,
+            disabled ? commonProps : { ...interactiveProps, href: url }
+          )}
+        >
           {buttonContent}
-        </a>
-      ) : (
-        <a {...interactiveProps} {...linkProps} href={url}>
-          {buttonContent}
+          {disclosureMarkup}
         </a>
       );
     } else {
       /** Generate Button without a Link */
       buttonMarkup = (
         <button
-          {...commonProps}
+          {...interactiveProps}
           name={name}
           type={submit ? 'submit' : 'button'}
           ref={buttonRef}
+          tabIndex={0}
           disabled={disabled}
           onKeyDown={onKeyDown}
           onKeyPress={onKeyPress}
           onKeyUp={onKeyUp}
           onPointerDown={onPointerDown}
-          {...interactiveProps}
           {...accessibilityProps}
         >
           {buttonContent}
+          {disclosureMarkup}
         </button>
       );
     }
+
+    const uploadMarkup = upload ? (
+      <Invisible>
+        <input
+          type="file"
+          hidden
+          aria-hidden="true"
+          tabIndex={-1}
+          ref={inputRef}
+          name={name}
+          onChange={handleUploadButton}
+          multiple={uploadOptions?.allowMultiple}
+          accept={uploadOptions?.accept}
+          {...useTestId('button-upload')}
+        />
+      </Invisible>
+    ) : undefined;
 
     /***************************************************************************************/
     /** Render the Button */
     /***************************************************************************************/
 
     return (
-      <div className="Ursa-ButtonContainer">
+      <ButtonContainer className="Ursa-ButtonContainer">
         {buttonMarkup}
-        {upload && (
-          <input
-            type="file"
-            hidden
-            aria-hidden="true"
-            ref={inputRef}
-            className={classes}
-            name={name}
-            onChange={handleUploadButton}
-            multiple={uploadOptions?.allowMultiple}
-            accept={uploadOptions?.accept}
-            {...useTestId('button-upload')}
-          />
-        )}
-      </div>
+        {connectedDisclosureMarkup}
+        {uploadMarkup}
+      </ButtonContainer>
     );
   }
 );
@@ -230,9 +337,11 @@ export const Button = styled(UrsaButton)(
     iconOnly,
     uppercase = false,
     outline,
+    url,
     primary,
     loading,
     alert,
+    disclosure,
     disabled,
     textAlign = 'center'
   }) => {
@@ -251,12 +360,18 @@ export const Button = styled(UrsaButton)(
     };`;
 
     return `
+  ${
+    (url || disclosure) &&
+    `
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  `
+  };
   width: ${fullWidth ? '100%' : 'auto'};
   min-width: ${iconOnly ? 'auto' : '85px'};
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: ${fontSize['--ursa-font-size-3']};
   font-weight: bold;
   text-transform: ${uppercase ? 'uppercase' : 'none'};
@@ -288,6 +403,14 @@ export const Button = styled(UrsaButton)(
   transition-property: color, background-color, box-shadow, border-color;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
+  
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 1px;
+    transition: outline-color 0.2s linear;
+    outline-color: ${color['--ursa-accent-color']};
+  }
+
   &:hover {
     color: "auto";
     background-color: ${
@@ -317,20 +440,32 @@ export const Button = styled(UrsaButton)(
     };
     white-space: nowrap;
   }
-  .Ursa-ButtonIconLabel {
-    display: flex;
+  .Ursa-Icon {
+    margin: auto;
+  }
+  & > .Ursa-Icon.Ursa-ButtonDisclosure {
+    margin-left: 0.75rem;
+    margin-right: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  &.Ursa-ConnectedDisclosure {
+    min-width: auto;
+    margin-left: 0.125rem;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
+  .Ursa-ButtonIcon {
+    display: inline-flex;
     justify-content: ${
       textAlign === 'left'
         ? 'flex-start'
         : textAlign === 'right'
         ? 'flex-end'
         : 'center'
-    }
+    };
     align-items: center;
     gap: 0.5em;
-  }
-  .Ursa-Icon {
-    margin: auto;
   }
 `;
   }

@@ -2,12 +2,16 @@
 
 exports[`components/Modal <BasicModal /> Run Snapshot Test 1`] = `
 .emotion-0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.emotion-1 {
   width: auto;
   min-width: 85px;
-  padding-top: 0.875em;
-  padding-bottom: 0.875em;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.875em 1.5em;
   font-size: 0.875rem;
   font-weight: bold;
   text-transform: none;
@@ -24,7 +28,15 @@ exports[`components/Modal <BasicModal /> Run Snapshot Test 1`] = `
   transition-timing-function: ease-in-out;
 }
 
-.emotion-0:hover {
+.emotion-1:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  -webkit-transition: outline-color 0.2s linear;
+  transition: outline-color 0.2s linear;
+  outline-color: rgba(59, 130, 246, 1);
+}
+
+.emotion-1:hover {
   color: "auto";
   background-color: rgba(13, 148, 136, 1);
   border-color: rgba(13, 148, 136, 1);
@@ -33,32 +45,58 @@ exports[`components/Modal <BasicModal /> Run Snapshot Test 1`] = `
   white-space: nowrap;
 }
 
-.emotion-0 .Ursa-ButtonIconLabel {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content:center align-items: center;
-  gap: 0.5em;
+.emotion-1 .Ursa-Icon {
+  margin: auto;
 }
 
-.emotion-0 .Ursa-Icon {
-  margin: auto;
+.emotion-1>.Ursa-Icon.Ursa-ButtonDisclosure {
+  margin-left: 0.75rem;
+  margin-right: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.emotion-1.Ursa-ConnectedDisclosure {
+  min-width: auto;
+  margin-left: 0.125rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+.emotion-1 .Ursa-ButtonIcon {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5em;
 }
 
 <div
   className=Ursa-ModalProvider
 >
   <div
-    className=Ursa-ButtonContainer
+    className=Ursa-ButtonContainer emotion-0
   >
     <button
-      className=Ursa-Button emotion-0
+      className=Ursa-Button emotion-1
       onClick={[Function]}
       role=button
+      tabIndex={0}
       type=button
     >
-      Open
+      <span
+        className=Ursa-ButtonText
+      >
+        Open
+      </span>
     </button>
   </div>
 </div>

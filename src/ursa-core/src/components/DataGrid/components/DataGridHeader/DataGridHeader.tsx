@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 import React, { ReactElement, MouseEvent, forwardRef } from 'react';
 
-import { DataGridColumn } from '../../../types';
-import { Icon } from '../../Icon';
+import { DataGridColumn } from '../../../../types';
 
 interface DataGridHeaderProps {
   className?: string;

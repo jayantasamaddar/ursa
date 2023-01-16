@@ -36,7 +36,7 @@ export interface BaseButton {
   /** Identifies button as a toggle button and indicates whether pressed or not pressed */
   ariaPressed?: 'false' | 'true';
   /** Callback when clicked */
-  onClick?: () => void;
+  onClick?(): void;
   /** Callback when button becomes focussed */
   onFocus?(): void;
   /** Callback when focus leaves button */

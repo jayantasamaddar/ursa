@@ -4,6 +4,7 @@
   "exclude": [
     "**/*.story.tsx",
     "**/*.mock.ts",
+    "**/*.mock.tsx",
     "**/*.test.tsx",
     "**/*.test.ts",
     "**/*.snap.ts",

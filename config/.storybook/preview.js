@@ -10,8 +10,7 @@ export const onThemeSwitch = (ctx) => {
 
   const parameters = {
     backgrounds: {
-      default:
-        theme.name === 'dark' ? darkTheme.color['--ursa-backdrop'] : 'white'
+      default: theme.color['--ursa-bg-primary']
     }
     // Pass backgrounds: null to disable background switching at all
   };

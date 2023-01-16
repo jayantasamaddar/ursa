@@ -58,7 +58,6 @@ const UrsaIcon: FC<IconProps> = ({
   // Show warning if color provided for sourceType "external" in development mode,
   // i.e. if the icon is not a react component included in @zenius-one/ursa-icons
   /*********************************************************************************/
-
   if (
     color &&
     sourceType === 'external' &&
@@ -68,11 +67,9 @@ const UrsaIcon: FC<IconProps> = ({
       'Recoloring external SVGs is not supported. Set the intended color on your SVG instead.'
     );
   }
-
   /*********************************************************************************/
-  // Show warning if backdrop is not available in development
+  /** Show warning if backdrop is not available in development  */
   /*********************************************************************************/
-
   if (
     backdrop &&
     color &&
@@ -83,13 +80,10 @@ const UrsaIcon: FC<IconProps> = ({
       `The ${color} variant does not have a supported backdrop color`
     );
   }
-
   /*********************************************************************************/
-  // Content Markup based on sourceType
+  /** Content Markup based on sourceType */
   /*********************************************************************************/
-
   const _id = generateUniqueID('Ursa-Icon');
-
   const iconMarkup = {
     function: (
       <IconSVGComponent
@@ -110,11 +104,6 @@ const UrsaIcon: FC<IconProps> = ({
       />
     )
   };
-
-  /*****************************************************************/
-  // Render icon
-  /*****************************************************************/
-
   return (
     <span id={_id} className={`Ursa-Icon ${className || ''}`} onClick={onClick}>
       {iconMarkup[sourceType]}
@@ -123,23 +112,39 @@ const UrsaIcon: FC<IconProps> = ({
 };
 
 export const Icon = styled(UrsaIcon)(
-  ({ theme: { color, fontSize }, color: IconColor, bgColor, size }) => `
-      display: block;
-      height: ${fontSize['--ursa-font-size-4']};
-      width: ${fontSize['--ursa-font-size-4']};
-      max-height: 100%;
-      max-width: 100%;
+  ({ theme: { color, fontSize }, color: IconColor, bgColor, size }) => {
+    const computedProps = {
+      size: '1rem'
+    };
+    switch (size) {
+      case 'small':
+        computedProps.size = fontSize['--ursa-font-size-3'];
+        break;
+      case 'medium':
+        computedProps.size = fontSize['--ursa-font-size-6'];
+        break;
+      case 'large':
+        computedProps.size = fontSize['--ursa-font-size-7'];
+        break;
+      default:
+        computedProps.size = fontSize['--ursa-font-size-5'];
+        break;
+    }
+    return {
+      display: 'block',
+      height: computedProps.size,
+      width: computedProps.size,
+      maxHeight: '100%',
+      maxWidth: '100%',
 
-      svg {
-          fill: ${IconColor ? color[IconColor] : 'currentColor'};
-          transform: scale(${
-            size === 'small' ? 0.5 : size === 'large' ? 2 : 1
-          });
-          background-color: ${bgColor ? color[bgColor] : 'none'};
+      svg: {
+        fill: IconColor ? color[IconColor] : 'currentColor',
+        backgroundColor: bgColor ? color[bgColor] : 'none'
+      },
+      '&:hover': {
+        color: 'auto',
+        backgroundColor: 'auto'
       }
-      &:hover {
-        color: auto;
-        background-color: auto;
-      }
-    `
+    };
+  }
 );

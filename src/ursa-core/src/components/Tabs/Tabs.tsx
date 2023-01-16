@@ -1,43 +1,105 @@
-import React, { FC, ReactElement, useState, useCallback, useMemo } from 'react';
+import React, {
+  ReactElement,
+  useState,
+  useCallback,
+  useMemo,
+  KeyboardEvent,
+  useRef
+} from 'react';
 import styled from '@emotion/styled';
 import { Tab, TabPanel } from './components';
 import { TabsProps } from '../../types';
 
-const UrsaTabs: FC<TabsProps> = ({
-  className,
-  items,
-  layout
-}): ReactElement => {
+const UrsaTabs = ({ className, items, layout }: TabsProps): ReactElement => {
   /************************************************************************/
-  // Initialize State and Memoize selectedTab
+  // Initialize State, Variables, Ref and Memoize startingTabIndex
   /************************************************************************/
-  const selectedTab = useMemo(() => {
+  const startingTabIndex = useMemo(() => {
     const indx = items.findIndex((item) => item.selected);
     return indx >= 0 ? indx : 0;
   }, [items]);
 
-  const [data, setData] = useState(
+  const [data, setData] = useState<TabsProps['items']>(
     items.map((item, index) => ({
       ...item,
-      selected: index === selectedTab ? true : false
+      selected: index === startingTabIndex ? true : false
     })) ?? []
   );
 
-  const selected = data[data?.findIndex((item) => item.selected)];
+  const tabRef = useRef<HTMLButtonElement[]>([]);
 
   /************************************************************************/
-  // Handle Tabs Click
+  // Event Handlers
   /************************************************************************/
+  const toggleActive = useCallback((indx: number) => {
+    setData((prev) =>
+      prev.map((item, i) => ({
+        ...item,
+        selected: indx === i ? true : false
+      }))
+    );
+    tabRef.current[indx].focus();
+  }, []);
 
-  const toggleActive = useCallback(
-    (indx: number) =>
-      setData((prev) => [
-        ...prev.slice(0, indx).map((item) => ({ ...item, selected: false })),
-        { ...prev[indx], selected: !prev[indx].selected },
-        ...prev.slice(indx + 1).map((item) => ({ ...item, selected: false }))
-      ]),
-    []
-  );
+  /**
+   * Switches Tab either in the forwards or backwards direction
+   * @param target - `HTMLButtonElement`
+   * @param direction - `"forwards"` | `"backwards"` | `undefined`
+   */
+  const switchTab = (
+    target: HTMLButtonElement,
+    direction?: 'forwards' | 'backwards'
+  ) => {
+    const {
+      dataset: { index }
+    } = target;
+    const i = parseInt(index as string);
+
+    let switchIndx: number;
+    switch (direction) {
+      case 'backwards':
+        switchIndx = i === 0 ? data.length - 1 : i - 1;
+        break;
+      default:
+        switchIndx = i === data.length - 1 ? 0 : i + 1;
+        break;
+    }
+    toggleActive(switchIndx);
+  };
+
+  /** Keyboard Accessibility for Tabs */
+  const handleKeyUp = useCallback((e: KeyboardEvent<HTMLButtonElement>) => {
+    switch (e.key) {
+      case 'ArrowRight':
+        if (layout !== 'vertical') {
+          switchTab(e.target as HTMLButtonElement, 'forwards');
+        }
+        break;
+      case 'ArrowLeft':
+        if (layout !== 'vertical') {
+          switchTab(e.target as HTMLButtonElement, 'backwards');
+        }
+        break;
+      case 'ArrowDown':
+        if (layout === 'vertical') {
+          switchTab(e.target as HTMLButtonElement, 'forwards');
+        }
+        break;
+      case 'ArrowUp':
+        if (layout === 'vertical') {
+          switchTab(e.target as HTMLButtonElement, 'backwards');
+        }
+        break;
+      case 'Home':
+        tabRef.current[0].click();
+        break;
+      case 'End':
+        tabRef.current.at(-1)?.click();
+        break;
+      default:
+        break;
+    }
+  }, []);
 
   /************************************************************************/
   // Return Tabs JSX
@@ -49,21 +111,30 @@ const UrsaTabs: FC<TabsProps> = ({
         {data?.map(({ id, label, selected }, indx) => (
           <Tab
             id={id}
+            ref={(tab) => (tabRef.current[indx] = tab as HTMLButtonElement)}
             label={label}
             selected={selected}
             layout={layout}
             key={indx}
             index={indx}
             onClick={() => (!selected ? toggleActive(indx) : null)}
+            onKeyUp={handleKeyUp}
           />
         ))}
       </ul>
 
-      <TabPanel
-        id={`${selected.id}-panel`}
-        ariaLabelledBy={selected.id}
-        content={selected.content}
-      />
+      <div className="Ursa-TabContent">
+        {data?.map(({ id, content, selected }, indx) => (
+          <TabPanel
+            id={`${id}-panel`}
+            className={selected ? 'show' : 'hidden'}
+            key={indx}
+            ariaLabelledBy={id}
+          >
+            {content}
+          </TabPanel>
+        ))}
+      </div>
     </div>
   );
 };
@@ -74,7 +145,7 @@ export const Tabs = styled(UrsaTabs)(
     flex-direction: ${layout === 'vertical' ? 'row' : 'column'};
     align-items: flex-start;
     justify-items: flex-start;
-    gap: 4px;
+    gap: 0.25rem;
 
     .Ursa-TabsHead {
       display: flex;

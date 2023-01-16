@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { FC, ReactElement, ReactNode, Children } from 'react';
+import React, { ReactElement, ReactNode, Children } from 'react';
 import { ButtonItem } from './components';
 
 type Spacing = 'extraTight' | 'tight' | 'loose';
@@ -16,16 +16,18 @@ export interface ButtonGroupProps {
   fullWidth?: boolean;
   /** Remove top left and right border radius */
   connectedTop?: boolean;
+  /** Remove bottom left and right border radius */
+  connectedBottom?: boolean;
   /** Button components */
   children?: ReactNode;
   /** Classes */
   className?: string;
 }
 
-const UrsaButtonGroup: FC<ButtonGroupProps> = ({
+const UrsaButtonGroup = ({
   children,
   className
-}): ReactElement => {
+}: ButtonGroupProps): ReactElement => {
   const childrenArray = Children.toArray(children);
   const content = childrenArray.map((child, index) => (
     <ButtonItem button={child as ReactElement} key={index} />
@@ -39,38 +41,54 @@ const UrsaButtonGroup: FC<ButtonGroupProps> = ({
 };
 
 export const ButtonGroup = styled(UrsaButtonGroup)(
-  ({ theme, spacing, justify, segmented, fullWidth, connectedTop }) => `
+  ({
+    spacing,
+    justify,
+    segmented,
+    fullWidth,
+    connectedTop,
+    connectedBottom
+  }) => `
     display: flex;
     flex-wrap: ${segmented ? 'nowrap' : 'wrap'};
     flex-grow: ${fullWidth ? '1' : '0'};
     min-width: ${fullWidth ? '100%' : 'auto'};
-    align-items: center;
+    align-items: stretch;
+    
+    .Ursa-ButtonContainer {
+      height: 100%;
+    }
 
     ${
       segmented
-        ? `.Ursa-ButtonItem:nth-of-type(n+1)
-        > .Ursa-ButtonContainer
-        > button {}
+        ? `.Ursa-ButtonItem:nth-of-type(n+1) > .Ursa-ButtonContainer > button, 
+        .Ursa-ButtonItem:nth-of-type(n+1) > .Ursa-ButtonContainer > a {}
       
       .Ursa-ButtonItem:nth-of-type(n+2):nth-last-of-type(n+2)
         > .Ursa-ButtonContainer
-        > button {
+        > button, .Ursa-ButtonItem:nth-of-type(n+2):nth-last-of-type(n+2)
+        > .Ursa-ButtonContainer
+        > a {
         border-radius: unset;
         margin-right: -1px;
       }
 
-      .Ursa-ButtonItem:last-of-type > .Ursa-ButtonContainer > button {
+      .Ursa-ButtonItem:last-of-type > .Ursa-ButtonContainer > button, 
+      .Ursa-ButtonItem:last-of-type > .Ursa-ButtonContainer > a {
         margin-left: ${fullWidth ? '-1px' : '0'};
         border-top-left-radius: unset;
         border-bottom-left-radius: unset;
-        ${connectedTop && `border-top-right-radius: unset`}
+        border-top-right-radius: ${connectedTop ? 'unset' : '4px'};
+        border-bottom-right-radius: ${connectedBottom ? 'unset' : '4px'};
       }
 
-      .Ursa-ButtonItem:first-of-type > .Ursa-ButtonContainer > button {
+      .Ursa-ButtonItem:first-of-type > .Ursa-ButtonContainer > button, 
+      .Ursa-ButtonItem:first-of-type > .Ursa-ButtonContainer > a {
         margin-right: -1px;
         border-top-right-radius: unset;
         border-bottom-right-radius: unset;
-        ${connectedTop && `border-top-left-radius: unset`}
+        border-top-left-radius: ${connectedTop ? 'unset' : '4px'};
+        border-bottom-left-radius: ${connectedBottom ? 'unset' : '4px'};
       }
       `
         : `

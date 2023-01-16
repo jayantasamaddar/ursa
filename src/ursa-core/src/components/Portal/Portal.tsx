@@ -1,5 +1,4 @@
 import React, {
-  FC,
   ReactNode,
   ReactElement,
   useId,
@@ -13,10 +12,10 @@ export interface PortalProps {
   idPrefix?: string;
 }
 
-export const Portal: FC<PortalProps> = ({
+export const Portal = ({
   children,
   idPrefix
-}): ReactElement | null => {
+}: PortalProps): ReactElement | null => {
   const target = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

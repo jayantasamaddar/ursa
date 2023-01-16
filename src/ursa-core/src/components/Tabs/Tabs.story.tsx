@@ -1,5 +1,9 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import {
+  ComponentStory,
+  ComponentMeta,
+  ComponentStoryFn
+} from '@storybook/react';
 
 import { Tabs } from './Tabs';
 
@@ -31,9 +35,9 @@ const Template: ComponentStory<typeof Tabs> = ({ items, ...args }) => (
   <Tabs {...args} items={itemsData} />
 );
 
-export const DefaultTabs = Template.bind({});
+export const DefaultTabs: ComponentStoryFn<typeof Tabs> = Template.bind({});
 
-export const VerticalTabs = Template.bind({});
+export const VerticalTabs: ComponentStoryFn<typeof Tabs> = Template.bind({});
 
 VerticalTabs.args = {
   layout: 'vertical'
